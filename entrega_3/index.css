@@ -23,8 +23,8 @@
             'header header'
             'sidebar-left sidebar-left'
             'main main'
-            'widget statistics'
-            'sidebar-right sidebar-right'
+            'main main'
+            'main main'
             'footer footer';
     }
 }
@@ -36,8 +36,8 @@
         grid-template-columns: 10rem auto auto 10rem;
         grid-template-areas: 
             'header header header header'
-            'sidebar-left main main sidebar-right'
-            'sidebar-left widget statistics sidebar-right'
+            'sidebar-left main main main'
+            'sidebar-left main main main'
             'footer footer footer footer';
     }
 }
@@ -45,6 +45,7 @@
 main{
     grid-area: main;
     background: #B0EE94;
+
 }
 header{
     grid-area: header;
@@ -72,8 +73,16 @@ footer{
     width: 100%;
     background: #aac8f6;
 }
+h1, h2{
+    color:black;
+    padding: 10px;
+}
 p{
-    color: white;
+    color: black;
     font-family: sans-serif;
     padding-left: 20px;
+}
+.footer{
+    display: flex;
+    justify-content: space-around;
 }
