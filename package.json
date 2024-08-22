@@ -1,0 +1,25 @@
+{
+  "name": "grupo-2-frontend",
+  "version": "1.0.0",
+  "description": "Sitio especializado en cervezas artesanales nacionales",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx watch src/index.ts",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bootcamp-uchile-2024/grupo-2-frontend.git"
+  },
+  "author": "Grupo 2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bootcamp-uchile-2024/grupo-2-frontend/issues"
+  },
+  "homepage": "https://github.com/bootcamp-uchile-2024/grupo-2-frontend#readme",
+  "devDependencies": {
+    "tsx": "^4.17.0",
+    "typescript": "^5.5.4"
+  }
+}
