@@ -2,16 +2,16 @@
 ## Nombre del proyecto: Cervezario Nacional
 
 Al clonar el repositorio ejecutar el comando
-> `npm install`
+> ```npm install```
 
-Para correr el proyecto
->`npm run dev`
+Para correr el proyecto en desarrollo
+> ```npm run dev```
 
 
 ### Tabla de Contenidos
 
 - Documentación
-  - [Interfaces](SERVICIOS.md)
+  - [Definición de servicios](SERVICIOS.md)
 - [Tecnologías](#tecnologías)
 - [Desarrolladores](#desarrolladores)
 
