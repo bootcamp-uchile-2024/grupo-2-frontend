@@ -1,6 +1,13 @@
 # Proyecto Bootcamp Desarrollo Frontend | Grupo 2 
 ## Nombre del proyecto: Cervezario Nacional
 
+Al clonar el repositorio ejecutar el comando
+> `npm install`
+
+Para correr el proyecto
+>`npm run dev`
+
+
 ### Tabla de Contenidos
 
 - Documentación
