@@ -1,25 +1,30 @@
 {
-  "name": "grupo-2-frontend",
-  "version": "1.0.0",
-  "description": "Sitio especializado en cervezas artesanales nacionales",
-  "main": "index.js",
+  "name": "cerveza",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "start": "tsx watch src/index.ts",
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite --open",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bootcamp-uchile-2024/grupo-2-frontend.git"
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
-  "author": "Grupo 2",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/bootcamp-uchile-2024/grupo-2-frontend/issues"
-  },
-  "homepage": "https://github.com/bootcamp-uchile-2024/grupo-2-frontend#readme",
   "devDependencies": {
-    "tsx": "^4.17.0",
-    "typescript": "^5.5.4"
+    "@eslint/js": "^9.9.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^9.9.0",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "globals": "^15.9.0",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^8.0.1",
+    "vite": "^5.4.1"
   }
 }
