@@ -1,0 +1,39 @@
+/* .main {
+  min-height: 98vh;
+  display: flex;
+  flex-direction: row;
+}
+ul {
+  list-style-type: none;
+  padding: 5px;
+  margin: 10px;
+}
+
+.footer {
+  display: flex;
+  border: 2px solid black;
+  flex-shrink: 0;
+  justify-content: space-around;
+}
+.header {
+  width: 100%;
+  border: 2px solid black;
+}
+li {
+  padding: 10px;
+  margin: 10px;
+}
+li:hover {
+  background-color: red;
+  border-radius: 5px;
+}
+.navbar {
+  border: 2px solid black;
+  min-width: 200px;
+}
+.content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+} */
