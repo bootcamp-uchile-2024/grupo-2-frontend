@@ -31,10 +31,10 @@ export default function DetalleProducto() {
             </ul>
           </div>
         </div>
+        <Link to="/catalogo">
+          <button className="btn">Volver al catálogo</button>
+        </Link>
       </div>
-      <button className="btn">
-        <Link to="/catalogo">Volver al catálogo</Link>
-      </button>
     </div>
   );
 }

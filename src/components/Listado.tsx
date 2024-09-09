@@ -15,7 +15,7 @@ export default function Listado(props: PropsCervezas) {
         {cervezas.map((cerveza) => (
           <div key={cerveza.id} className="card">
             <Link to={`producto/${cerveza.id}`}>
-              <img src={cerveza.imagen} alt={cerveza.nombre} width={100} />
+              <div style={{ backgroundImage: `url(${cerveza.imagen})` }} className="card-image"></div>
             </Link>
             <div className="card-details">
               <Link to={`producto/${cerveza.id}`}>
