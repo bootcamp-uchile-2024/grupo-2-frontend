@@ -2,12 +2,16 @@ interface Cerveza {
   id: number;
   nombre: string;
   marca: string;
-  categoria: string; // IPA, ALE, etc
-  stock: number; // catidad disponible
-  imagen: string;
+  categoria: string;
+  stock: number;
   descripcion: string;
   precio: number;
-  proveedor: string; //visible sólo para usuario administrador
-  region: string; // para venta por sector.
+  proveedor: string;
+  region: string;
+  comuna: string;
+  amargor: string;
+  graduacion: string;
+  formato: string;
+  imagen: string;
 }
 export default Cerveza;

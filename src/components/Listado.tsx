@@ -9,18 +9,25 @@ export default function Listado(props: PropsCervezas) {
   console.log("cervezas", cervezas);
 
   return (
-    <div className="container py-5">
+    <div>
       <h1>Listado de Cervezas</h1>
-      {cervezas.map((cerveza) => (
-        <Link to={`producto/${cerveza.id}`}>
+      <div className="grid">
+        {cervezas.map((cerveza) => (
           <div key={cerveza.id} className="card">
-            <div className="card-details">
+            <Link to={`producto/${cerveza.id}`}>
               <img src={cerveza.imagen} alt={cerveza.nombre} width={100} />
-              {cerveza.nombre}
+            </Link>
+            <div className="card-details">
+              <Link to={`producto/${cerveza.id}`}>
+                <h3>{cerveza.nombre}</h3>
+              </Link>
+              <p>{cerveza.descripcion}</p>
+              <p>Precio: ${cerveza.precio}</p>
+              <p>{cerveza.categoria}</p>
             </div>
           </div>
-        </Link>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
