@@ -4,6 +4,7 @@ interface Cerveza {
   marca: string;
   categoria: string; // IPA, ALE, etc
   stock: number; // catidad disponible
+  imagen: string;
   descripcion: string;
   precio: number;
   proveedor: string; //visible sólo para usuario administrador

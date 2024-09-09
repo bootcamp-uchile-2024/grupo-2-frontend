@@ -1,17 +1,32 @@
+import { Link } from "react-router-dom";
 import "../layout/layout.css";
 
 function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-items">
-        <a className="navbar-brand" href="#">CERVEZARIO NACIONAL</a>
+        <Link className="navbar-brand" to="/">
+          CERVEZARIO NACIONAL
+        </Link>
         <div className="navbar-menu">
-          <a className="nav-link" aria-current="page" href="#">Home</a>
-          <a className="nav-link" href="#">Quienes somos</a>
-          <a className="nav-link" href="#">Catálogo</a>
-          <a className="nav-link" href="#">Sigue tu pedidos</a>
-          <a className="nav-link" href="#">Perfil</a>
-          <a className="nav-link" href="#">Contacto</a>
+          <Link className="nav-link" to="/">
+            Home
+          </Link>
+          <Link className="nav-link" to="/catalogo">
+            Catálogo
+          </Link>
+          <Link className="nav-link" to="/pedidos">
+            Sigue tu pedidos
+          </Link>
+          <Link className="nav-link" to="/perfil">
+            Perfil
+          </Link>
+          <Link className="nav-link" to="/acerca">
+            Quienes somos
+          </Link>
+          <Link className="nav-link" to="/contacto">
+            Contacto
+          </Link>
         </div>
       </div>
     </nav>
