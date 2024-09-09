@@ -1,4 +1,4 @@
-import Cerveza from "./Cerveza";
+import Cerveza from "./Cerveza.ts";
 interface Carrito {
   id: number;
   items: Cerveza[];
