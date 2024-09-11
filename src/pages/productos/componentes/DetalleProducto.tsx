@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Cerveza from "../../interfaces/Cerveza";
+import Cerveza from "../../../interfaces/Cerveza";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -17,7 +17,7 @@ export default function DetalleProducto() {
       <div className="wrapper-detalle-cerveza">
         <div className="detalle-cerveza">
           <div className="detalle-cerveza-imagen">
-            <img src={cerveza?.imagen} alt={cerveza?.nombre}/>
+            <img src={cerveza?.imagen} alt={cerveza?.nombre} />
           </div>
           <div className="detalle-cerveza-descripcion">
             <h1>{cerveza?.nombre}</h1>

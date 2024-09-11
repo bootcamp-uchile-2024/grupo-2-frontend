@@ -4,7 +4,7 @@ import HomePage from "./pages/HomePage";
 import CatalogoPage from "./pages/productos/CatalogoPage";
 import AcercaPage from "./pages/AcercaPage";
 import ContactoPage from "./pages/ContactoPage";
-import DetalleProducto from "./pages/productos/DetalleProducto";
+import DetalleProducto from "./pages/productos/componentes/DetalleProducto";
 import PedidoPage from "./pages/PedidoPage";
 import PerfilPage from "./pages/PerfilPage";
 
