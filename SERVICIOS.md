@@ -13,16 +13,29 @@ El propósito de este servicio es gestionar los pedidos de cervezas, incluyendo 
 
 ```typescript
 interface Usuario {
-  id: number;
   nombre: string;
+  apellido: string;
   correo: string;
   contraseña: string;
-  direccion: string;
-  telefono: number;
-  region: string;
+  direcciones: Direcciones[];
+  telefono: string;
   edad: number;
-  historial_pedidos: Pedido[];
-  suscripcion: Suscripcion;
+}
+```
+
+### Direcciones
+
+- **Descripción:** Interfaz que define la dirección de un usuario
+
+```typescript
+export interface Direcciones {
+  idUsuario: number;
+  calle: string;
+  numero: number;
+  departamento: string;
+  region: string;
+  comuna: string;
+  codigoPostal: string;
 }
 ```
 
@@ -32,16 +45,15 @@ interface Usuario {
 - **Descripción:** Define la estructura de los datos de un pedido, incluyendo las cervezas solicitadas, estado del pedido, fechas importantes y detalles de contacto del comprador.
 
 ```typescript
-interface Pedido {
-  id: number;
-  cervezas: Cerveza[];
-  estado: string; // aceptado, pagado, enviado, etc. Enum
+interface Pedidos {
+  idUsuario: number;
+  items: string;
+  estado: string;
   fecha_ingreso: Date;
-  direccion_entrega: string; //puede ser local o envio a tercero
-  correo_comprador: string; //se puede sacar del modelo usuario si esta logeado. Si no se solicita
-  telefono_comprador: number; //se puede sacar del modelo usuario si esta logeado. Si no se solicita
-  fecha_entrega: Date; //entrega física o envío
-  numero_pedido: number; //se puede repetir con ID o dejar uno de los dos
+  direccion_entrega: Direcciones[];
+  correo_comprador: string;
+  telefono_comprador: string;
+  fecha_entrega: Date;
 }
 ```
 
@@ -61,8 +73,25 @@ interface Cerveza {
     precio: number
     proveedor: string //visible sólo para usuario administrador
     region: string // para venta por sector.
+    comuna: string;
+    amargor: string;
+    graduacion: string;
+    formato: string;
+    imagen: string;
 }
 ```
+
+## Consumo servicio Cervezas:
+
+El consumo del servicio Cervezas permite la creación del catalogo y del detalle de cada producto
+
+**Endpoints**
+
+- POST: {api_host}/cervezas
+- GET: {api_host}/cervezas
+- GET: {api_host}/cervezas/{id}
+- PATCH: {api_host}/cervezas/{id}
+- DELETE: {api_host}/cervezas/{id}
 
 ### Carrito
 

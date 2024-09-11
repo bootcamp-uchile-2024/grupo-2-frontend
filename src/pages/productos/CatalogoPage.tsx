@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Listado from "../../components/Listado";
 import Sidebar from "../../components/Sidebar";
 import Cerveza from "../../interfaces/Cerveza";
+import { Link } from "react-router-dom";
 
 export default function CatalogoPage() {
   const [cervezas, setCervezas] = useState<Cerveza[]>([]);
@@ -17,6 +18,11 @@ export default function CatalogoPage() {
       </div>
       <div className="right-column">
         <Listado cervezas={cervezas} />
+        <div className="wrapper-detalle-cerveza mt-5">
+          <Link to="/">
+            <button className="btn">Volver al home</button>
+          </Link>
+        </div>
       </div>
     </div>
   );
