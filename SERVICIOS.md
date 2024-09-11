@@ -163,6 +163,10 @@ interface Suscripcion {
     - PATCH: {_api_host_}/suscripcion/{_id_}
     - DELETE: {_api_host_}/suscripcion/{_id_}
 
+### API_HOST
+
+Para el actual proyecto se utilizo un proxy en vite que evade la validación de orignes cruzados (CORS). El api*host normal para desarrollo deberia ser \_localhost:3000* pero dado el proxy es _localhost:5173_ puerto del frontend.
+
 ## Ejemplo de Uso
 
 Para utilizar estos DTO's en tu servicio, puedes importarlos de la siguiente manera:
