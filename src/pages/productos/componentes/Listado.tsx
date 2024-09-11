@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
-import Cerveza from "../interfaces/Cerveza";
+import Cerveza from "../../../interfaces/Cerveza";
 interface PropsCervezas {
   cervezas: Cerveza[];
 }
 
 export default function Listado(props: PropsCervezas) {
   const { cervezas } = props;
-  console.log("cervezas", cervezas);
 
   return (
     <div>

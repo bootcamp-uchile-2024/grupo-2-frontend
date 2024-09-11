@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Listado from "../../components/Listado";
+import Listado from "./componentes/Listado";
 import Sidebar from "../../components/Sidebar";
 import Cerveza from "../../interfaces/Cerveza";
 import { Link } from "react-router-dom";
@@ -11,6 +11,7 @@ export default function CatalogoPage() {
       .then((result) => result.json())
       .then((data) => setCervezas(data));
   }, []);
+
   return (
     <div className="wrapper">
       <div className="left-column">

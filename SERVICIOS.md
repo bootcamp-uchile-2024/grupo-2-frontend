@@ -165,7 +165,7 @@ interface Suscripcion {
 
 ### API_HOST
 
-Para el actual proyecto se utilizo un proxy en vite que evade la validación de orignes cruzados (CORS). El api*host normal para desarrollo deberia ser \_localhost:3000* pero dado el proxy es _localhost:5173_ puerto del frontend.
+Para el actual proyecto se utilizo un proxy en vite que evade la validación de origenes cruzados (CORS). El api*host normal para desarrollo deberia ser \_localhost:3000* pero dado el proxy es _localhost:5173_ puerto del frontend.
 
 ## Ejemplo de Uso
 
