@@ -1,10 +1,11 @@
-# Servicio de Gestión de Pedidos de Cerveza
+# Servicios de Cervezario Nacional
 
-## Propósito del Servicio
+## Propósito del Documento
 
-El propósito de este servicio es gestionar los pedidos de cervezas, incluyendo la creación, actualización y seguimiento del estado de los pedidos. Además, permite la gestión de usuarios, suscripciones y carritos de compra.
+El propósito de este documento es documentar las interfaces dentro de Cervezario Nacional además de la forma del consumo de estas. Entre las interfaces que encontramos tenemos:
+Usuario, Direcciones, Cervezas, Pedidos, Carrito y Suscripcion
 
-## Rutas de los Ficheros DTO's
+## Interfaces y consumo de servicios
 
 ### Usuario
 
@@ -17,18 +18,29 @@ interface Usuario {
   apellido: string;
   correo: string;
   contraseña: string;
-  direcciones: Direcciones[];
+  direcciones: Direccion[];
   telefono: string;
   edad: number;
 }
 ```
 
+- **Consumo servicio Usuarios:** El consumo del servicio Usuarios permite la creación de Usuarios y su actualización
+
+  - **Endpoints**
+
+    - POST: {_api_host_}/usuarios
+    - GET: {_api_host_}/usuarios
+    - GET: {_api_host_}/usuarios/{_id_}
+    - PATCH: {_api_host_}/usuarios/{_id_}
+    - DELETE: {_api_host_}/usuarios/{_id_}
+
 ### Direcciones
 
+- **Ruta:** `src/interfaces/Direccion.ts`
 - **Descripción:** Interfaz que define la dirección de un usuario
 
 ```typescript
-export interface Direcciones {
+export interface Direccion {
   idUsuario: number;
   calle: string;
   numero: number;
@@ -38,6 +50,16 @@ export interface Direcciones {
   codigoPostal: string;
 }
 ```
+
+- **Consumo servicio Direcciones:** El consumo del servicio Direcciones permite la creación de Direcciones y su actualización
+
+  - **Endpoints**
+
+    - POST: {_api_host_}/direcciones
+    - GET: {_api_host_}/direcciones
+    - GET: {_api_host_}/direcciones/{_id_}
+    - PATCH: {_api_host_}/direcciones/{_id_}
+    - DELETE: {_api_host_}/direcciones/{_id_}
 
 ### Pedido
 
@@ -50,7 +72,7 @@ interface Pedidos {
   items: string;
   estado: string;
   fecha_ingreso: Date;
-  direccion_entrega: Direcciones[];
+  direccion_entrega: Direccion[];
   correo_comprador: string;
   telefono_comprador: string;
   fecha_entrega: Date;
@@ -81,17 +103,15 @@ interface Cerveza {
 }
 ```
 
-## Consumo servicio Cervezas:
+- **Consumo servicio Cervezas:** El consumo del servicio Cervezas permite la creación del catalogo y del detalle de cada producto
 
-El consumo del servicio Cervezas permite la creación del catalogo y del detalle de cada producto
+  - **Endpoints**
 
-**Endpoints**
-
-- POST: {api_host}/cervezas
-- GET: {api_host}/cervezas
-- GET: {api_host}/cervezas/{id}
-- PATCH: {api_host}/cervezas/{id}
-- DELETE: {api_host}/cervezas/{id}
+    - POST: {_api_host_}/cervezas
+    - GET: {_api_host_}/cervezas
+    - GET: {_api_host_}/cervezas/{_id_}
+    - PATCH: {_api_host_}/cervezas/{_id_}
+    - DELETE: {_api_host_}/cervezas/{_id_}
 
 ### Carrito
 
@@ -106,6 +126,16 @@ interface Carrito {
     documento_de_compra: string //boleta o factura Ver si va en usurios o en carrito.
 }
 ```
+
+- **Consumo servicio Carrito:** El consumo del servicio Carrito permite la creación de Carrito y su actualización
+
+  - **Endpoints**
+
+    - POST: {_api_host_}/carrito
+    - GET: {_api_host_}/carrito
+    - GET: {_api_host_}/carrito/{_id_}
+    - PATCH: {_api_host_}/carrito/{_id_}
+    - DELETE: {_api_host_}/carrito/{_id_}
 
 ### Suscripción
 
@@ -123,6 +153,16 @@ interface Suscripcion {
 }
 ```
 
+- **Consumo servicio Suscripción:** El consumo del servicio Suscripcion permite la creación de Suscripcion y su actualización
+
+  - **Endpoints**
+
+    - POST: {_api_host_}/suscripcion
+    - GET: {_api_host_}/suscripcion
+    - GET: {_api_host_}/suscripcion/{_id_}
+    - PATCH: {_api_host_}/suscripcion/{_id_}
+    - DELETE: {_api_host_}/suscripcion/{_id_}
+
 ## Ejemplo de Uso
 
 Para utilizar estos DTO's en tu servicio, puedes importarlos de la siguiente manera:
@@ -133,4 +173,5 @@ import { Pedido } from "./interfaces/Pedido";
 import { Cerveza } from "./interfaces/Cerveza";
 import { Carrito } from "./interfaces/Carrito";
 import { Suscripcion } from "./interfaces/Suscripcion";
+import { Direccion } from "./interfaces/Suscripcion";
 ```
