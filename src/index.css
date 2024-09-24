@@ -191,6 +191,11 @@ footer {
   padding: 100px 20px 20px 20px;
 }
 
+.contenido-anidado{
+  flex: 1;
+  padding: 50px 0 0 0;
+}
+
 .wrapper-detalle-cerveza{
   width: 100%;
   flex-direction: column;
@@ -237,4 +242,23 @@ footer {
   cursor: pointer;
   position: relative;
   z-index: 99;
+}
+
+.wrapper-botones a {
+  margin: 0 .5rem 0 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 0.5rem 1rem;
+  margin: 0 8px 0 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.error {
+  color: red;
 }

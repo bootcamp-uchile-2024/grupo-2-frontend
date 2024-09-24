@@ -1,7 +1,11 @@
-export default function PerfilPage() {
+import { MainLayout } from "../layout/MainLayout";
+
+export const PerfilPage = () => {
   return (
-    <div className="contenido">
-      <h1>Perfil</h1>
-    </div>
+    <MainLayout>
+      <div className="contenido">
+        <h1>Perfil</h1>
+      </div>
+    </MainLayout>
   );
 }
