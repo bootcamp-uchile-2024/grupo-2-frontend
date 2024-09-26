@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { regiones } from "../services/RegionesComunasService";
 
 // Interfaces
 interface formValues {
@@ -17,8 +18,14 @@ interface formValues {
   imagen: string;
 }
 
+// Función para validar los inputs
 function validarCampo(nombre: string): boolean {
   return nombre === '' || nombre.length > 100;
+}
+
+// Validar los selects
+function validarSelect(valor: string): boolean {
+  return valor === '';
 }
 
 export const CreaProductoPage = () => {
@@ -53,6 +60,28 @@ export const CreaProductoPage = () => {
   const [errorFormato, setErrorFormato] = useState<string | null>(null);
   const [errorImagen, setErrorImagen] = useState<string | null>(null);
 
+  const handleRegionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedRegion = event.target.value;
+    const selectedRegionData = regiones.find(region => region.NombreRegion === selectedRegion);
+    const comunas = selectedRegionData ? selectedRegionData.comunas : [];
+    setFormValues(prevValues => ({
+      ...prevValues,
+      region: selectedRegion,
+      comuna: comunas[0] || ''
+    }));
+    setErrorRegion(null);
+    setErrorComuna(null);
+  };
+
+  const handleComunaChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedComuna = event.target.value;
+    setFormValues(prevValues => ({
+      ...prevValues,
+      comuna: selectedComuna
+    }));
+    setErrorComuna(null);
+  };
+
   // Función para manejar los cambios en los inputs
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type, checked } = event.target as HTMLInputElement;
@@ -62,56 +91,21 @@ export const CreaProductoPage = () => {
       [name]: type === "radio" ? value : value
     };
 
-    setErrorNombre(null);
     setFormValues(newFormValues);
 
-    if (name === "marca") {
-      setErrorMarca(null);
-    }
-
-    if (name === "categoria") {
-      setErrorCategoria(null);
-    }
-
-    if (name === "stock") {
-      setErrorStock(null);
-    }
-
-    if (name === "descripcion") {
-      setErrorDescripcion(null);
-    }
-
-    if (name === "precio") {
-      setErrorPrecio(null);
-    }
-
-    if (name === "proveedor") {
-      setErrorProveedor(null);
-    }
-
-    if (name === "region") {
-      setErrorRegion(null);
-    }
-
-    if (name === "comuna") {
-      setErrorComuna(null);
-    }
-
-    if (name === "amargor") {
-      setErrorAmargor(null);
-    }
-
-    if (name === "graduacion") {
-      setErrorGraduacion(null);
-    }
-
-    if (name === "formato") {
-      setErrorFormato(null);
-    }
-
-    if (name === "imagen") {
-      setErrorImagen(null);
-    }
+    if (name === "nombre") setErrorNombre(null);
+    if (name === "marca") setErrorMarca(null);
+    if (name === "categoria") setErrorCategoria(null);
+    if (name === "stock") setErrorStock(null);
+    if (name === "descripcion") setErrorDescripcion(null);
+    if (name === "precio") setErrorPrecio(null);
+    if (name === "proveedor") setErrorProveedor(null);
+    if (name === "region") setErrorRegion(null);
+    if (name === "comuna") setErrorComuna(null);
+    if (name === "amargor") setErrorAmargor(null);
+    if (name === "graduacion") setErrorGraduacion(null);
+    if (name === "formato") setErrorFormato(null);
+    if (name === "imagen") setErrorImagen(null);
   }
 
   // Función para manejar el envío del formulario
@@ -145,13 +139,13 @@ export const CreaProductoPage = () => {
       hasError = true;
     }
 
-    if (validarCampo(formValues.region)) {
-      setErrorRegion('La región no debe estar vacía');
+    if (validarSelect(formValues.region)) {
+      setErrorRegion('Debe seleccionar una región');
       hasError = true;
     }
 
-    if (validarCampo(formValues.comuna)) {
-      setErrorComuna('La comuna no debe estar vacía');
+    if (validarSelect(formValues.comuna)) {
+      setErrorComuna('Debe seleccionar una comuna');
       hasError = true;
     }
 
@@ -239,13 +233,22 @@ export const CreaProductoPage = () => {
           {errorProveedor && <p className="error">{errorProveedor}</p>}
         </div>
         <div>
-          <label htmlFor="region">Región</label>
-          <input name="region" type="text" placeholder="Región" onChange={handleChange} value={formValues.region} />
+          <label>Región</label>
+          <select name="region" value={formValues.region} onChange={handleRegionChange}>
+            <option value=""></option>
+            {regiones.map(region => (
+              <option key={region.NombreRegion} value={region.NombreRegion}>{region.NombreRegion}</option>
+            ))}
+          </select>
           {errorRegion && <p className="error">{errorRegion}</p>}
         </div>
         <div>
-          <label htmlFor="comuna">Comuna</label>
-          <input name="comuna" type="text" placeholder="Comuna" onChange={handleChange} value={formValues.comuna} />
+          <label>Comuna</label>
+          <select name="comuna" value={formValues.comuna} onChange={handleComunaChange}>
+            {formValues.region && regiones.find(region => region.NombreRegion === formValues.region)?.comunas.map((comuna, index) => (
+              <option key={index} value={comuna}>{comuna}</option>
+            ))}
+          </select>
           {errorComuna && <p className="error">{errorComuna}</p>}
         </div>
         <div>
