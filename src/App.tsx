@@ -29,7 +29,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
 
           <Route path="/admin" element={<DashboardPage />} >
-            <Route path="crea-usuario" element={<PrivateRoute roles={["admin", "user"]}><CreaUsuarioPage/></PrivateRoute>} />
+            <Route path="crea-usuario" element={<PrivateRoute roles={["admin", "editor"]}><CreaUsuarioPage/></PrivateRoute>} />
               <Route path="crea-producto" element={<CreaProductoPage/>} />
             </Route>
           </Routes>

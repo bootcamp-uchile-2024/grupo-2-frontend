@@ -267,8 +267,8 @@ export const CreaProductoPage = () => {
           {errorFormato && <p className="error">{errorFormato}</p>}
         </div>
         <div>
-          <label htmlFor="imagen">Imagen</label>
-          <input name="imagen" type="text" placeholder="Imagen" onChange={handleChange} value={formValues.imagen} />
+          <label htmlFor="imagen">Seleccionar una imagen</label>
+          <input name="imagen" type="file" accept="image/jpeg" onChange={handleChange} value={formValues.imagen} />
           {errorImagen && <p className="error">{errorImagen}</p>}
         </div>
         <button type="submit" onClick={handleSubmit}>Ingresar producto</button>

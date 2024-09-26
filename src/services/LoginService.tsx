@@ -10,7 +10,7 @@ export function login(user: ILogin): boolean {
 
     const userResponse: ILogin = {
       ...user,
-      roles: ['admin', "user-1"]
+      roles: ['admin-1', "editor-1"]
     }
 
     const datosUsuario = JSON.stringify(userResponse);
