@@ -1,7 +1,11 @@
-export default function AcercaPage() {
+import { MainLayout } from "../layout/MainLayout";
+
+export const AcercaPage = () => {
   return (
-    <div className="contenido">
-      <h1>Somos los Michis</h1>
-    </div>
+    <MainLayout>
+      <div className="contenido">
+        <h1>Somos los Michis</h1>
+      </div>
+    </MainLayout>
   );
 }

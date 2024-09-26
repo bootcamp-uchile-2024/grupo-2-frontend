@@ -1,7 +1,11 @@
-export default function PedidoPage() {
+import { MainLayout } from "../layout/MainLayout";
+
+export const PedidoPage = () => {
   return (
-    <div className="contenido">
-      <h1>Pedidos</h1>
-    </div>
+    <MainLayout>
+      <div className="contenido">
+        <h1>Pedidos</h1>
+      </div>
+    </MainLayout>
   );
 }

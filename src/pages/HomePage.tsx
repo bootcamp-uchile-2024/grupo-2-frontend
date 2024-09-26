@@ -1,9 +1,13 @@
-export default function HomePage() {
+import { MainLayout } from '../layout/MainLayout';
+
+export const HomePage = () => {
   return (
-    <div className="container">
-      <div className="contenido">
-        <h1>Cervezario Nacional</h1>
+    <MainLayout>
+      <div className="container">
+        <div className="contenido">
+          <h1>Cervezario Nacional</h1>
+        </div>
       </div>
-    </div>
+    </MainLayout>
   );
 }
