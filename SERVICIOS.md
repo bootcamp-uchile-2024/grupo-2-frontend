@@ -7,6 +7,49 @@ Usuario, Direcciones, Cervezas, Pedidos, Carrito y Suscripcion
 
 ## Interfaces y consumo de servicios
 
+### NEW
+
+### Login, Form
+
+- **Descripcion:** Interfaces que permite la autentificación y autorización dentro de la aplicación, además de la creación de usuarios y productos
+
+```typescript
+interface IForm {
+  user: string;
+  password: string;
+}
+
+interface ILogin {
+  user: string;
+  password: string;
+  roles?: string[];
+}
+interface INewUser {
+  username: string;
+  email: string;
+  birthdate: string;
+  age: number;
+  country: string;
+  gender: string;
+  terms: boolean;
+}
+interface INewProduct {
+  nombre: string;
+  marca: string;
+  categoria: string; // IPA, ALE, etc
+  stock: number; // catidad disponible
+  descripcion: string;
+  precio: number;
+  proveedor: string; //visible sólo para usuario administrador
+  region: string; // para venta por sector.
+  comuna: string;
+  amargor: string;
+  graduacion: string;
+  formato: string;
+  imagen: string;
+}
+```
+
 ### Usuario
 
 - **Ruta:** `src/interfaces/Usuario.ts`

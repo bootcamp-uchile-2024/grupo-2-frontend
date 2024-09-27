@@ -2,7 +2,7 @@ import { useState } from "react";
 import { regiones } from "../services/RegionesComunasService";
 
 // Interfaces
-interface formValues {
+interface INewProduct {
   nombre: string
   marca: string
   categoria: string // IPA, ALE, etc
@@ -29,7 +29,7 @@ function validarSelect(valor: string): boolean {
 }
 
 export const CreaProductoPage = () => {
-  const [formValues, setFormValues] = useState<formValues>({
+  const [formValues, setFormValues] = useState<INewProduct>({
     nombre: '',
     marca: '',
     categoria: '',

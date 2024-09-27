@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // Interfaces
-interface formValues {
+interface INewUser {
   username: string;
   email: string;
   birthdate: string;
@@ -39,7 +39,7 @@ function validarFechaNacimiento(fecha: string): boolean {
 }
 
 export const CreaUsuarioPage = () => {
-  const [formValues, setFormValues] = useState<formValues>({
+  const [formValues, setFormValues] = useState<INewUser>({
     username: '',
     email: '',
     birthdate: '',
