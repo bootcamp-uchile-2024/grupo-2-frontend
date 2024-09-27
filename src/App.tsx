@@ -18,21 +18,21 @@ function App() {
   return (
     <>
       <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/catalogo" element={<CatalogoPage />} />
-            <Route path="/catalogo/producto/:id" element={<DetalleProducto />} />
-            <Route path="/pedidos" element={<PedidoPage />} />
-            <Route path="/perfil" element={<PerfilPage />} />
-            <Route path="/acerca" element={<AcercaPage />} />
-            <Route path="/contacto" element={<ContactoPage />} />
-            <Route path="/login" element={<LoginPage />} />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/catalogo" element={<CatalogoPage />} />
+          <Route path="/catalogo/producto/:id" element={<DetalleProducto />} />
+          <Route path="/pedidos" element={<PedidoPage />} />
+          <Route path="/perfil" element={<PerfilPage />} />
+          <Route path="/acerca" element={<AcercaPage />} />
+          <Route path="/contacto" element={<ContactoPage />} />
+          <Route path="/login" element={<LoginPage />} />
 
           <Route path="/admin" element={<DashboardPage />} >
-            <Route path="crea-usuario" element={<PrivateRoute roles={["admin", "editor"]}><CreaUsuarioPage/></PrivateRoute>} />
-              <Route path="crea-producto" element={<CreaProductoPage/>} />
-            </Route>
-          </Routes>
+            <Route path="crea-usuario" element={<PrivateRoute roles={["admin"]}><CreaUsuarioPage /></PrivateRoute>} />
+            <Route path="crea-producto" element={<PrivateRoute roles={['admin']}><CreaProductoPage /></PrivateRoute>} />
+          </Route>
+        </Routes>
       </BrowserRouter>
     </>
   );

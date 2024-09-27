@@ -172,7 +172,10 @@ header {
   text-decoration: none;
   color: #000;
 }
-
+.btn-selected{
+  background-color: #000;
+  color: #fff;
+}
 .btn:hover {
   background-color: #000;
   color: #fff;
@@ -319,4 +322,16 @@ select {
 
 .custom-file-upload:hover {
   background-color: #999;
+}
+.login-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 200px;
+  margin: 5px auto;
+  padding: 5px;
+}
+.input-form{
+  margin: 5px 0;
+  padding: 5px;
 }

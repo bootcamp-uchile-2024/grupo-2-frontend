@@ -4,21 +4,28 @@ interface ILogin {
   roles?: string[];
 }
 
-export function login(user: ILogin): boolean {
+export function login(credenciales: ILogin): boolean {
+  const { user, password } = credenciales;
+  let userResponse: ILogin;
+  if (user === 'admin' && password === 'admin') {
 
-  if (user.user === 'admin' && user.password === 'admin') {
-
-    const userResponse: ILogin = {
-      ...user,
-      roles: ['admin-1', "editor-1"]
+    userResponse = {
+      ...credenciales,
+      roles: ['admin', "user"]
     }
 
-    const datosUsuario = JSON.stringify(userResponse);
-    localStorage.setItem('user', datosUsuario);
-    return true;
+  } else if (user === 'usuario' && password === 'usuario') {
+    userResponse = {
+      ...credenciales,
+      roles: ['user']
+    }
+
   } else {
     return false;
   }
+  const datosUsuario = JSON.stringify(userResponse);
+  localStorage.setItem('user', datosUsuario);
+  return true
 }
 
 export const logout = () => localStorage.removeItem('user');

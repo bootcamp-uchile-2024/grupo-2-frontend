@@ -46,10 +46,11 @@ const Navbar = () => {
           <Link className="nav-link" to="/contacto">
             Contacto
           </Link>
+          <Link className="nav-link" to="/admin">Administración</Link>
           {isLoggedIn ? (
-            <a className="nav-link" onClick={handleLogout}>
+            <Link className="nav-link" onClick={handleLogout} to="/login">
               Logout
-            </a>
+            </Link>
           ) : (
             <Link className="nav-link" to="/login">
               Login
