@@ -328,7 +328,6 @@ select {
   flex-direction: column;
   justify-content: center;
   max-width: 200px;
-  margin: 5px auto;
   padding: 5px;
 }
 .input-form{
