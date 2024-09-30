@@ -9,7 +9,7 @@ import { PerfilPage } from "./pages/PerfilPage";
 
 // Administación de Usuarios y Productos
 import { LoginPage } from "./pages/LoginPage";
-import { PrivateRoute } from './components/PrivateRoute'
+import { PrivateRoute } from "./components/PrivateRoute";
 import { DashboardPage } from "./pages/DashboardPage";
 import { CreaUsuarioPage } from "./pages/CreaUsuarioPage";
 import { CreaProductoPage } from "./pages/CreaProductoPage";
@@ -18,21 +18,28 @@ function App() {
   return (
     <>
       <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/catalogo" element={<CatalogoPage />} />
-            <Route path="/catalogo/producto/:id" element={<DetalleProducto />} />
-            <Route path="/pedidos" element={<PedidoPage />} />
-            <Route path="/perfil" element={<PerfilPage />} />
-            <Route path="/acerca" element={<AcercaPage />} />
-            <Route path="/contacto" element={<ContactoPage />} />
-            <Route path="/login" element={<LoginPage />} />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/catalogo" element={<CatalogoPage />} />
+          <Route path="/catalogo/producto/:id" element={<DetalleProducto />} />
+          <Route path="/pedidos" element={<PedidoPage />} />
+          <Route path="/perfil" element={<PerfilPage />} />
+          <Route path="/acerca" element={<AcercaPage />} />
+          <Route path="/contacto" element={<ContactoPage />} />
+          <Route path="/login" element={<LoginPage />} />
 
-          <Route path="/admin" element={<DashboardPage />} >
-            <Route path="crea-usuario" element={<PrivateRoute roles={["admin", "editor"]}><CreaUsuarioPage/></PrivateRoute>} />
-              <Route path="crea-producto" element={<CreaProductoPage/>} />
-            </Route>
-          </Routes>
+          <Route path="/admin" element={<DashboardPage />}>
+            <Route
+              path="crea-usuario"
+              element={
+                <PrivateRoute roles={["admin-1", "editor"]}>
+                  <CreaUsuarioPage />
+                </PrivateRoute>
+              }
+            />
+            <Route path="crea-producto" element={<CreaProductoPage />} />
+          </Route>
+        </Routes>
       </BrowserRouter>
     </>
   );

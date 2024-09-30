@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { MainLayout } from "../layout/MainLayout";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
-
 export const DashboardPage = () => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const navigate = useNavigate();
@@ -24,17 +23,20 @@ export const DashboardPage = () => {
     <MainLayout>
       <div className="contenido">
         <h1>Administración de contenido y usuarios</h1>
-        <p>En esta sección se administran los usuarios y el contenido de la aplicación.</p>
+        <p>
+          En esta sección se administran los usuarios y el contenido de la
+          aplicación.
+        </p>
         <div className="wrapper-botones">
           <Link to="crea-usuario">
             <button className="btn">Administrar Usuarios</button>
           </Link>
           <Link to="crea-producto">
-            <button className="btn">Administrar Contenido</button>
+            <button className="btn">Administrar Productos</button>
           </Link>
-          <Outlet/>
+          <Outlet />
         </div>
       </div>
     </MainLayout>
   );
-}
+};

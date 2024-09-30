@@ -7,7 +7,7 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem("user");
     if (user) {
       setIsLoggedIn(true);
     } else {
@@ -16,7 +16,7 @@ const Navbar = () => {
   }, [location]);
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
+    localStorage.removeItem("user");
     setIsLoggedIn(false);
     navigate("/login");
   };
@@ -46,6 +46,9 @@ const Navbar = () => {
           <Link className="nav-link" to="/contacto">
             Contacto
           </Link>
+          <Link className="nav-link" to="/admin">
+            Administración
+          </Link>
           {isLoggedIn ? (
             <a className="nav-link" onClick={handleLogout}>
               Logout
@@ -59,6 +62,6 @@ const Navbar = () => {
       </div>
     </nav>
   );
-}
+};
 
 export default Navbar;
