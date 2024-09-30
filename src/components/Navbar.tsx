@@ -50,9 +50,9 @@ const Navbar = () => {
             Administración
           </Link>
           {isLoggedIn ? (
-            <a className="nav-link" onClick={handleLogout}>
+            <Link className="nav-link" onClick={handleLogout} to="/login">
               Logout
-            </a>
+            </Link>
           ) : (
             <Link className="nav-link" to="/login">
               Login

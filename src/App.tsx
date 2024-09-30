@@ -32,12 +32,19 @@ function App() {
             <Route
               path="crea-usuario"
               element={
-                <PrivateRoute roles={["admin-1", "editor"]}>
+                <PrivateRoute roles={["admin"]}>
                   <CreaUsuarioPage />
                 </PrivateRoute>
               }
             />
-            <Route path="crea-producto" element={<CreaProductoPage />} />
+            <Route
+              path="crea-producto"
+              element={
+                <PrivateRoute roles={["admin"]}>
+                  <CreaProductoPage />
+                </PrivateRoute>
+              }
+            />
           </Route>
         </Routes>
       </BrowserRouter>
