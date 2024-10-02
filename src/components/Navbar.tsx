@@ -1,5 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { isAdmin } from "../services/LoginService";
 
 const Navbar = () => {
   const location = useLocation();
@@ -8,11 +9,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const user = localStorage.getItem("user");
-    if (user) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
+    user ? setIsLoggedIn(true) : setIsLoggedIn(false);//REFACTOR: Reduje la sintaxis
   }, [location]);
 
   const handleLogout = () => {
@@ -21,6 +18,28 @@ const Navbar = () => {
     navigate("/login");
   };
 
+
+  /*
+  //REFACTOR: Hice una componente funcional
+  Componente funcional que muestre login o logout dependiendo del estado de isLoggedIn
+  */
+  function LoginButton({ isLoggedIn }: { isLoggedIn: boolean }) {
+    return isLoggedIn ? (
+      <Link className="nav-link" onClick={handleLogout} to="/login">
+        Logout
+      </Link>
+    ) : (
+      <Link className="nav-link" to="/login">
+        Login
+      </Link>
+    );
+  }
+  //REFACTOR: hice una lista que se renderizara con un map
+  const links = [
+    { to: "/catalogo", text: "Catálogo", className: 'nav-link' },
+    { to: "/pedidos", text: "Sigue tu pedidos", className: 'nav-link' },
+    { to: "/perfil", text: "Perfil", className: 'nav-link' }]
+
   return (
     <nav className="navbar">
       <div className="navbar-items">
@@ -28,36 +47,13 @@ const Navbar = () => {
           CERVEZARIO NACIONAL
         </Link>
         <div className="navbar-menu">
-          <Link className="nav-link" to="/">
-            Home
-          </Link>
-          <Link className="nav-link" to="/catalogo">
-            Catálogo
-          </Link>
-          <Link className="nav-link" to="/pedidos">
-            Sigue tu pedidos
-          </Link>
-          <Link className="nav-link" to="/perfil">
-            Perfil
-          </Link>
-          <Link className="nav-link" to="/acerca">
-            Quienes somos
-          </Link>
-          <Link className="nav-link" to="/contacto">
-            Contacto
-          </Link>
-          <Link className="nav-link" to="/admin">
-            Administración
-          </Link>
-          {isLoggedIn ? (
-            <Link className="nav-link" onClick={handleLogout} to="/login">
-              Logout
-            </Link>
-          ) : (
-            <Link className="nav-link" to="/login">
-              Login
-            </Link>
-          )}
+          {links.map((link, index) => {
+            const { to, text, className } = link;
+            return <Link key={index} className={className} to={to}>{text}</Link>
+          })}
+
+          {isAdmin() && <Link className="nav-link" to="/admin">Administración</Link>}{/* //REFACTOR: Se muestra el boton segun sea el rol del usuario */}
+          <LoginButton isLoggedIn={isLoggedIn} />
         </div>
       </div>
     </nav>

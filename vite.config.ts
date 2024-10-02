@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/cervezas": {
-        target: "http://localhost:3000/cervezas",
+        target: "http://localhost:4500/cervezas",
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/cervezas/, ""),

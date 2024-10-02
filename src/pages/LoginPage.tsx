@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MainLayout } from "../layout/MainLayout";
-import { login } from "../services/LoginService";
+import { isAdmin, login } from "../services/LoginService";
 
 interface IForm {
   user: string;
@@ -31,7 +31,7 @@ export const LoginPage = () => {
 
     //validacion de credenciales
     if (login(form)) {
-      navigate("/admin");
+      isAdmin() ? navigate("/admin") : navigate("/catalogo");
     } else {
       setValidCredential(false);
     }
