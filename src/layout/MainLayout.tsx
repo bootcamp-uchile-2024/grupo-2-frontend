@@ -7,12 +7,14 @@ interface MainLayoutProps {
 
 export const MainLayout = (props: MainLayoutProps) => {
   return (
-    <div className="container">
+    <>
       <Header />
-      <main>
-        {props.children}
-      </main>
+        <div className="container-fluid">
+          <main>
+            {props.children}
+          </main>
+        </div>
       <Footer />
-    </div>
+    </>
   );
 };

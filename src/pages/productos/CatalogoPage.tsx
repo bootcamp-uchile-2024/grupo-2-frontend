@@ -37,7 +37,7 @@ export const CatalogoPage = () => {
   }, [filtros]);
   return (
     <MainLayout>
-      <div className="wrapper">
+      <div className="wrapper-catalogo">
         <div className="left-column">
           <Sidebar setFiltros={setFiltros} />
         </div>

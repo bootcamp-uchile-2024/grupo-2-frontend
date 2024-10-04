@@ -9,7 +9,8 @@ const Navbar = () => {
 
   useEffect(() => {
     const user = localStorage.getItem("user");
-    user ? setIsLoggedIn(true) : setIsLoggedIn(false);//REFACTOR: Reduje la sintaxis
+    //REFACTOR: la sintaxis !!user convierte user en un valor booleano (true o false).
+    setIsLoggedIn(!!user);//REFACTOR: Reduje la sintaxis
   }, [location]);
 
   const handleLogout = () => {
@@ -39,24 +40,25 @@ const Navbar = () => {
     { to: "/catalogo", text: "Catálogo", className: 'nav-link' },
     { to: "/pedidos", text: "Sigue tu pedidos", className: 'nav-link' },
     { to: "/perfil", text: "Perfil", className: 'nav-link' }]
-
+  
+  //REFACTOR: Uso de bootstrap para centrar los elementos y darle un mejor aspecto
   return (
-    <nav className="navbar">
-      <div className="navbar-items">
-        <Link className="navbar-brand" to="/">
-          CERVEZARIO NACIONAL
-        </Link>
-        <div className="navbar-menu">
+    <div className="d-flex justify-content-between align-items-center">
+        <div>
+          <Link className="navbar-brand" to="/">
+            CERVEZARIO NACIONAL
+          </Link>
+        </div>
+        <div className="d-flex">
           {links.map((link, index) => {
             const { to, text, className } = link;
-            return <Link key={index} className={className} to={to}>{text}</Link>
+            //REFACTOR: Se mueve el key a la etiqueta padre y evitar el warning de consola: Navbar.tsx:52 Warning: Each child in a list should have a unique "key" prop.
+            return <div key={index} className="me-3"><Link className={className} to={to}>{text}</Link></div>
           })}
-
-          {isAdmin() && <Link className="nav-link" to="/admin">Administración</Link>}{/* //REFACTOR: Se muestra el boton segun sea el rol del usuario */}
-          <LoginButton isLoggedIn={isLoggedIn} />
+        <div className="me-3">{isAdmin() && <Link className="nav-link" to="/admin">Administración</Link>}</div>
+          <div><LoginButton isLoggedIn={isLoggedIn} /></div>
         </div>
-      </div>
-    </nav>
+    </div>
   );
 };
 

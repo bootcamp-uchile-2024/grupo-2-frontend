@@ -10,9 +10,9 @@ import { PerfilPage } from "./pages/PerfilPage";
 // Administación de Usuarios y Productos
 import { LoginPage } from "./pages/LoginPage";
 import { PrivateRoute } from "./components/PrivateRoute";
-import { DashboardPage } from "./pages/DashboardPage";
-import { CreaUsuarioPage } from "./pages/CreaUsuarioPage";
-import { CreaProductoPage } from "./pages/CreaProductoPage";
+import { DashboardPage } from "./pages/dashboard/DashboardPage";
+import { CreaUsuarioPage } from "./pages/dashboard/CreaUsuarioPage";
+import { CreaProductoPage } from "./pages/dashboard/CreaProductoPage";
 
 function App() {
   return (

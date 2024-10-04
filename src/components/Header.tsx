@@ -2,8 +2,10 @@ import Navbar from "./Navbar";
 
 function Header() {
   return (
-    <header>
-      <Navbar />
+    <header className="p-3 text-bg-dark">
+      <div className="container">
+        <Navbar />
+      </div>
     </header>
   );
 }
