@@ -7,7 +7,7 @@ interface PropsCervezas {
 export default function Listado(props: PropsCervezas) {
   const { cervezas } = props;
   if (cervezas.length === 0) {
-    return <h2>No hay cervezas</h2>
+    return <h2>No hay cervezas</h2>;
   }
   return (
     <div className="grid">
@@ -27,6 +27,7 @@ export default function Listado(props: PropsCervezas) {
             <p>Precio: ${cerveza.precio}</p>
             <p>{cerveza.categoria}</p>
             <p>{cerveza.graduacion}</p>
+            <button>Agregar al carro</button>
           </div>
         </div>
       ))}

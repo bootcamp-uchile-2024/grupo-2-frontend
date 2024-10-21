@@ -13,6 +13,7 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { DashboardPage } from "./pages/dashboard/DashboardPage";
 import { CreaUsuarioPage } from "./pages/dashboard/CreaUsuarioPage";
 import { CreaProductoPage } from "./pages/dashboard/CreaProductoPage";
+import CarritoPage from "./pages/CarritoPage";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/perfil" element={<PerfilPage />} />
           <Route path="/acerca" element={<AcercaPage />} />
           <Route path="/contacto" element={<ContactoPage />} />
+          <Route path="/carrito" element={<CarritoPage />} />
           <Route path="/login" element={<LoginPage />} />
 
           <Route path="/admin" element={<DashboardPage />}>
