@@ -31,7 +31,11 @@ export const LoginPage = () => {
 
     //validacion de credenciales
     if (login(form)) {
-      isAdmin() ? navigate("/admin") : navigate("/catalogo");
+      if (isAdmin()) {
+        navigate("/admin")
+      } else {
+        navigate("/catalogo");
+      }
     } else {
       setValidCredential(false);
     }
