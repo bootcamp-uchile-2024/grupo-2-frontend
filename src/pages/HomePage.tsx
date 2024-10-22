@@ -1,10 +1,9 @@
-import { MainLayout } from '../layout/MainLayout';
+import { MainLayout } from "../layout/MainLayout";
 
 export const HomePage = () => {
   const credenciales = localStorage.getItem("user");
-  console.log(credenciales);
 
-  const user = credenciales ? JSON.parse(credenciales).user : null
+  const user = credenciales ? JSON.parse(credenciales).user : null;
   return (
     <MainLayout>
       <div className="container">
@@ -19,4 +18,4 @@ export const HomePage = () => {
       </div>
     </MainLayout>
   );
-}
+};

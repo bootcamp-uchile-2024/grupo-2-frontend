@@ -14,6 +14,7 @@ import { DashboardPage } from "./pages/dashboard/DashboardPage";
 import { CreaUsuarioPage } from "./pages/dashboard/CreaUsuarioPage";
 import { CreaProductoPage } from "./pages/dashboard/CreaProductoPage";
 import CarritoPage from "./pages/CarritoPage";
+import { ResumenCompraPage } from "./pages/ResumenCompraPage";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/acerca" element={<AcercaPage />} />
           <Route path="/contacto" element={<ContactoPage />} />
           <Route path="/carrito" element={<CarritoPage />} />
+          <Route path="/resumen-compra" element={<ResumenCompraPage />} />
           <Route path="/login" element={<LoginPage />} />
 
           <Route path="/admin" element={<DashboardPage />}>

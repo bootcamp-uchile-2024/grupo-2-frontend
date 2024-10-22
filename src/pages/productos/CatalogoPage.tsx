@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import Listado from "./componentes/Listado";
 import Sidebar from "../../components/Sidebar";
-import Cerveza from "../../interfaces/Cerveza";
+import Cerveza from "../../interfaces/ICerveza";
 import { Link } from "react-router-dom";
 import { MainLayout } from "../../layout/MainLayout";
-
 
 /* 
 REFACTOR: Interface con filtros de catalogo
@@ -12,11 +11,15 @@ REFACTOR: Interface con filtros de catalogo
 export interface FiltrosCatalogo {
   categorias: string[];
   estilos: string[];
-  graduaciones: string[]
+  graduaciones: string[];
 }
 export const CatalogoPage = () => {
   const [cervezas, setCervezas] = useState<Cerveza[]>([]);
-  const [filtros, setFiltros] = useState<FiltrosCatalogo>({ categorias: [], estilos: [], graduaciones: [] });
+  const [filtros, setFiltros] = useState<FiltrosCatalogo>({
+    categorias: [],
+    estilos: [],
+    graduaciones: [],
+  });
   useEffect(() => {
     /* REFACTOR: se pueden filtrar realmente desde el lado del cliente, faltan más filtros pero a definir con UX */
     fetch("http://localhost:5173/cervezas/")
@@ -31,9 +34,9 @@ export const CatalogoPage = () => {
             return false;
           }
           return true;
-        })
-        setCervezas(filterCervezas)
-      })
+        });
+        setCervezas(filterCervezas);
+      });
   }, [filtros]);
   return (
     <MainLayout>
@@ -55,4 +58,4 @@ export const CatalogoPage = () => {
       </div>
     </MainLayout>
   );
-}
+};
