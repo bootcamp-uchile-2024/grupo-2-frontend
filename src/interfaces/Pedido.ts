@@ -1,4 +1,4 @@
-import Cerveza from "./ICerveza";
+import Cerveza from "./Cerveza";
 interface Pedido {
   id: number;
   cervezas: Cerveza[];

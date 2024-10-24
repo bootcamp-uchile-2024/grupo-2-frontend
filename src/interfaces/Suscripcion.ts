@@ -1,4 +1,4 @@
-import Cerveza from "./ICerveza";
+import Cerveza from "./Cerveza";
 interface Suscripcion {
   id: number;
   nombre: string;

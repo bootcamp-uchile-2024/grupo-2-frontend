@@ -1,4 +1,4 @@
-interface ICerveza {
+interface Cerveza {
   id: number;
   nombre: string;
   marca: string;
@@ -14,4 +14,4 @@ interface ICerveza {
   formato: string;
   imagen: string;
 }
-export default ICerveza;
+export default Cerveza;

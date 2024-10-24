@@ -1,48 +1,38 @@
 import { useEffect, useState } from "react";
-import ICerveza from "../../../interfaces/ICerveza";
+import Cerveza from "../../../interfaces/Cerveza";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { MainLayout } from "../../../layout/MainLayout";
-import { AgregarAlCarro } from "./Listado";
 
 export const DetalleProducto = () => {
   const { id } = useParams();
-  const [cerveza, setCerveza] = useState<ICerveza>();
-  
-  // Se importa la variable de entorno de la API
-  const apiUrl = import.meta.env.VITE_API_URL;
-
+  const [cerveza, setCerveza] = useState<Cerveza>();
   useEffect(() => {
-    fetch(`${apiUrl}/cervezas/${id}`)
+    fetch(`http://localhost:5173/cervezas/${id}`)
       .then((result) => result.json())
       .then((data) => setCerveza(data));
-  }, [apiUrl, id]);
-
+  }, [id]);
   return (
     <MainLayout>
       <div className="contenido">
         <h1>Detalle de Cerveza</h1>
         <div className="wrapper-detalle-cerveza">
-          {cerveza ? (
-            <div className="detalle-cerveza">
-              <div className="detalle-cerveza-imagen">
-                <img src={cerveza.imagen} alt={cerveza.nombre} />
-              </div>
-              <div className="detalle-cerveza-descripcion">
-                <h1>{cerveza.nombre}</h1>
-                <ul>
-                  <li>{cerveza.descripcion}</li>
-                  <li>Precio: ${cerveza.precio}</li>
-                  <AgregarAlCarro {...cerveza} />
-                  <li>{cerveza.categoria}</li>
-                  <li>{cerveza.amargor}</li>
-                  <li>{cerveza.graduacion}</li>
-                  <li>{cerveza.formato}</li>
-                </ul>
-              </div>
+          <div className="detalle-cerveza">
+            <div className="detalle-cerveza-imagen">
+              <img src={cerveza?.imagen} alt={cerveza?.nombre} />
             </div>
-          ) : null}
-
+            <div className="detalle-cerveza-descripcion">
+              <h1>{cerveza?.nombre}</h1>
+              <ul>
+                <li>{cerveza?.descripcion}</li>
+                <li>Precio: ${cerveza?.precio}</li>
+                <li>{cerveza?.categoria}</li>
+                <li>{cerveza?.amargor}</li>
+                <li>{cerveza?.graduacion}</li>
+                <li>{cerveza?.formato}</li>
+              </ul>
+            </div>
+          </div>
           <Link to="/catalogo">
             <button className="btn">Volver al catálogo</button>
           </Link>
@@ -50,4 +40,4 @@ export const DetalleProducto = () => {
       </div>
     </MainLayout>
   );
-};
+}
