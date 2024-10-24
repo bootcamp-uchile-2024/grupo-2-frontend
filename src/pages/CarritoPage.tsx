@@ -93,14 +93,10 @@ const ListaPedido = (props: ICarrito) => {
           <h2>No hay productos en el carrito</h2>
         </div>
       ) : (
-        items.map((item) => {
-          const { cerveza } = item;
+        items.map((item) => {const { cerveza } = item;
           return (
-            <div className="w-100">
-              <div
-                className="d-flex align-items-center justify-content-around m-2 w-100"
-                key={cerveza.id}
-              >
+            <div className="w-100" key={cerveza.id}>
+              <div className="d-flex align-items-center justify-content-around m-2 w-100" key={cerveza.id}>
                 <img
                   src={cerveza.imagen}
                   alt={cerveza.nombre}

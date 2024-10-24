@@ -1,10 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ICerveza from "../../../interfaces/ICerveza";
 import { useState } from "react";
 import { addProducto } from "../../../state/slices/carritoSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { RootType } from "../../../state/store";
 interface PropsCervezas {
   cervezas: ICerveza[];
 }
@@ -74,7 +73,6 @@ const VistaProductoLista = (props: ICerveza) => {
         <p>Precio: ${precio}</p>
         <p>{categoria}</p>
         <p>{graduacion}</p>
-
         <AgregarAlCarro {...props} />
       </div>
     </div>
