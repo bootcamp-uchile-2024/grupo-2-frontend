@@ -20,9 +20,13 @@ export const CatalogoPage = () => {
     estilos: [],
     graduaciones: [],
   });
+  
+  // Se importa la variable de entorno de la API
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     /* REFACTOR: se pueden filtrar realmente desde el lado del cliente, faltan más filtros pero a definir con UX */
-    fetch("http://localhost:5173/cervezas/")
+    fetch(`${apiUrl}/cervezas/`)
       .then((result) => result.json())
       .then((data) => {
         const { categorias, graduaciones } = filtros;
@@ -37,7 +41,8 @@ export const CatalogoPage = () => {
         });
         setCervezas(filterCervezas);
       });
-  }, [filtros]);
+  }, [apiUrl, filtros]);
+  
   return (
     <MainLayout>
       <div className="wrapper-catalogo">

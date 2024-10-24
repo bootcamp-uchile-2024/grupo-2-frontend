@@ -8,11 +8,15 @@ import { AgregarAlCarro } from "./Listado";
 export const DetalleProducto = () => {
   const { id } = useParams();
   const [cerveza, setCerveza] = useState<ICerveza>();
+  
+  // Se importa la variable de entorno de la API
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
-    fetch(`http://localhost:5173/cervezas/${id}`)
+    fetch(`${apiUrl}/cervezas/${id}`)
       .then((result) => result.json())
       .then((data) => setCerveza(data));
-  }, [id]);
+  }, [apiUrl, id]);
 
   return (
     <MainLayout>
