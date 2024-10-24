@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MainLayout } from "../layout/MainLayout";
-import { login } from "../services/LoginService";
+import { isAdmin, login } from "../services/LoginService";
 
 interface IForm {
   user: string;
@@ -31,7 +31,11 @@ export const LoginPage = () => {
 
     //validacion de credenciales
     if (login(form)) {
-      navigate("/admin");
+      if (isAdmin()) {
+        navigate("/admin")
+      } else {
+        navigate("/catalogo");
+      }
     } else {
       setValidCredential(false);
     }
@@ -52,17 +56,24 @@ export const LoginPage = () => {
 
   return (
     <MainLayout>
-      <div className="contenido">
-        <h1>Login Page</h1>
-        <p>Esta es la pagina de login</p>
-        <form className="login-form">
-          <input className="input-form" type="text" placeholder="Usuario" name="user" onChange={handleChange} value={form.user} />
-          <input className="input-form" type="password" placeholder="Contraseña" name="password" onChange={handleChange} value={form.password} />
-          <button className="btn input-form" type="submit" onClick={handleSubmit}>Iniciar Sesión</button>
-
-          <span className="error">{error && <div>Faltan llegar algunos campos</div>}</span>
-          <span className="error">{!validCredential && <div>Nombre de usuario o contraseña incorrecta</div>}</span>
-        </form>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="d-flex jusfify-content-center align-items-center" style={{ minHeight: '80vh' }}>
+              <div className="m-auto">
+                <h1>Login Page</h1>
+                <p>Esta es la pagina de login</p>
+                <form className="login-form">
+                  <input className="input-form" type="text" placeholder="Usuario" name="user" onChange={handleChange} value={form.user} />
+                  <input className="input-form" type="password" placeholder="Contraseña" name="password" onChange={handleChange} value={form.password} />
+                  <button className="btn input-form" type="submit" onClick={handleSubmit}>Iniciar Sesión</button>
+                  <span className="error">{error && <div>Faltan llegar algunos campos</div>}</span>
+                  <span className="error">{!validCredential && <div>Nombre de usuario o contraseña incorrecta</div>}</span>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </MainLayout>
   )

@@ -154,36 +154,39 @@ export const CreaUsuarioPage = () => {
     });
   };
 
+  // REFACTOR: Se agregó grilla responsiva de Bootstrap. 
+  // REFACTOR: Se agregaron clases de Bootstrap para darle estilo al formulario.
   return (
     <>
-      <form id="form">
+      <form className="mt-5 w-50 m-auto">
         <h1>Crear usuario</h1>
-        <div>
-          <label htmlFor="username">Nombre de usuario</label>
-          <input name="username" type="text" placeholder="Tu nombre de usuario" onChange={handleChange} value={formValues.username} />
+        <p>A través de este formulario usted podrá crear un usuario</p>
+        <div className="mb-3">
+          <label className="form-label" htmlFor="username">Nombre de usuario</label>
+          <input className="form-control" name="username" type="text" placeholder="Tu nombre de usuario" onChange={handleChange} value={formValues.username} />
           {errorNombre && <p className="error">{errorNombre}</p>}
         </div>
 
-        <div>
-          <label htmlFor="email">Correo Electrónico</label>
-          <input name="email" type="email" placeholder="Tu correo electrónico" onChange={handleChange} value={formValues.email} />
+        <div className="mb-3">
+          <label className="form-label" htmlFor="email">Correo Electrónico</label>
+          <input className="form-control" name="email" type="email" placeholder="Tu correo electrónico" onChange={handleChange} value={formValues.email} />
           {errorEmail && <p className="error">{errorEmail}</p>}
         </div>
 
-        <div>
-          <label htmlFor="birthdate">Fecha de Nacimiento</label>
-          <input name="birthdate" type="date" onChange={handleChange} value={formValues.birthdate} />
+        <div className="mb-3">
+          <label className="form-label" htmlFor="birthdate">Fecha de Nacimiento</label>
+          <input className="form-control" name="birthdate" type="date" onChange={handleChange} value={formValues.birthdate} />
           {errorFechaNacimiento && <p className="error">{errorFechaNacimiento}</p>}
         </div>
 
-        <div>
-          <label htmlFor="age">Edad</label>
-          <input name="age" type="number" min="0" max="120" value={formValues.age} readOnly />
+        <div className="mb-3">
+          <label className="form-label" htmlFor="age">Edad</label>
+          <input className="form-control" name="age" type="number" min="0" max="120" value={formValues.age} readOnly />
         </div>
 
-        <div>
-          <label htmlFor="country">País</label>
-          <select name="country" onChange={handleChange} value={formValues.country}>
+        <div className="mb-3">
+          <label className="form-label" htmlFor="country">País</label>
+          <select className="form-control" name="country" onChange={handleChange} value={formValues.country}>
             <option value="">Seleccione...</option>
             <option value="Argentina">Argentina</option>
             <option value="Colombia">Colombia</option>
@@ -198,34 +201,34 @@ export const CreaUsuarioPage = () => {
           {errorCountry && <p className="error">{errorCountry}</p>}
         </div>
 
-        <div>
+        <div className="mb-3">
           <label>Género</label>
-          <div className="radio-group">
-            <div className="radio-container flex-row">
-              <input name="gender" type="radio" value="male" onChange={handleChange} checked={formValues.gender === 'male'} />
-              <label htmlFor="male">Masculino</label>
+          <div className="mb-3">
+            <div className="form-check">
+              <input className="form-check-input" name="gender" type="radio" value="male" onChange={handleChange} checked={formValues.gender === 'male'} />
+              <label className="form-check-label" htmlFor="male">Masculino</label>
             </div>
-            <div className="radio-container flex-row">
-              <input name="gender" type="radio" value="female" onChange={handleChange} checked={formValues.gender === 'female'} />
-              <label htmlFor="female">Femenino</label>
+            <div className="form-check">
+              <input className="form-check-input" name="gender" type="radio" value="female" onChange={handleChange} checked={formValues.gender === 'female'} />
+              <label className="form-check-label" htmlFor="female">Femenino</label>
             </div>
-            <div className="radio-container flex-row">
-              <input name="gender" type="radio" value="other" onChange={handleChange} checked={formValues.gender === 'other'} />
-              <label htmlFor="other">Otro</label>
+            <div className="form-check">
+              <input className="form-check-input" name="gender" type="radio" value="other" onChange={handleChange} checked={formValues.gender === 'other'} />
+              <label className="form-check-label" htmlFor="other">Otro</label>
             </div>
           </div>
           {errorGender && <p className="error">{errorGender}</p>}
         </div>
 
-        <div className="flex-row">
-          <div className="checkbox-container flex-row">
-            <input name="terms" type="checkbox" onChange={handleChange} checked={formValues.terms} />
-            <label htmlFor="terms">Acepto los términos y condiciones</label>
+        <div className="mb-3">
+          <div className="form-check">
+            <input className="form-check-input" name="terms" type="checkbox" onChange={handleChange} checked={formValues.terms} />
+            <label className="form-check-label" htmlFor="terms">Acepto los términos y condiciones</label>
           </div>
           {errorTerms && <p className="error">{errorTerms}</p>}
         </div>
 
-        <button type="submit" onClick={handleSubmit}>Registrar</button>
+        <button className="btn btn-dark" type="submit" onClick={handleSubmit}>Registrar</button>
       </form>
     </>
   );

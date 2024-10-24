@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { regiones } from "../services/RegionesComunasService";
+import { regiones } from "../../services/RegionesComunasService";
 
 // Interfaces
 interface INewProduct {
@@ -83,7 +83,7 @@ export const CreaProductoPage = () => {
   };
 
   // Función para manejar los cambios en los inputs
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type, checked } = event.target as HTMLInputElement;
     const newFormValues = {
       ...formValues,
@@ -194,85 +194,96 @@ export const CreaProductoPage = () => {
   };
 
   return (
-    <>
-      <form id="form">
-        <h1>Ingresar producto</h1>
-        <div>
-          <label htmlFor="username">Nombre de cerveza</label>
-          <input name="nombre" type="text" placeholder="Nombre de la cerveza" onChange={handleChange} value={formValues.nombre} />
-          {errorNombre && <p className="error">{errorNombre}</p>}
-        </div>
-        <div>
-          <label htmlFor="marca">Marca</label>
-          <input name="marca" type="text" placeholder="Marca" onChange={handleChange} value={formValues.marca} />
-          {errorMarca && <p className="error">{errorMarca}</p>}
-        </div>
-        <div>
-          <label htmlFor="categoria">Categoría</label>
-          <input name="categoria" type="text" placeholder="Categoría" onChange={handleChange} value={formValues.categoria} />
-          {errorCategoria && <p className="error">{errorCategoria}</p>}
-        </div>
-        <div>
-          <label htmlFor="stock">Stock</label>
-          <input name="stock" type="number" placeholder="Stock" onChange={handleChange} value={formValues.stock} />
-          {errorStock && <p className="error">{errorStock}</p>}
-        </div>
-        <div>
-          <label htmlFor="descripcion">Descripción</label>
-          <input name="descripcion" type="textarea" placeholder="Descripción" onChange={handleChange} value={formValues.descripcion} />
-          {errorDescripcion && <p className="error">{errorDescripcion}</p>}
-        </div>
-        <div>
-          <label htmlFor="precio">Precio</label>
-          <input name="precio" type="number" placeholder="Precio" onChange={handleChange} value={formValues.precio} />
-          {errorPrecio && <p className="error">{errorPrecio}</p>}
-        </div>
-        <div>
-          <label htmlFor="proveedor">Proveedor</label>
-          <input name="proveedor" type="text" placeholder="Proveedor" onChange={handleChange} value={formValues.proveedor} />
-          {errorProveedor && <p className="error">{errorProveedor}</p>}
-        </div>
-        <div>
-          <label>Región</label>
-          <select name="region" value={formValues.region} onChange={handleRegionChange}>
-            <option value=""></option>
-            {regiones.map(region => (
-              <option key={region.NombreRegion} value={region.NombreRegion}>{region.NombreRegion}</option>
-            ))}
-          </select>
-          {errorRegion && <p className="error">{errorRegion}</p>}
-        </div>
-        <div>
-          <label>Comuna</label>
-          <select name="comuna" value={formValues.comuna} onChange={handleComunaChange}>
-            {formValues.region && regiones.find(region => region.NombreRegion === formValues.region)?.comunas.map((comuna, index) => (
-              <option key={index} value={comuna}>{comuna}</option>
-            ))}
-          </select>
-          {errorComuna && <p className="error">{errorComuna}</p>}
-        </div>
-        <div>
-          <label htmlFor="amargor">Amargor</label>
-          <input name="amargor" type="text" placeholder="Amargor" onChange={handleChange} value={formValues.amargor} />
-          {errorAmargor && <p className="error">{errorAmargor}</p>}
-        </div>
-        <div>
-          <label htmlFor="graduacion">Graduación</label>
-          <input name="graduacion" type="text" placeholder="Graduación" onChange={handleChange} value={formValues.graduacion} />
-          {errorGraduacion && <p className="error">{errorGraduacion}</p>}
-        </div>
-        <div>
-          <label htmlFor="formato">Formato</label>
-          <input name="formato" type="text" placeholder="Formato" onChange={handleChange} value={formValues.formato} />
-          {errorFormato && <p className="error">{errorFormato}</p>}
-        </div>
-        <div>
-          <label htmlFor="imagen">Seleccionar una imagen</label>
-          <input name="imagen" type="file" accept="image/jpeg" onChange={handleChange} value={formValues.imagen} />
-          {errorImagen && <p className="error">{errorImagen}</p>}
-        </div>
-        <button type="submit" onClick={handleSubmit}>Ingresar producto</button>
-      </form>
-    </>
+    <form className="mt-5 w-50 m-auto">
+      <h1>Ingresar producto</h1>
+      <p>A través de este formulario usted podrá crear un producto a nuestro catálogo</p>
+      <div className="mb-3">
+        <label className="form-label" htmlFor="username">Nombre de cerveza</label>
+        <input className="form-control" name="nombre" type="text" placeholder="Nombre de la cerveza" onChange={handleChange} value={formValues.nombre} />
+        {errorNombre && <p className="error">{errorNombre}</p>}
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label" htmlFor="marca">Marca</label>
+        <input className="form-control" name="marca" type="text" placeholder="Marca" onChange={handleChange} value={formValues.marca} />
+        {errorMarca && <p className="error">{errorMarca}</p>}
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label" htmlFor="categoria">Categoría</label>
+        <input className="form-control" name="categoria" type="text" placeholder="Categoría" onChange={handleChange} value={formValues.categoria} />
+        {errorCategoria && <p className="error">{errorCategoria}</p>}
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label" htmlFor="stock">Stock</label>
+        <input className="form-control" name="stock" type="number" placeholder="Stock" onChange={handleChange} value={formValues.stock} />
+        {errorStock && <p className="error">{errorStock}</p>}
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label" htmlFor="descripcion">Descripción</label>
+        <textarea className="form-control" name="descripcion" rows={4} placeholder="Descripción" onChange={handleChange} value={formValues.descripcion} />
+        {errorDescripcion && <p className="error">{errorDescripcion}</p>}
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label" htmlFor="precio">Precio</label>
+        <input className="form-control" name="precio" type="number" placeholder="Precio" onChange={handleChange} value={formValues.precio} />
+        {errorPrecio && <p className="error">{errorPrecio}</p>}
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label" htmlFor="proveedor">Proveedor</label>
+        <input className="form-control" name="proveedor" type="text" placeholder="Proveedor" onChange={handleChange} value={formValues.proveedor} />
+        {errorProveedor && <p className="error">{errorProveedor}</p>}
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label">Región</label>
+        <select className="form-control" name="region" value={formValues.region} onChange={handleRegionChange}>
+          <option value=""></option>
+          {regiones.map(region => (
+            <option key={region.NombreRegion} value={region.NombreRegion}>{region.NombreRegion}</option>
+          ))}
+        </select>
+        {errorRegion && <p className="error">{errorRegion}</p>}
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label" >Comuna</label>
+        <select className="form-control" name="comuna" value={formValues.comuna} onChange={handleComunaChange}>
+          {formValues.region && regiones.find(region => region.NombreRegion === formValues.region)?.comunas.map((comuna, index) => (
+            <option key={index} value={comuna}>{comuna}</option>
+          ))}
+        </select>
+        {errorComuna && <p className="error">{errorComuna}</p>}
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label" htmlFor="amargor">Amargor</label>
+        <input className="form-control" name="amargor" type="text" placeholder="Amargor" onChange={handleChange} value={formValues.amargor} />
+        {errorAmargor && <p className="error">{errorAmargor}</p>}
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label" htmlFor="graduacion">Graduación</label>
+        <input className="form-control" name="graduacion" type="text" placeholder="ej. 4,5°" onChange={handleChange} value={formValues.graduacion} />
+        {errorGraduacion && <p className="error">{errorGraduacion}</p>}
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label" htmlFor="formato">Formato</label>
+        <input className="form-control" name="formato" type="text" placeholder="ej. Lata" onChange={handleChange} value={formValues.formato} />
+        {errorFormato && <p className="error">{errorFormato}</p>}
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label" htmlFor="imagen">Seleccionar una imagen</label>
+        <input className="form-control" name="imagen" type="file" accept="image/jpeg,image/png,image/gif" onChange={handleChange} value={formValues.imagen} />
+        {errorImagen && <p className="error">{errorImagen}</p>}
+      </div>
+      <button className="btn btn-dark" type="submit" onClick={handleSubmit}>Ingresar producto</button>
+    </form>
   );
 }
