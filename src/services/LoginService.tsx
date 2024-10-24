@@ -1,3 +1,4 @@
+
 interface ILogin {
   user: string;
   password: string;
@@ -28,9 +29,16 @@ export function login(credenciales: ILogin): boolean {
   return true
 }
 
-export const logout = () => localStorage.removeItem('user');
-export const isAuth = () => localStorage.getItem('user') ? true : false;
 
+export const isAuth = () => localStorage.getItem('user') ? true : false;
+export const isAdmin = () => {
+  const user = localStorage.getItem('user');
+  if (user) {
+    const userResponse: ILogin = JSON.parse(user);
+    return userResponse.roles?.includes('admin');
+  }
+  return false;
+}
 export const userHasRole = (roles: string[]) => {
   const user = localStorage.getItem('user');
   if (user) {

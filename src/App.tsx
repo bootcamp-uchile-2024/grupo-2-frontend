@@ -9,10 +9,12 @@ import { PerfilPage } from "./pages/PerfilPage";
 
 // Administación de Usuarios y Productos
 import { LoginPage } from "./pages/LoginPage";
-import { PrivateRoute } from './components/PrivateRoute'
-import { DashboardPage } from "./pages/DashboardPage";
-import { CreaUsuarioPage } from "./pages/CreaUsuarioPage";
-import { CreaProductoPage } from "./pages/CreaProductoPage";
+import { PrivateRoute } from "./components/PrivateRoute";
+import { DashboardPage } from "./pages/dashboard/DashboardPage";
+import { CreaUsuarioPage } from "./pages/dashboard/CreaUsuarioPage";
+import { CreaProductoPage } from "./pages/dashboard/CreaProductoPage";
+import CarritoPage from "./pages/CarritoPage";
+import { ResumenCompraPage } from "./pages/ResumenCompraPage";
 
 function App() {
   return (
@@ -26,11 +28,27 @@ function App() {
           <Route path="/perfil" element={<PerfilPage />} />
           <Route path="/acerca" element={<AcercaPage />} />
           <Route path="/contacto" element={<ContactoPage />} />
+          <Route path="/carrito" element={<CarritoPage />} />
+          <Route path="/resumen-compra" element={<ResumenCompraPage />} />
           <Route path="/login" element={<LoginPage />} />
 
-          <Route path="/admin" element={<DashboardPage />} >
-            <Route path="crea-usuario" element={<PrivateRoute roles={["admin"]}><CreaUsuarioPage /></PrivateRoute>} />
-            <Route path="crea-producto" element={<PrivateRoute roles={['admin']}><CreaProductoPage /></PrivateRoute>} />
+          <Route path="/admin" element={<DashboardPage />}>
+            <Route
+              path="crea-usuario"
+              element={
+                <PrivateRoute roles={["admin"]}>
+                  <CreaUsuarioPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="crea-producto"
+              element={
+                <PrivateRoute roles={["admin"]}>
+                  <CreaProductoPage />
+                </PrivateRoute>
+              }
+            />
           </Route>
         </Routes>
       </BrowserRouter>
