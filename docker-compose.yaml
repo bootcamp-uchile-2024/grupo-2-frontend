@@ -1,0 +1,6 @@
+name: cervezario-ecommerce
+services:
+  frontend:
+    image: calvegh337/cervezario-front
+    ports:
+      - 82:80

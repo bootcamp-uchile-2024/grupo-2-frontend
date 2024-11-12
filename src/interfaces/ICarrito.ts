@@ -1,5 +1,4 @@
 import { IPedidoCerveza } from "../pages/productos/componentes/Listado.tsx";
-import Cerveza from "./ICerveza.ts";
 interface ICarrito {
   id: number;
   items: IPedidoCerveza[];

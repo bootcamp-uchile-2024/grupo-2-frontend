@@ -1,7 +1,11 @@
+import { useEffect } from "react";
 import { MainLayout } from "../layout/MainLayout";
 
 export const HomePage = () => {
   const credenciales = localStorage.getItem("user");
+  useEffect(() => {
+    fetch("http://localhost:4500/").then((res) => console.log(res));
+  }, []);
 
   const user = credenciales ? JSON.parse(credenciales).user : null;
   return (
@@ -11,7 +15,14 @@ export const HomePage = () => {
           <div className="col">
             <div className="wrapper">
               <h1>Cervezario Nacional</h1>
-              {user ? <p>Bienvenido {user}</p> : <p>Hola Visitante!</p>}
+              {user ? (
+                <p>Bienvenido {user}</p>
+              ) : (
+                <>
+                  <p>Hola Visitanteaaaaaaaaaaaaaaaaaaaaa!</p>
+                  <p>que quiereeees</p>
+                </>
+              )}
             </div>
           </div>
         </div>
