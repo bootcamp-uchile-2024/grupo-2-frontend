@@ -1,17 +1,21 @@
 interface ICerveza {
-  id: number;
   nombre: string;
   marca: string;
-  categoria: string;
+  tipo_cerveza: string;
   stock: number;
   descripcion: string;
   precio: number;
-  proveedor: string;
-  region: string;
-  comuna: string;
+  proveedor: {
+    nombre: string;
+    id_comuna: string;
+    contacto: string;
+    telefono: string;
+    correo_electronico: string;
+  };
   amargor: string;
-  graduacion: string;
+  graduacion: number;
   formato: string;
   imagen: string;
 }
+
 export default ICerveza;

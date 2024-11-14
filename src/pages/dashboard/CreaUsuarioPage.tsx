@@ -78,9 +78,9 @@ export const CreaUsuarioPage = () => {
     } else {
       setErrorPassword(null);
     }
-    // Se asegura que el valor de edad sea un número entero
-    usuario.edad = parseInt(usuario.edad.toString());
 
+    usuario.edad = parseInt(usuario.edad.toString());
+    
     if (usuario.edad < 18) {
       setErrorEdad('La edad debe ser mayor a 18 años');
       hasError = true;
