@@ -21,6 +21,8 @@ import { CreaProductoPage } from './pages/CreaProductoPage';
 
 // Administación de Usuarios y Productos
 
+// Secciones
+
 function App() {
 
   return (
