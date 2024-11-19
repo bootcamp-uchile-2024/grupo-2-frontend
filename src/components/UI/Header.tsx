@@ -7,11 +7,7 @@ const Header = () => {
       <div className="flex w-full justify-center">
         <a href="/" className="flex-1 flex gap-x-4 justify-center w-full">
           <div>
-            <img src="/imgs/isotipo.svg" alt="Cebate Uno Logo" className="w-8 md:w-32" />
-          </div>
-          <div>
-            <h1 className='text-2xl md:text-4xl font-regular max-w-[204px] w-full'>Cervezario</h1>
-            <h1 className='text-2xl md:text-5xl font-semibold max-w-[204px] w-full'>Nacional</h1>
+            <img src="assets/logo-header.svg" alt="Cebate Uno Logo" className="w-48 md:w-52" />
           </div>
         </a>
         <CartBtn />

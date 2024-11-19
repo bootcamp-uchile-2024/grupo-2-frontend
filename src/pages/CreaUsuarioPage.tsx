@@ -125,7 +125,7 @@ export const CreaUsuarioPage = () => {
   
   <div className="mb-4">
     <label className="block text-gray-700 font-bold mb-2">Rut</label>
-    <input className="form-input mt-1 block w-full border rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 p-3 p-3" name="rut" type="text" placeholder="Tu rut" onChange={handleChange} value={usuario.rut} />
+    <input className="form-input mt-1 block w-full border rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 p-3" name="rut" type="text" placeholder="Tu rut" onChange={handleChange} value={usuario.rut} />
     {errorRut && <p className="text-red-500 text-sm mt-1">{errorRut}</p>}
   </div>
 

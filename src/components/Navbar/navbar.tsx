@@ -33,6 +33,7 @@ const Navbar = () => {
 
   const links = [
     { to: "/", text: "Inicio", className: "nav-link", icon: null },
+    { to: "/cervezas", text: "Cervezas", className: "nav-link", icon: null },
     { to: "/acerca", text: "Acerca de", className: "nav-link", icon: null },
     { to: "/contacto", text: "Contacto", className: "nav-link", icon: null },
   ];

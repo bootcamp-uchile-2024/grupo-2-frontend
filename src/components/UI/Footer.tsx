@@ -1,11 +1,6 @@
-import { DescubreSection } from "@/sections/DescubreSection"
-import { EventosSection } from "@/sections/EventosSection"
-
 export const Footer = () => {
   return (
     <>
-      <DescubreSection />
-      <EventosSection />
       <footer className='mt-12 bg-gray-dark py-8'>
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="flex-1 text-white">

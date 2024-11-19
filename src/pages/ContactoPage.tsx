@@ -1,6 +1,8 @@
+import { MainLayout } from "@/layout/MainLayout";
+
 export const ContactoPage = () => {
   return (
-    <>
+    <MainLayout>
       <div className="container">
         <div className="row">
           <div className="col-md-12">
@@ -11,6 +13,6 @@ export const ContactoPage = () => {
           </div>
         </div>
       </div>
-    </>
+    </MainLayout>
   );
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { isAdmin, login } from "../services/getLogin";
+import { MainLayout } from "@/layout/MainLayout";
 
 interface IForm {
   user: string;
@@ -54,7 +55,7 @@ export const LoginPage = () => {
   }
 
   return (
-    <>
+    <MainLayout>
       <div className="flex items-center justify-center">
         <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg">
           <h1 className="text-2xl font-bold text-center">Login Page</h1>
@@ -94,6 +95,6 @@ export const LoginPage = () => {
           </form>
         </div>
       </div>
-    </>
+    </MainLayout>
   )
 }

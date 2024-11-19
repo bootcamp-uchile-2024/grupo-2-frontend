@@ -1,6 +1,8 @@
+import { MainLayout } from "@/layout/MainLayout";
+
 export const AcercaPage = () => {
   return (
-    <>
+    <MainLayout>
       <div className="container">
         <div className="row">
           <div className="col-md-12">
@@ -11,6 +13,6 @@ export const AcercaPage = () => {
           </div>
         </div>
       </div>
-    </>
+    </MainLayout>
   );
 }

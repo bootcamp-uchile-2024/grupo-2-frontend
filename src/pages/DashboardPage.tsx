@@ -1,3 +1,4 @@
+import { MainLayout } from "@/layout/MainLayout";
 import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 
@@ -21,7 +22,7 @@ export const DashboardPage = () => {
   }
 
   return (
-    <>
+    <MainLayout>
       <div className="flex items-center justify-center">
         <div className="w-full max-w-4xl p-8 bg-white rounded-lg">
           <h1 className="text-3xl font-bold text-center mb-6">Administración de productos y usuarios</h1>
@@ -41,6 +42,6 @@ export const DashboardPage = () => {
           <Outlet />
         </div>
       </div>
-    </>
+    </MainLayout>
   );
 };

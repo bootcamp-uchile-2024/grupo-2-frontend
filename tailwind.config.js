@@ -14,10 +14,7 @@ export default {
       },
       colors: {
         'gray-dark': '#393939',
-      },
-      fontFamily: {
-        sans: ['Riffic Free', 'sans-serif'],
-        h1: ['Riffic Free', 'sans-serif'],
+        'yellow': '#F4B40C',
       },
     }
   },
