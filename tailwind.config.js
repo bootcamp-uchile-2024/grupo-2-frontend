@@ -7,6 +7,9 @@ export default {
   ],
   theme: {
     extend: {
+      height: {
+        '300px': '300px',
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',

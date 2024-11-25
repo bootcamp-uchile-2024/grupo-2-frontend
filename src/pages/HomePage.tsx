@@ -8,9 +8,10 @@ export const HomePage = () => {
   return (
     <div>
       <MainLayout>
+        <DescubreSection imageUrl="/assets/baner-atrevete.png" />
         <PackSection />
         <SuscripcionSection />
-        <DescubreSection />
+        <DescubreSection imageUrl="/assets/baner-descubre.png" />
         <EventosSection />
       </MainLayout>
     </div>
