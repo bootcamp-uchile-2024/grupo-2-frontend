@@ -1,7 +1,7 @@
 import useCartContext from '@/hooks/useCartContext';
 import cartMenuStore from '@/store/cartMenuStore'
 import { FaCartShopping } from 'react-icons/fa6'
-import { TopNav } from '../UI/topNav';
+import { TopNav } from '../UI/TopNav';
 
 export const CartBtn = () => {
     const { openCartMenuStore } = cartMenuStore();
