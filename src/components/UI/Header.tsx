@@ -12,9 +12,7 @@ const Header = () => {
         </a>
         <CartBtn />
       </div>
-      <div className="mt-10">
-        <Navbar />
-      </div>
+      <Navbar />
     </header>
   )
 }
