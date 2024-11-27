@@ -18,6 +18,7 @@ export default {
       colors: {
         'gray-dark': '#393939',
         'yellow': '#F4B40C',
+        'yellow-900': '#D59B03',
         'purple': "#4E3B7F"
       },
       fontFamily: {
