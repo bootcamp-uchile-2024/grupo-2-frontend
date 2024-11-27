@@ -3,49 +3,56 @@ import { CervezaType } from "@/types";
 import { createContext, useEffect, useState } from "react";
 
 interface CervezasContextType {
-    cervezas: CervezaType[]
+  cervezas: CervezaType[];
 }
 
-export const CervezasContext = createContext<CervezasContextType | undefined>(undefined);
+export const CervezasContext = createContext<CervezasContextType | undefined>(
+  undefined
+);
 
-export default function CervezasProvider({ children }: { children: React.ReactNode }) {
-    const [cervezas, setCervezas] = useState<CervezaType[]>([]);
+export default function CervezasProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [cervezas, setCervezas] = useState<CervezaType[]>([]);
 
-    useEffect(() => {
-        async function getInitialCervezas() {
-            const cervezasData = await getCervezas();
-            const mappedCervezas = cervezasData.map((cervezas: CervezaType) => {
-                return {
-                    id: cervezas.id,
-                    nombre: cervezas.nombre,
-                    marca: cervezas.marca,
-                    tipo_cerveza: cervezas.tipo_cerveza,
-                    stock: cervezas.stock,
-                    descripcion: cervezas.descripcion,
-                    precio: cervezas.precio,
-                    proveedor: {
-                        nombre: cervezas.proveedor.nombre,
-                        id_comuna: cervezas.proveedor.id_comuna,
-                        contacto: cervezas.proveedor.contacto,
-                        telefono: cervezas.proveedor.telefono,
-                        correo_electronico: cervezas.proveedor.correo_electronico
-                    },
-                    amargor: cervezas.amargor,
-                    graduacion: cervezas.graduacion,
-                    formato: cervezas.formato,
-                    imagen: cervezas.imagen
-                }
-            })
+  useEffect(() => {
+    async function getInitialCervezas() {
+      const cervezasData = await getCervezas();
+      console.log("cervezasData", cervezasData);
+      const mappedCervezas = cervezasData.map((cervezas: CervezaType) => {
+        return {
+          id: cervezas.id,
+          nombre: cervezas.nombre,
+          marca: cervezas.marca,
+          tipo_cerveza: cervezas.tipo_cerveza,
+          stock: cervezas.stock,
+          descripcion: cervezas.descripcion,
+          precio: cervezas.precio,
+          /* proveedor: {
+            nombre: cervezas.proveedor.nombre,
+            id_comuna: cervezas.proveedor.id_comuna,
+            contacto: cervezas.proveedor.contacto,
+            telefono: cervezas.proveedor.telefono,
+            correo_electronico: cervezas.proveedor.correo_electronico,
+          }, */
+          amargor: cervezas.amargor,
+          graduacion: cervezas.graduacion,
+          formato: cervezas.formato,
+          imagen: cervezas.imagen,
+        };
+      });
 
-            setCervezas(mappedCervezas);
-        }
+      setCervezas(mappedCervezas);
+    }
 
-        getInitialCervezas();
-    }, []);
+    getInitialCervezas();
+  }, []);
 
-    return (
-        <CervezasContext.Provider value={{ cervezas }}>
-            {children}
-        </CervezasContext.Provider>
-    )
+  return (
+    <CervezasContext.Provider value={{ cervezas }}>
+      {children}
+    </CervezasContext.Provider>
+  );
 }

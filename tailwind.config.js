@@ -21,10 +21,12 @@ export default {
         'purple': "#4E3B7F"
       },
       fontFamily: {
-        riffic: ["Riffic", "Riffic free", "sans-serif", "Lato"], // Agregar la fuente personalizada
+        riffic: ["Riffic", "Riffic free", "sans-serif"], // Agregar la fuente personalizada
+        lato: ['Lato', 'Riffic', 'sans-serif']
       },
       fontSize: {
         'custom-lg': ['48px', '56px'], // font-size con line-height
+        'custom-s': ['16px', '24px'],
       },
       fontWeight: {
         normal: 400, // Ya está por defecto, pero puedes asegurarte de incluirlo si lo necesitas
