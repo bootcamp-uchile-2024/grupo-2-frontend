@@ -55,8 +55,8 @@ export const CheckAge: React.FC = () => {
       setIsValidAge(false);
       setContentText("Debes ser mayor de 18 años para ingresar a este sitio.");
     
-      // Verifica si el usuario es mayor de 100 años
-    } else if (age < 100) {
+      // Verifica si el usuario es mayor de 100 años y lo toma como una fecha inválida
+    } else if (age > 100) {
       setIsValidAge(false);
       setContentText("Por favor ingresa una fecha de nacimiento válida.");
     

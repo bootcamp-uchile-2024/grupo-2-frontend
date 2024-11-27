@@ -22,3 +22,11 @@ h1, h2, h3, h4, h5, h6 {
     --radius: 0.5rem;
   }
 }
+
+.btn-carro {
+  @apply bg-yellow text-balance py-2 px-4 rounded w-full;
+}
+
+.btn-carro:hover {
+  @apply bg-purple text-white;
+}

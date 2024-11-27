@@ -18,6 +18,7 @@ export default {
       colors: {
         'gray-dark': '#393939',
         'yellow': '#F4B40C',
+        'purple': '#675594',
       },
     }
   },
