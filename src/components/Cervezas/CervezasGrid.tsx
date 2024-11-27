@@ -7,9 +7,10 @@ import { useFetch } from "@/hooks/useFetch";
 import { CERVEZAS_ENDPOINT } from "@/config/api.config";
 import { CervezaType } from "@/types";
 import { Pagination } from "../Pagination";
+import { CervezaDetalle } from "./CervezaDetalle";
 
 export const CervezasGrid = () => {
-  const [cantproductos, setCantidadProductos] = useState<number>(2);
+  const [cantproductos, setCantidadProductos] = useState<number>(10);
   const [pagina, setPagina] = useState<number>(1);
   const { registros } = useSelector((state: RootType) => state.cerveza); //Se obtiene el estado de la cantidad de cervezas para poder paginar bien
   const url_cervezas = `${CERVEZAS_ENDPOINT}?pagina=${pagina}&cantproductos=${cantproductos}`;
@@ -37,6 +38,11 @@ export const CervezasGrid = () => {
           >
             {cant}
           </button>
+        ))}
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1296px] mx-auto mt-8 gap-8">
+        {cervezas?.map((cerveza) => (
+          <CervezaDetalle {...cerveza} />
         ))}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1296px] mx-auto mt-8 gap-8">

@@ -26,6 +26,7 @@ export default {
       },
       fontSize: {
         'custom-lg': ['48px', '56px'], // font-size con line-height
+        'custom-l': ['20px', '30px'],
         'custom-s': ['16px', '24px'],
       },
       fontWeight: {
