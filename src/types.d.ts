@@ -20,10 +20,15 @@ export interface CervezaType {
 }
 
 export interface Usuario {
-  rut: number;
   nombre: string;
   apellido: string;
-  contrasenia: string;
+  email: string;
+  birthday: string;
+  password: string;
+  rut: string;
+  re_password?: string;
+}
+export interface UsuarioPerfil extends Usuario {
   edad: number;
   tipo_suscripcion: string;
 }

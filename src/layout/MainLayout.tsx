@@ -5,7 +5,7 @@ interface MainLayoutProps {
   children: React.ReactNode;
 }
 
-export const MainLayout = ( props: MainLayoutProps ) => {
+export const MainLayout = (props: MainLayoutProps) => {
   return (
     <div>
       <Header />
@@ -13,4 +13,4 @@ export const MainLayout = ( props: MainLayoutProps ) => {
       <Footer />
     </div>
   );
-}
+};
