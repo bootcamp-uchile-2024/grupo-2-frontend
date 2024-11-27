@@ -7,7 +7,9 @@
     "dev": "vite --mode dev",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepush-git": "npm run build",
+    "push-git": "git add . && git commit   && git push"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.1.2",

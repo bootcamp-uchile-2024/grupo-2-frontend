@@ -18,7 +18,16 @@ export default {
       colors: {
         'gray-dark': '#393939',
         'yellow': '#F4B40C',
-        'purple': '#675594',
+        'purple': "#4E3B7F"
+      },
+      fontFamily: {
+        riffic: ["Riffic", "Riffic free", "sans-serif", "Lato"], // Agregar la fuente personalizada
+      },
+      fontSize: {
+        'custom-lg': ['48px', '56px'], // font-size con line-height
+      },
+      fontWeight: {
+        normal: 400, // Ya está por defecto, pero puedes asegurarte de incluirlo si lo necesitas
       },
     }
   },
