@@ -1,20 +1,16 @@
-import { ToastContainer } from "react-toastify";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import "react-toastify/dist/ReactToastify.css";
+import { Footer } from "@/components/UI/Footer";
+import Header from "@/components/UI/Header";
+
 interface MainLayoutProps {
   children: React.ReactNode;
 }
 
 export const MainLayout = (props: MainLayoutProps) => {
   return (
-    <>
+    <div>
       <Header />
-      <div className="container-fluid">
-        <main>{props.children}</main>
-      </div>
+      {props.children}
       <Footer />
-      <ToastContainer />
-    </>
+    </div>
   );
 };

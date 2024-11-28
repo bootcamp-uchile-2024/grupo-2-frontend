@@ -1,37 +1,49 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { HomePage } from "./pages/HomePage";
-import { CatalogoPage } from "./pages/productos/CatalogoPage";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { CervezasPage } from "./pages/CervezasPage";
+import CervezasProvider from "./context/CervezasContext";
+import { SideMenu } from "./components/CartStore/SideMenu";
+import CartProvider from "./context/CartContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+// Importar componentes
+import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
+
+// Importa las páginas
 import { AcercaPage } from "./pages/AcercaPage";
 import { ContactoPage } from "./pages/ContactoPage";
-import { DetalleProducto } from "./pages/productos/componentes/DetalleProducto";
-import { PedidoPage } from "./pages/PedidoPage";
-import { PerfilPage } from "./pages/PerfilPage";
+import { LoginPage } from "./pages/LoginPage";
+import { DashboardPage } from "./pages/DashboardPage";
+
+import { CreaProductoPage } from "./pages/CreaProductoPage";
+import { HomePage } from "./pages/HomePage";
+import { RecuperarPasswordPage } from "./pages/RecupararPasswordPage";
+import CreaUsuarioPage from "./pages/CreaUsuarioPage";
+import { CrearCuentaPage } from "./pages/CrearCuentaPage";
+import { ConfirmarmacionCorreoPage } from "./pages/registro/ConfirmacionCorreoPage";
 
 // Administación de Usuarios y Productos
-import { LoginPage } from "./pages/LoginPage";
-import { PrivateRoute } from "./components/PrivateRoute";
-import { DashboardPage } from "./pages/dashboard/DashboardPage";
-import { CreaUsuarioPage } from "./pages/dashboard/CreaUsuarioPage";
-import { CreaProductoPage } from "./pages/dashboard/CreaProductoPage";
-import CarritoPage from "./pages/CarritoPage";
-import { ResumenCompraPage } from "./pages/ResumenCompraPage";
+
+// Secciones
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
+    <CartProvider>
+      <Router>
+        <SideMenu />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/catalogo" element={<CatalogoPage />} />
-          <Route path="/catalogo/producto/:id" element={<DetalleProducto />} />
-          <Route path="/pedidos" element={<PedidoPage />} />
-          <Route path="/perfil" element={<PerfilPage />} />
+          <Route
+            path="/cervezas"
+            element={
+              <CervezasProvider>
+                <CervezasPage />
+              </CervezasProvider>
+            }
+          />
           <Route path="/acerca" element={<AcercaPage />} />
           <Route path="/contacto" element={<ContactoPage />} />
-          <Route path="/carrito" element={<CarritoPage />} />
-          <Route path="/resumen-compra" element={<ResumenCompraPage />} />
           <Route path="/login" element={<LoginPage />} />
-
           <Route path="/admin" element={<DashboardPage />}>
             <Route
               path="crea-usuario"
@@ -50,9 +62,25 @@ function App() {
               }
             />
           </Route>
+          <Route
+            path="/recuperar-password"
+            element={<RecuperarPasswordPage />}
+          />
+          <Route path="/crear-cuenta" element={<CrearCuentaPage />} />
+          <Route
+            path="/confirmacion-correo"
+            element={<ConfirmarmacionCorreoPage />}
+          />
         </Routes>
-      </BrowserRouter>
-    </>
+        <ToastContainer
+          position="bottom-right"
+          theme="colored"
+          autoClose={1500}
+          closeOnClick
+          className={"text-xs"}
+        />
+      </Router>
+    </CartProvider>
   );
 }
 
