@@ -1,9 +1,9 @@
 import { getCervezas } from "@/services/getCervezas";
-import { CervezaType } from "@/types";
+import { CervezaInterface } from "@/types";
 import { createContext, useEffect, useState } from "react";
 
 interface CervezasContextType {
-  cervezas: CervezaType[];
+  cervezas: CervezaInterface[];
 }
 
 export const CervezasContext = createContext<CervezasContextType | undefined>(
@@ -15,12 +15,12 @@ export default function CervezasProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [cervezas, setCervezas] = useState<CervezaType[]>([]);
+  const [cervezas, setCervezas] = useState<CervezaInterface[]>([]);
 
   useEffect(() => {
     async function getInitialCervezas() {
       const cervezasData = await getCervezas();
-      const mappedCervezas = cervezasData.map((cervezas: CervezaType) => {
+      const mappedCervezas = cervezasData.map((cervezas: CervezaInterface) => {
         return {
           id: cervezas.id,
           nombre: cervezas.nombre,

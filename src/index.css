@@ -41,6 +41,13 @@ h6 {
 .btn-detalle-carrito:hover {
   @apply bg-purple text-white;
 }
+.btn-detalle-carrito:hover:disabled {
+  @apply bg-gray-dark text-white;
+}
+
+.btn-detalle-carrito:disabled {
+  @apply bg-gray-dark text-white;
+}
 .text-lato-m {
   @apply text-gray-dark font-bold text-custom-m;
 }
@@ -52,4 +59,17 @@ h6 {
 }
 .text-lato-2xl {
   @apply text-gray-dark font-bold text-custom-2xl;
+}
+.text-lato-3xl {
+  @apply text-gray-dark font-medium text-custom-3xl;
+}
+.text-lato-4xl {
+  @apply text-gray-G05 font-medium text-custom-3xl;
+}
+
+.text-riffic-2xl {
+  @apply font-normal font-riffic text-custom-r-2xl text-gray-G05;
+}
+.shadow-recomendaciones {
+  box-shadow: 0px 4px 5px rgba(244, 180, 12, 0.5);
 }

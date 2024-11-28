@@ -2,11 +2,18 @@ export interface FormatoType {
   id: string;
   descripcion: string;
 }
-export interface CervezaType {
+export interface TipoCervezaType {
+  id: number;
+  nombre: string;
+  descripcion: string;
+  categoria?: string;
+  color?: string;
+}
+export interface CervezaInterface {
   id: number;
   nombre: string;
   marca: string;
-  tipo_cerveza: string;
+  tipo_cerveza: TipoCervezaType;
   stock: number;
   descripcion: string;
   precio: number;

@@ -1,15 +1,11 @@
-import {
-  addCerveza,
-  discountCerveza,
-  PedidoType,
-  removeCerveza,
-} from "@/state/slices/carritoSlice";
-import { useDispatch } from "react-redux";
+import { PedidoType } from "@/state/slices/carritoSlice";
+
+import { AddRemoveCerveza } from "../AddRemoveBoton";
 
 export const ItemListaCarrito = (pedido: PedidoType) => {
   const { cerveza, cantidad } = pedido;
   const { nombre, precio, marca, formato } = cerveza;
-  const dispatch = useDispatch();
+
   const idd = Math.ceil((Math.random() * 100) / 25);
   return (
     <div className="flex h-[134px] mb-2 ">
@@ -31,35 +27,8 @@ export const ItemListaCarrito = (pedido: PedidoType) => {
         <div className="text-gray-dark-67 text-custom-xs">
           ${precio.toLocaleString()}
         </div>
-        <div className="flex">
-          <button
-            disabled={cantidad === 1}
-            className="btn-detalle-carrito"
-            onClick={() => dispatch(discountCerveza(cerveza))}
-          >
-            -
-          </button>
-          <div className="flex justify-center w-[30px] font-lato text-dark-gray text-custom-s">
-            {cantidad}
-          </div>
-          <button
-            className="btn-detalle-carrito"
-            onClick={() => dispatch(addCerveza(cerveza))}
-          >
-            +
-          </button>
-          <button
-            className="flex justify-center items-center h-[24px] ml-3 hover:bg-red-300 rounded-[6px] "
-            onClick={() => dispatch(removeCerveza(cerveza))}
-          >
-            <img
-              src={"/assets/Trash_full.svg"}
-              alt={"trash"}
-              width={20}
-              height={20}
-            />
-          </button>
-        </div>
+
+        <AddRemoveCerveza cerveza={cerveza} cantidad={cantidad} />
       </div>
       <div className="flex font-lato font-bold text-custom-m text-gray-dark">
         ${(precio * cantidad).toLocaleString()}
