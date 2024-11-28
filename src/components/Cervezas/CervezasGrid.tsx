@@ -1,5 +1,3 @@
-import { MdAddShoppingCart } from "react-icons/md";
-import InfoMessage from "../Message/InfoMessage";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootType } from "@/state/store";
@@ -31,6 +29,7 @@ export const CervezasGrid = () => {
         </span>
         {[5, 10, 15, 25, 50].map((cant) => (
           <button
+            key={cant}
             onClick={() => setCantidadProductos(cant)}
             className={`h-[35px] w-[38px] text-purple ${
               cantproductos == cant ? "font-bold" : ""
@@ -42,7 +41,7 @@ export const CervezasGrid = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1296px] mx-auto mt-8 gap-8">
         {cervezas?.map((cerveza) => (
-          <CervezaDetalle {...cerveza} />
+          <CervezaDetalle {...cerveza} key={cerveza.id} />
         ))}
       </div>
 

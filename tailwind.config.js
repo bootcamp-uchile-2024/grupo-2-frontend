@@ -19,7 +19,8 @@ export default {
         'gray-dark': '#393939',
         'yellow': '#F4B40C',
         'yellow-900': '#D59B03',
-        'purple': "#4E3B7F"
+        'purple': "#4E3B7F",
+        'purple-100': "#675594"
       },
       fontFamily: {
         riffic: ["Riffic", "Riffic free", "sans-serif"], // Agregar la fuente personalizada
@@ -27,6 +28,7 @@ export default {
       },
       fontSize: {
         'custom-lg': ['48px', '56px'], // font-size con line-height
+        'custom-3xl': ['30px', '40px'],
         'custom-l': ['20px', '30px'],
         'custom-s': ['16px', '24px'],
       },

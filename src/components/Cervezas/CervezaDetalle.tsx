@@ -4,7 +4,9 @@ import { MdAddShoppingCart } from "react-icons/md";
 
 export const CervezaDetalle = (cerveza: CervezaType) => {
   const { nombre, marca, precio } = cerveza;
-  const [estrellas, setEstrellas] = useState<number>(2);
+  const [estrellas, setEstrellas] = useState<number>(
+    Math.ceil(Math.random() * 5)
+  );
   const estrellasArray = (estrellas: number) =>
     Array(5)
       .fill(false)
@@ -31,6 +33,7 @@ export const CervezaDetalle = (cerveza: CervezaType) => {
             const path = `/assets/${star ? "star-2" : "star-6"}.svg`;
             return (
               <img
+                key={index}
                 src={path}
                 alt={path}
                 className="mr-2"
