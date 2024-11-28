@@ -51,7 +51,7 @@ export const CervezaDetalle = (cerveza: CervezaType) => {
 
         <button
           onClick={() => dispatch(addCerveza(cerveza))}
-          className="flex justify-center align-center bg-yellow w-[250px] h-[48px] w-full mt-2 rounded-[8px] hover:bg-yellow-900 hover:text-gray-dark"
+          className="flex justify-center align-center bg-yellow h-[48px] w-full mt-2 rounded-[8px] hover:bg-yellow-900 hover:text-gray-dark"
         >
           <MdAddShoppingCart className="size-4  h-full w-[20px]" />
           <span className="flex items-center justify-center ">
