@@ -11,7 +11,7 @@ export const CervezasDestacadas = () => {
               <p>Alameda Beer Co - Santiago</p>
               <div>Estrellas</div>
               <p className="font-semibold text-2xl mb-4">$4.500</p>
-              <button className="btn-carro">Agregar al carrito</button>
+              <button className="btn-carro"><i className="fas fa-cart-plus"></i> Agregar al carrito</button>
             </div>
           </div>
           <div className="w-100 md:w-1/3 flex flex-col shadow-lg">
@@ -21,7 +21,7 @@ export const CervezasDestacadas = () => {
               <p>Alameda Beer Co - Santiago</p>
               <div>Estrellas</div>
               <p className="font-semibold text-2xl mb-4">$4.500</p>
-              <button className="btn-carro">Agregar al carrito</button>
+              <button className="btn-carro"><i className="fas fa-cart-plus"></i> Agregar al carrito</button>
             </div>
           </div>
           <div className="w-100 md:w-1/3 flex flex-col shadow-lg">
@@ -31,7 +31,7 @@ export const CervezasDestacadas = () => {
               <p>Alameda Beer Co - Santiago</p>
               <div>Estrellas</div>
               <p className="font-semibold text-2xl mb-4">$4.500</p>
-              <button className="btn-carro">Agregar al carrito</button>
+              <button className="btn-carro"><i className="fas fa-cart-plus"></i> Agregar al carrito</button>
             </div>
           </div>
           <div className="w-100 md:w-1/3 flex flex-col shadow-lg">
@@ -41,7 +41,7 @@ export const CervezasDestacadas = () => {
               <p>Alameda Beer Co - Santiago</p>
               <div>Estrellas</div>
               <p className="font-semibold text-2xl mb-4">$4.500</p>
-              <button className="btn-carro">Agregar al carrito</button>
+              <button className="btn-carro"><i className="fas fa-cart-plus"></i> Agregar al carrito</button>
             </div>
           </div>
         </div>
