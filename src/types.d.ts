@@ -9,6 +9,11 @@ export interface TipoCervezaType {
   categoria?: string;
   color?: string;
 }
+export interface AmargorInterface {
+  id: string;
+  nivel: string;
+  descripcion: string;
+}
 export interface CervezaInterface {
   id: number;
   nombre: string;
@@ -24,7 +29,7 @@ export interface CervezaInterface {
     telefono: string;
     correo_electronico: string;
   };
-  amargor: string;
+  amargor: AmargorInterface;
   graduacion: number;
   formato: FormatoType;
   imagen: string;

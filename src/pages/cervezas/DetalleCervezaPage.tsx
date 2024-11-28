@@ -1,17 +1,29 @@
 import { AgregarCarritoBoton } from "@/components/AgregarCarritoBoton";
+import { CERVEZAS_ENDPOINT } from "@/config/api.config";
+import { useFetch } from "@/hooks/useFetch";
 import { MainLayout } from "@/layout/MainLayout";
 import { DescubreSection } from "@/sections/DescubreSection";
-import { RootType } from "@/state/store";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+
+import { CervezaInterface } from "@/types";
+import { useState } from "react";
+
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export const DetalleCervezaPage = () => {
   const { id } = useParams();
-  const { cervezas } = useSelector((state: RootType) => state.cerveza);
-  const cerveza = cervezas.find((cerveza) => cerveza.id === Number(id));
-  if (cerveza === undefined) {
+  const [cantidadAgregar, setAgregarCantidad] = useState(1);
+
+  const {
+    data: cerveza,
+    loading,
+    error,
+  } = useFetch<CervezaInterface>(`${CERVEZAS_ENDPOINT}/${id}`);
+
+  if (loading) return <div>Cargando...</div>;
+  if (error) return <div>Hubo un error</div>;
+
+  if (cerveza === null) {
     return (
       <MainLayout>
         <DescubreSection imageUrl="/assets/baner-descubre-top.png" />
@@ -22,12 +34,6 @@ export const DetalleCervezaPage = () => {
   }
   const { stock, marca, nombre, tipo, precio, formato, descripcion } = cerveza;
 
-  const [cantidadAgregar, setAgregarCantidad] = useState(151);
-  useEffect(() => {
-    if (cantidadAgregar > stock) {
-      toast.error("No hay suficiente stock");
-    }
-  }, [cantidadAgregar]);
   const id_random = Math.ceil((Math.random() * 100) / 25);
   const recomendaciones = [
     {
@@ -70,7 +76,9 @@ export const DetalleCervezaPage = () => {
             </div>
 
             <div className="text-lato-2xl">{tipo.nombre}</div>
-            <div className="text-lato-3xl">${precio.toLocaleString()}</div>
+            <div className="text-lato-3xl">
+              ${precio.toLocaleString("es-CL")}
+            </div>
             <div className="text-lato-2xl">{formato.id}</div>
             <div className="italic text-gray-dark-100 font-light text-custom-s">
               Stock: {stock == 0 ? "Agotado" : stock}
@@ -88,7 +96,12 @@ export const DetalleCervezaPage = () => {
               </div>
               <button
                 className="btn-detalle-carrito"
-                onClick={() => setAgregarCantidad(cantidadAgregar + 1)}
+                onClick={() => {
+                  setAgregarCantidad(cantidadAgregar + 1);
+                  if (cantidadAgregar >= stock) {
+                    toast.error("No hay suficiente stock");
+                  }
+                }}
               >
                 +
               </button>
