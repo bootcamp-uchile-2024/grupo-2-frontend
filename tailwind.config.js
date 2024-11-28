@@ -17,6 +17,7 @@ export default {
       },
       colors: {
         'gray-dark': '#393939',
+        'gray-dark-67': '#676768',
         'yellow': '#F4B40C',
         'yellow-900': '#D59B03',
         'purple': "#4E3B7F",
@@ -29,9 +30,11 @@ export default {
       fontSize: {
         'custom-lg': ['48px', '56px'], // font-size con line-height
         'custom-3xl': ['30px', '40px'],
+        'custom-2xl': ['24px', '36px'],
         'custom-l': ['20px', '30px'],
         'custom-m': ['18px', '28px'],
         'custom-s': ['16px', '24px'],
+        'custom-xs': ['14px', '21px'],
       },
       fontWeight: {
         normal: 400, // Ya está por defecto, pero puedes asegurarte de incluirlo si lo necesitas

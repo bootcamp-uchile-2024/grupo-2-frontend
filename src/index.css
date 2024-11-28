@@ -1,20 +1,24 @@
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-@import url('https://fonts.cdnfonts.com/css/riffic-free');
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+@import url("https://fonts.cdnfonts.com/css/riffic-free");
 
 /* Tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 body {
   background: white;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Riffic free', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Riffic free", sans-serif;
 }
 
 @layer base {
@@ -29,4 +33,23 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-carro:hover {
   @apply bg-purple text-white;
+}
+
+.btn-detalle-carrito {
+  @apply flex justify-center items-center rounded-[3px] h-[24px] w-[24px] border-2;
+}
+.btn-detalle-carrito:hover {
+  @apply bg-purple text-white;
+}
+.text-lato-m {
+  @apply text-gray-dark font-bold text-custom-m;
+}
+.text-lato-l {
+  @apply text-gray-dark font-bold text-custom-l;
+}
+.text-lato-xl {
+  @apply text-gray-dark font-bold text-custom-s;
+}
+.text-lato-2xl {
+  @apply text-gray-dark font-bold text-custom-2xl;
 }

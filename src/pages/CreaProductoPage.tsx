@@ -21,7 +21,7 @@ export const CreaProductoPage = () => {
     },
     amargor: "",
     graduacion: 0,
-    formato: "",
+    formato: { id: "", descripcion: "" },
     imagen: "",
   });
 
@@ -95,7 +95,7 @@ export const CreaProductoPage = () => {
       hasError = true;
     }
 
-    if (producto.formato === "") {
+    if (producto.formato.id === "") {
       setErrorFormato("Debe ingresar un tipo de amargor");
       hasError = true;
     }
@@ -302,7 +302,7 @@ export const CreaProductoPage = () => {
           className="form-select mt-1 block w-full border p-3 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
           name="formato"
           onChange={handleChange}
-          value={producto.formato}
+          value={producto.formato.id}
         >
           <option value="Barril">Barril</option>
           <option value="Botella">Botella</option>

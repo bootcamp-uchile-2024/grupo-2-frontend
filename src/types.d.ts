@@ -1,3 +1,7 @@
+export interface FormatoType {
+  id: string;
+  descripcion: string;
+}
 export interface CervezaType {
   id: number;
   nombre: string;
@@ -15,7 +19,7 @@ export interface CervezaType {
   };
   amargor: string;
   graduacion: number;
-  formato: string;
+  formato: FormatoType;
   imagen: string;
 }
 
