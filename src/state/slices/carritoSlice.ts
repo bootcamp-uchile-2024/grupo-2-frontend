@@ -1,8 +1,9 @@
+import { CervezaType } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface PedidoType {
   id_pedido?: number;
-  id_cerveza: number;
+  cerveza: CervezaType;
   cantidad: number;
 }
 export interface CarritoType {
@@ -21,7 +22,12 @@ const initialState: CarritoType = {
 export const carritoSlice = createSlice({
   name: "carrito",
   initialState,
-  reducers: {},
+  reducers: {
+    addCerveza: (state, action) => {
+      state.cervezas.push({ cerveza: action.payload, cantidad: 1 });
+    },
+  },
 });
 
+export const { addCerveza } = carritoSlice.actions;
 export default carritoSlice.reducer;

@@ -3,6 +3,7 @@ import { RootType } from "@/state/store";
 import cartMenuStore from "@/store/cartMenuStore";
 import clsx from "clsx";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const SideMenu = () => {
   const { cervezas, total_pagar, costo_envio } = useSelector(
@@ -13,8 +14,8 @@ export const SideMenu = () => {
   const cartMenu = cartMenuStore((state) => state.cartMenu);
   const closeCartMenuStore = cartMenuStore((state) => state.closeCartMenuStore);
 
-  const { cart, deleteItemFromCart, clearCart } = useCartContext();
-
+  const { cart, deleteItemFromCart } = useCartContext();
+  const navigate = useNavigate();
   return (
     <div>
       {/* Black background */}
@@ -52,11 +53,41 @@ export const SideMenu = () => {
             <img src="/assets/Big_close.svg" alt="Big_close.svg" />
           </button>
         </div>
-        <div className="flex justify-between border-b-[1px] border-purple-100 py-3 ">
+        <div className="flex justify-between border-b-[1px] border-purple-100 py-3 mb-6 ">
           <div>Producto</div>
           <div>Total</div>
         </div>
-
+        <div className="min-h-[420px]">
+          {cervezas.length === 0 ? (
+            <span className=" text-neutral-800 font-xl text-center">
+              No hay artículos en el carrito
+            </span>
+          ) : null}
+        </div>
+        <div className="flex flex-col gap-y-2">
+          <button
+            className="flex items-center justify-center min-h-[48px] bg-purple-100 text-white text-custom-m font-bold rounded-[8px]"
+            type="button"
+            onClick={() => {
+              closeCartMenuStore();
+              navigate("/resumen-carrito");
+            }}
+          >
+            <img src="/assets/icon-home.svg" alt="" />
+            Finalizar compra
+          </button>
+          <button
+            className="flex items-center justify-center min-h-[48px] rounded-[8px] text-gray-dark text-custom-m font-bold border-[2px] border-purple-100"
+            type="button"
+            onClick={() => {
+              closeCartMenuStore();
+              navigate("/cervezas");
+            }}
+          >
+            <img src="/assets/icon-home.svg" alt="" />
+            Elegir más productos
+          </button>
+        </div>
         <div className="h-full">
           {cart.length === 0 ? (
             <span className="text-neutral-800 font-xl text-center">
@@ -89,21 +120,6 @@ export const SideMenu = () => {
                     </aside>
                   </div>
                 ))}
-              </div>
-              <div className="flex flex-col gap-y-2">
-                <span className="text-end text-lg">Total: ${total_pagar}</span>
-                <button
-                  onClick={clearCart}
-                  className="text-white bg-red-500 rounded w-full py-2 px-3 text-md hover:bg-red-400 duration-300"
-                >
-                  Vaciar el carrito
-                </button>
-                <a
-                  href="#"
-                  className="text-white bg-blue-500 rounded w-full py-2 px-3 text-md mb-8 hover:bg-blue-400 duration-300 text-center"
-                >
-                  Comprar
-                </a>
               </div>
             </div>
           )}

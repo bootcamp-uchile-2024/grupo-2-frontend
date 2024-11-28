@@ -30,6 +30,7 @@ export default {
         'custom-lg': ['48px', '56px'], // font-size con line-height
         'custom-3xl': ['30px', '40px'],
         'custom-l': ['20px', '30px'],
+        'custom-m': ['18px', '28px'],
         'custom-s': ['16px', '24px'],
       },
       fontWeight: {
