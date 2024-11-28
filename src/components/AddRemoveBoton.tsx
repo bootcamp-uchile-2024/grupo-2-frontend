@@ -4,7 +4,9 @@ import {
   removeCerveza,
 } from "@/state/slices/carritoSlice";
 import { CervezaInterface } from "@/types";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 export interface AddRemoveCervezaProps {
   cerveza: CervezaInterface;
@@ -14,7 +16,13 @@ export const AddRemoveCerveza: React.FC<AddRemoveCervezaProps> = ({
   cerveza,
   cantidad,
 }) => {
+  const { stock } = cerveza;
   const dispatch = useDispatch();
+  useEffect(() => {
+    if (cantidad >= stock) {
+      toast.error("No hay suficiente stock para agregar más articulos");
+    }
+  }, [cantidad]);
   return (
     <div className="flex">
       <button
@@ -28,6 +36,7 @@ export const AddRemoveCerveza: React.FC<AddRemoveCervezaProps> = ({
         {cantidad}
       </div>
       <button
+        disabled={cantidad >= stock}
         className="btn-detalle-carrito"
         onClick={() => dispatch(addCerveza({ cerveza, cantidad: 1 }))}
       >

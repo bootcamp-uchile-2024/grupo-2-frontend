@@ -13,7 +13,7 @@ export interface CervezaInterface {
   id: number;
   nombre: string;
   marca: string;
-  tipo_cerveza: TipoCervezaType;
+  tipo: TipoCervezaType;
   stock: number;
   descripcion: string;
   precio: number;

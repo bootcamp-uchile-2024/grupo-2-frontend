@@ -20,8 +20,7 @@ export const DetalleCervezaPage = () => {
       </MainLayout>
     );
   }
-  const { stock, marca, nombre, tipo_cerveza, precio, formato, descripcion } =
-    cerveza;
+  const { stock, marca, nombre, tipo, precio, formato, descripcion } = cerveza;
 
   const [cantidadAgregar, setAgregarCantidad] = useState(151);
   useEffect(() => {
@@ -70,7 +69,7 @@ export const DetalleCervezaPage = () => {
               {marca}, {nombre}
             </div>
 
-            <div className="text-lato-2xl">{tipo_cerveza.nombre}</div>
+            <div className="text-lato-2xl">{tipo.nombre}</div>
             <div className="text-lato-3xl">${precio.toLocaleString()}</div>
             <div className="text-lato-2xl">{formato.id}</div>
             <div className="italic text-gray-dark-100 font-light text-custom-s">

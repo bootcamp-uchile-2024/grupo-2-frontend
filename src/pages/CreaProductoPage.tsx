@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import { regiones } from "../../services/RegionesComunasService";
 import { CERVEZAS_ENDPOINT } from "../config/api.config";
 import { CervezaInterface } from "../types";
 
@@ -8,7 +7,7 @@ export const CreaProductoPage = () => {
     id: 0,
     nombre: "",
     marca: "",
-    tipo_cerveza: {
+    tipo: {
       id: 0,
       nombre: "",
       descripcion: "",
@@ -76,7 +75,7 @@ export const CreaProductoPage = () => {
       hasError = true;
     }
 
-    if (producto.tipo_cerveza?.id === 0) {
+    if (producto.tipo?.id === 0) {
       setErrorTipoCerveza("Debe ingresar un tipo de cerveza");
       hasError = true;
     }
@@ -203,7 +202,7 @@ export const CreaProductoPage = () => {
           className="form-select mt-1 block w-full border p-3 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
           name="tipo_cerveza"
           onChange={handleChange}
-          value={producto.tipo_cerveza.id}
+          value={producto.tipo.id}
         >
           <option value="American Pale Ale">American Pale Ale</option>
           <option value="India Pale Ale">India Pale Ale</option>

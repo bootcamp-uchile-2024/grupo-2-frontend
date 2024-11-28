@@ -25,7 +25,7 @@ export default function CervezasProvider({
           id: cervezas.id,
           nombre: cervezas.nombre,
           marca: cervezas.marca,
-          tipo_cerveza: cervezas.tipo_cerveza,
+          tipo: cervezas.tipo,
           stock: cervezas.stock,
           descripcion: cervezas.descripcion,
           precio: cervezas.precio,

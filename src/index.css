@@ -73,3 +73,34 @@ h6 {
 .shadow-recomendaciones {
   box-shadow: 0px 4px 5px rgba(244, 180, 12, 0.5);
 }
+
+.boton-descubre-carrito {
+  background: #ffffff;
+  border: 2px solid #f4b40c;
+  border-radius: 8px;
+  padding: 8px 16px;
+  gap: 10px;
+}
+.boton-descubre-carrito:hover {
+  background: #fde29a;
+  color: #000;
+}
+
+.boton-iniciar-carrito {
+  background: #ffffff;
+  border: 2px solid #675594;
+  border-radius: 8px;
+  padding: 8px 16px;
+  gap: 10px;
+}
+.boton-iniciar-carrito:hover {
+  background: #675594;
+  color: #ffffff;
+}
+
+.boton-descubre-carrito {
+  @apply text-lato-m;
+}
+.boton-iniciar-carrito {
+  @apply text-lato-m;
+}
