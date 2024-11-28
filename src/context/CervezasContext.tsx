@@ -20,7 +20,6 @@ export default function CervezasProvider({
   useEffect(() => {
     async function getInitialCervezas() {
       const cervezasData = await getCervezas();
-      console.log("cervezasData", cervezasData);
       const mappedCervezas = cervezasData.map((cervezas: CervezaType) => {
         return {
           id: cervezas.id,
