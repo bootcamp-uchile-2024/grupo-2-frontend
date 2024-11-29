@@ -1,14 +1,19 @@
 import { useState } from "react";
-// import { regiones } from "../../services/RegionesComunasService";
 import { CERVEZAS_ENDPOINT } from "../config/api.config";
-import { CervezaType } from "../types";
+import { CervezaInterface } from "../types";
 
 export const CreaProductoPage = () => {
-  const [producto, setProducto] = useState<CervezaType>({
+  const [producto, setProducto] = useState<CervezaInterface>({
     id: 0,
     nombre: "",
     marca: "",
-    tipo_cerveza: "",
+    tipo: {
+      id: 0,
+      nombre: "",
+      descripcion: "",
+      categoria: "",
+      color: "",
+    },
     stock: 0,
     descripcion: "",
     precio: 0,
@@ -21,7 +26,7 @@ export const CreaProductoPage = () => {
     },
     amargor: "",
     graduacion: 0,
-    formato: "",
+    formato: { id: "", descripcion: "" },
     imagen: "",
   });
 
@@ -70,7 +75,7 @@ export const CreaProductoPage = () => {
       hasError = true;
     }
 
-    if (producto.tipo_cerveza === "") {
+    if (producto.tipo?.id === 0) {
       setErrorTipoCerveza("Debe ingresar un tipo de cerveza");
       hasError = true;
     }
@@ -95,7 +100,7 @@ export const CreaProductoPage = () => {
       hasError = true;
     }
 
-    if (producto.formato === "") {
+    if (producto.formato.id === "") {
       setErrorFormato("Debe ingresar un tipo de amargor");
       hasError = true;
     }
@@ -197,7 +202,7 @@ export const CreaProductoPage = () => {
           className="form-select mt-1 block w-full border p-3 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
           name="tipo_cerveza"
           onChange={handleChange}
-          value={producto.tipo_cerveza}
+          value={producto.tipo.id}
         >
           <option value="American Pale Ale">American Pale Ale</option>
           <option value="India Pale Ale">India Pale Ale</option>
@@ -302,7 +307,7 @@ export const CreaProductoPage = () => {
           className="form-select mt-1 block w-full border p-3 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
           name="formato"
           onChange={handleChange}
-          value={producto.formato}
+          value={producto.formato.id}
         >
           <option value="Barril">Barril</option>
           <option value="Botella">Botella</option>

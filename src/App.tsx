@@ -22,6 +22,8 @@ import CreaUsuarioPage from "./pages/CreaUsuarioPage";
 import { CrearCuentaPage } from "./pages/CrearCuentaPage";
 import { ConfirmarmacionCorreoPage } from "./pages/registro/ConfirmacionCorreoPage";
 import { CarritoPage } from "./pages/CarritoPage";
+import { PageNoFound } from "./pages/404";
+import { DetalleCervezaPage } from "./pages/cervezas/DetalleCervezaPage";
 
 // Administación de Usuarios y Productos
 
@@ -42,10 +44,12 @@ function App() {
               </CervezasProvider>
             }
           />
+          <Route path="/cervezas/:id" element={<DetalleCervezaPage />} />
           <Route path="/acerca" element={<AcercaPage />} />
           <Route path="/contacto" element={<ContactoPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/resumen-carrito" element={<CarritoPage />} />
+          <Route path="*" element={<PageNoFound />} />
           <Route path="/admin" element={<DashboardPage />}>
             <Route
               path="crea-usuario"

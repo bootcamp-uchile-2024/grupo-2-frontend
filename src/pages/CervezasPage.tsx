@@ -33,6 +33,7 @@ export const CervezasPage = () => {
         </h2>
         <CervezasGrid />
       </section>
+      <DescubreSection imageUrl="/assets/48ae585a9e6a88eb0f00b865f7cb480f.png" />
     </MainLayout>
   );
 };

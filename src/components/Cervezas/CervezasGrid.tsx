@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import { RootType } from "@/state/store";
 import { useFetch } from "@/hooks/useFetch";
 import { CERVEZAS_ENDPOINT } from "@/config/api.config";
-import { CervezaType } from "@/types";
+import { CervezaInterface } from "@/types";
 import { Pagination } from "../Pagination";
-import { CervezaDetalle } from "./CervezaDetalle";
+import { CervezaCartaDetalle } from "./CervezaCartaDetalle";
 
 export const CervezasGrid = () => {
   const [cantproductos, setCantidadProductos] = useState<number>(10);
@@ -16,7 +16,7 @@ export const CervezasGrid = () => {
     data: cervezas,
     loading,
     error,
-  } = useFetch<CervezaType[]>(url_cervezas);
+  } = useFetch<CervezaInterface[]>(url_cervezas);
 
   if (loading) return <div>Cargando...</div>;
   if (error) return <div>Error al cargar las cervezas: {error}</div>;
@@ -41,7 +41,7 @@ export const CervezasGrid = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1296px] mx-auto mt-8 gap-8">
         {cervezas?.map((cerveza) => (
-          <CervezaDetalle {...cerveza} key={cerveza.id} />
+          <CervezaCartaDetalle {...cerveza} key={cerveza.id} />
         ))}
       </div>
 

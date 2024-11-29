@@ -26,7 +26,7 @@ services:
       - db
 
   cervezario-app-prod:
-    image: kmreyes/cervezarionacional:2.1.1
+    image: kmreyes/cervezarionacional:2.0.1
     environment:
       - APP_NAME=${APP_NAME}
       - APP_VERSION=${APP_VERSION}
@@ -50,6 +50,6 @@ services:
     depends_on:
       - cervezario-app-prod
     ports:
-      - "5173:80"
+      - "5174:80"
 volumes:
   data_prod:

@@ -1,9 +1,9 @@
-import { CervezaType } from "@/types";
+import { CervezaInterface } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 
-interface PedidoType {
+export interface PedidoType {
   id_pedido?: number;
-  cerveza: CervezaType;
+  cerveza: CervezaInterface;
   cantidad: number;
 }
 export interface CarritoType {
@@ -24,10 +24,51 @@ export const carritoSlice = createSlice({
   initialState,
   reducers: {
     addCerveza: (state, action) => {
-      state.cervezas.push({ cerveza: action.payload, cantidad: 1 });
+      const { id } = action.payload.cerveza;
+      const { cantidad } = action.payload;
+      const cervezaExistente = state.cervezas.find(
+        (cerveza) => cerveza.cerveza.id === id
+      );
+
+      if (cervezaExistente) {
+        cervezaExistente.cantidad += cantidad;
+      } else {
+        state.cervezas.push({
+          cerveza: action.payload.cerveza,
+          cantidad,
+        });
+      }
+
+      state.total_pagar = state.cervezas.reduce(
+        (total, item) => total + item.cerveza.precio * item.cantidad,
+        0
+      );
+    },
+    removeCerveza: (state, action) => {
+      const { id } = action.payload;
+      state.cervezas = state.cervezas.filter(
+        (cerveza) => cerveza.cerveza.id !== id
+      );
+      state.total_pagar = state.cervezas.reduce(
+        (total, item) => total + item.cerveza.precio * item.cantidad,
+        0
+      );
+    },
+    discountCerveza: (state, action) => {
+      const { id } = action.payload;
+      state.cervezas.map((cerveza) => {
+        if (cerveza.cerveza.id === id) {
+          cerveza.cantidad -= 1;
+        }
+      });
+      state.total_pagar = state.cervezas.reduce(
+        (total, item) => total + item.cerveza.precio * item.cantidad,
+        0
+      );
     },
   },
 });
 
-export const { addCerveza } = carritoSlice.actions;
+export const { addCerveza, removeCerveza, discountCerveza } =
+  carritoSlice.actions;
 export default carritoSlice.reducer;
