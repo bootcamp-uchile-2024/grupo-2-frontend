@@ -44,7 +44,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         onClick={() => setPagina(Math.max(pagina - 1, 1))}
         disabled={pagina === 1}
       >
-        <img src="assets/Chevron_big_left.svg" alt="Chevron_big_left" />
+        <img src="/assets/Chevron_big_left.svg" alt="Chevron_big_left" />
       </button>
 
       {/* Primera página */}
@@ -86,7 +86,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         onClick={() => setPagina(Math.min(pagina + 1, totalPaginas))}
         disabled={pagina === totalPaginas}
       >
-        <img src="assets/Chevron_big_right.svg" alt="Chevron_big_left" />
+        <img src="/assets/Chevron_big_right.svg" alt="Chevron_big_left" />
       </button>
     </div>
   );
