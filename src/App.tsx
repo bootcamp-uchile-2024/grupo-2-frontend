@@ -53,6 +53,15 @@ function App() {
           <Route path="*" element={<PageNoFound />} />
           <Route path="/admin" element={<DashboardPage />}>
             <Route
+              index
+              element={
+                <CreaProductoPage />
+                // <PrivateRoute roles={["admin"]}>
+                //   <CreaProductoPage />
+                // </PrivateRoute>
+              }
+            />
+            <Route
               path="crea-usuario"
               element={
                 <CreaUsuarioPage />
