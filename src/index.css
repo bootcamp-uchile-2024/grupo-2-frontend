@@ -35,6 +35,22 @@ h6 {
   @apply bg-purple text-white;
 }
 
+.btn-formulario {
+  @apply bg-purple text-white text-balance py-2 px-4 rounded w-full;
+}
+
+.btn-formulario:hover {
+  @apply bg-yellow text-black text-balance py-2 px-4 rounded w-full;
+}
+
+.btn-formulario-outline {
+  @apply border-2 border-purple text-purple text-balance py-2 px-4 rounded w-full;
+}
+
+.btn-formulario-outline:hover {
+  @apply border-2 border-yellow text-purple text-balance py-2 px-4 rounded w-full;
+}
+
 .btn-detalle-carrito {
   @apply flex justify-center items-center rounded-[3px] h-[24px] w-[24px] border-2;
 }
@@ -107,3 +123,4 @@ h6 {
 .boton-iniciar-carrito {
   @apply text-lato-m;
 }
+
