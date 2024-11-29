@@ -24,7 +24,7 @@ export const CreaProductoPage = () => {
       telefono: "",
       correo_electronico: "",
     },
-    amargor: "",
+    amargor: { id: "", nivel: "", descripcion: "" },
     graduacion: 0,
     formato: { id: "", descripcion: "" },
     imagen: "",
@@ -95,7 +95,7 @@ export const CreaProductoPage = () => {
       hasError = true;
     }
 
-    if (producto.amargor === "") {
+    if (producto.amargor.nivel === "") {
       setErrorAmargor("Debe ingresar un tipo de amargor");
       hasError = true;
     }
@@ -289,7 +289,7 @@ export const CreaProductoPage = () => {
           className="form-select mt-1 block w-full border p-3 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
           name="amargor"
           onChange={handleChange}
-          value={producto.amargor}
+          value={producto.amargor.nivel}
         >
           <option value="Alto">Alto</option>
           <option value="Bajo">Bajo</option>

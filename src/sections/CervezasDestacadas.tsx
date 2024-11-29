@@ -1,8 +1,8 @@
-export const CervezasDestacadas = () => {
+export const CervezasDestacadas = ({ title = "Destacadas" }) => {
   return (
     <div className="section">
       <div className="container mx-auto text-center py-10">
-        <h1 className="font-title text-6xl pb-8">Destacadas</h1>
+        <h1 className="text-riffic-4xl my-5">{title}</h1>
         <div className="flex flex-wrap justify-center gap-4 md:flex-nowrap">
           <div className="w-100 md:w-1/3 flex flex-col shadow-lg">
             <img
@@ -69,9 +69,9 @@ export const CervezasDestacadas = () => {
             </div>
           </div>
         </div>
-        <div className="pt-8">
+        {/* <div className="pt-8">
           <button className="">Quiero ver más!</button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

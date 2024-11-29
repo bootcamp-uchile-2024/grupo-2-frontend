@@ -23,6 +23,9 @@ export const carritoSlice = createSlice({
   name: "carrito",
   initialState,
   reducers: {
+    cleanCarrito: () => {
+      return initialState;
+    },
     addCerveza: (state, action) => {
       const { id } = action.payload.cerveza;
       const { cantidad } = action.payload;
@@ -69,6 +72,6 @@ export const carritoSlice = createSlice({
   },
 });
 
-export const { addCerveza, removeCerveza, discountCerveza } =
+export const { addCerveza, removeCerveza, discountCerveza, cleanCarrito } =
   carritoSlice.actions;
 export default carritoSlice.reducer;
