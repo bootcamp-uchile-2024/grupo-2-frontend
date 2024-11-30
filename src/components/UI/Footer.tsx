@@ -2,7 +2,7 @@ export const Footer = () => {
   return (
     <>
       <footer className="bg-gray-dark py-8">
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="container px-8 mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="flex-1 text-white">
             <h1 className="text-xl font-bold mb-4">¿Nos quieres contactar?</h1>
             <p className="mb-2">contacto@cervezarionacional.cl</p>

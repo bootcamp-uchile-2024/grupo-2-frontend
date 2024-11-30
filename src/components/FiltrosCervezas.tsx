@@ -65,10 +65,10 @@ export const FiltrosCervezas = () => {
   ];
   return (
     <div className="mt-16">
-      {filtros.map((filtro) => {
+      {filtros.map((filtro, index) => {
         const { titulo, opciones } = filtro;
         return (
-          <div className="mx-2 px-2 min-w-[300px]">
+          <div className="mx-2 px-2 min-w-[300px]" key={index}>
             <p className="text-lato-m font-bold my-2">{titulo}</p>
             {opciones.map((estilo) => (
               <div key={estilo.id} className="form-check">

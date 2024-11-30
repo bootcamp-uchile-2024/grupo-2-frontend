@@ -1,5 +1,5 @@
 import { AddRemoveCerveza } from "@/components/AddRemoveBoton";
-import { ResumenCompra } from "@/components/CartStore/SideMenu";
+import { ResumenCompra } from "@/components/ResumenCompra";
 import { MainLayout } from "@/layout/MainLayout";
 import { CervezasDestacadas } from "@/sections/CervezasDestacadas";
 import { PedidoType } from "@/state/slices/carritoSlice";

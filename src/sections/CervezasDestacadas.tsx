@@ -1,3 +1,4 @@
+import { ButonElegirProductos } from "@/components/ButtonElegirProductos";
 import { CervezaCartaDetalle } from "@/components/Cervezas/CervezaCartaDetalle";
 import { CERVEZAS_ENDPOINT } from "@/config/api.config";
 import { useFetch } from "@/hooks/useFetch";
@@ -22,6 +23,9 @@ export const CervezasDestacadas = ({ title = "DESTACADAS" }) => {
           {cervezas?.map((cerveza) => (
             <CervezaCartaDetalle {...cerveza} key={cerveza.id} />
           ))}
+        </div>
+        <div className="flex justify-center items-center p-5 mt-8 ">
+          <ButonElegirProductos title={"Quiero ver más"} outlined={true} />
         </div>
       </div>
     </div>

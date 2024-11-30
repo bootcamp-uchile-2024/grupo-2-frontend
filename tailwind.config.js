@@ -41,11 +41,14 @@ export default {
         "gray-G05": "#000000",
         "gray-100": "#D9D8DB",
         "white-100": "#FBFAFC",
-        
+
       },
       fontFamily: {
         riffic: ["Riffic", "Riffic free", "sans-serif"], // Agregar la fuente personalizada
         lato: ['Lato', 'Riffic', 'sans-serif']
+      },
+      boxShadow: {
+        'custom-card': '0px 4px 4px 0px rgba(0, 0, 0, 0.25)', // Convierte #00000040 a rgba
       },
       fontSize: {
         'custom-lg': ['48px', '56px'], // font-size con line-height
