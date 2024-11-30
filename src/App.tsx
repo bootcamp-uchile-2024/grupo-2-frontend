@@ -6,9 +6,6 @@ import CartProvider from "./context/CartContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Importar componentes
-import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
-
 // Importa las páginas
 import { AcercaPage } from "./pages/AcercaPage";
 import { ContactoPage } from "./pages/ContactoPage";
