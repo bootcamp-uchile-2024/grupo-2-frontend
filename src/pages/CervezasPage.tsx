@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { CERVEZAS_ENDPOINT } from "@/config/api.config";
 import { useDispatch } from "react-redux";
 import { getCervezas } from "@/state/slices/cervezaSlice";
+import { FiltrosCervezas } from "@/components/FiltrosCervezas";
 
 export const CervezasPage = () => {
   const dispatch = useDispatch();
@@ -45,8 +46,8 @@ export const CervezasPage = () => {
             <img src="/assets/copas-3.svg" alt="" width={210} />
           </div>
         </div>
-        <div className="flex">
-          <aside className="border-2">hola</aside>
+        <div className="flex ">
+          <FiltrosCervezas />
           <CervezasGrid />
         </div>
       </section>
