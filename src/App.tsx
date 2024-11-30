@@ -24,6 +24,7 @@ import { ConfirmarmacionCorreoPage } from "./pages/registro/ConfirmacionCorreoPa
 import { CarritoPage } from "./pages/CarritoPage";
 import { PageNoFound } from "./pages/404";
 import { DetalleCervezaPage } from "./pages/cervezas/DetalleCervezaPage";
+import { ListadoProductosPage } from "./pages/ListadoProdutosPage";
 
 // Administación de Usuarios y Productos
 
@@ -52,19 +53,39 @@ function App() {
           <Route path="*" element={<PageNoFound />} />
           <Route path="/admin" element={<DashboardPage />}>
             <Route
+              index
+              element={
+                <CreaProductoPage />
+                // <PrivateRoute roles={["admin"]}>
+                //   <CreaProductoPage />
+                // </PrivateRoute>
+              }
+            />
+            <Route
               path="crea-usuario"
               element={
-                <PrivateRoute roles={["admin"]}>
-                  <CreaUsuarioPage />
-                </PrivateRoute>
+                <CreaUsuarioPage />
+                // <PrivateRoute roles={["admin"]}>
+                //   <CreaUsuarioPage />
+                // </PrivateRoute>
               }
             />
             <Route
               path="crea-producto"
               element={
-                <PrivateRoute roles={["admin"]}>
-                  <CreaProductoPage />
-                </PrivateRoute>
+                <CreaProductoPage />
+                // <PrivateRoute roles={["admin"]}>
+                //   <CreaProductoPage />
+                // </PrivateRoute>
+              }
+            />
+            <Route
+              path="lista-producto"
+              element={
+                <ListadoProductosPage />
+                // <PrivateRoute roles={["admin"]}>
+                //   <CreaProductoPage />
+                // </PrivateRoute>
               }
             />
           </Route>

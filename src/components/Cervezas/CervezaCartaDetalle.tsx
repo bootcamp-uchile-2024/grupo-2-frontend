@@ -56,7 +56,7 @@ export const CervezaCartaDetalle = (cerveza: CervezaInterface) => {
           })}
         </div>
         <div className="text-gray-dark font-bold text-custom-l">
-          ${precio.toLocaleString()}
+          ${precio.toLocaleString("es-CL")}
         </div>
         <div className="italic text-gray-dark-100 font-light text-custom-s">
           Stock: {stock}

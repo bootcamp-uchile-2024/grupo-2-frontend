@@ -25,13 +25,13 @@ export const ItemListaCarrito = (pedido: PedidoType) => {
 
         <div className="text-gray-dark-67 text-custom-xs">{formato.id}</div>
         <div className="text-gray-dark-67 text-custom-xs">
-          ${precio.toLocaleString()}
+          ${precio.toLocaleString("es-CL")}
         </div>
 
         <AddRemoveCerveza cerveza={cerveza} cantidad={cantidad} />
       </div>
       <div className="flex font-lato font-bold text-custom-m text-gray-dark">
-        ${(precio * cantidad).toLocaleString()}
+        ${(precio * cantidad).toLocaleString("es-CL")}
       </div>
     </div>
   );

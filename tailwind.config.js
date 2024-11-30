@@ -39,7 +39,9 @@ export default {
         'purple': "#4E3B7F",
         'purple-100': "#675594",
         "gray-G05": "#000000",
+        "gray-100": "#D9D8DB",
         "white-100": "#FBFAFC",
+        
       },
       fontFamily: {
         riffic: ["Riffic", "Riffic free", "sans-serif"], // Agregar la fuente personalizada
