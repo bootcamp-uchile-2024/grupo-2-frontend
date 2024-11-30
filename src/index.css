@@ -92,6 +92,25 @@ h6 {
 .shadow-recomendaciones {
   box-shadow: 0px 4px 5px rgba(244, 180, 12, 0.5);
 }
+.text-menu {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0.05em;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.checkbox-custom {
+  border: 2px solid red; /* Cambia "red" por el color deseado */
+  border-radius: 4px; /* Opcional: ajusta los bordes */
+}
+
+.navbar-button-selected {
+  background: #fde29a;
+  border-radius: 8px;
+}
 
 .boton-descubre-carrito {
   background: #ffffff;
@@ -123,4 +142,3 @@ h6 {
 .boton-iniciar-carrito {
   @apply text-lato-m;
 }
-

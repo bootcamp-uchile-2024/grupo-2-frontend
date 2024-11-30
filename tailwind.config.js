@@ -6,6 +6,22 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      'sm': '640px',
+      // => @media (min-width: 640px) { ... }
+
+      'md': '768px',
+      // => @media (min-width: 768px) { ... }
+
+      'lg': '1024px',
+      // => @media (min-width: 1024px) { ... }
+
+      'xl': '1280px',
+      // => @media (min-width: 1280px) { ... }
+
+      '2xl': '1536px',
+      // => @media (min-width: 1536px) { ... }
+    },
     extend: {
       height: {
         '300px': '300px',
@@ -25,14 +41,18 @@ export default {
         "gray-G05": "#000000",
         "gray-100": "#D9D8DB",
         "white-100": "#FBFAFC",
-        
+
       },
       fontFamily: {
         riffic: ["Riffic", "Riffic free", "sans-serif"], // Agregar la fuente personalizada
         lato: ['Lato', 'Riffic', 'sans-serif']
       },
+      boxShadow: {
+        'custom-card': '0px 4px 4px 0px rgba(0, 0, 0, 0.25)', // Convierte #00000040 a rgba
+      },
       fontSize: {
         'custom-lg': ['48px', '56px'], // font-size con line-height
+        'custom-r-6xl': ['60px', '72px'],
         'custom-4xl': ['36px', '44px'],
         'custom-3xl': ['30px', '40px'],
         'custom-2xl': ['24px', '36px'],

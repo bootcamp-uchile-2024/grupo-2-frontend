@@ -110,6 +110,7 @@ export const CrearCuentaPage = () => {
             contrasenia,
             edad,
             tipo_suscripcion,
+            correo_comprador: email,
             ...restoUsuario,
           }),
         });
@@ -138,7 +139,7 @@ export const CrearCuentaPage = () => {
     <MainLayout>
       <div className="flex flex-col items-center  m-auto">
         <h1 className="text-purple font-bold text-2xl">Crear cuenta</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="my-2 mb-6">
           {formularioRegistro.map((input, index) => {
             const { name, type, placeholder, label } = input;
             return (
