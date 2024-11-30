@@ -25,6 +25,7 @@ import { CarritoPage } from "./pages/CarritoPage";
 import { PageNoFound } from "./pages/404";
 import { DetalleCervezaPage } from "./pages/cervezas/DetalleCervezaPage";
 import { ListadoProductosPage } from "./pages/ListadoProdutosPage";
+import { ListadoUsuarioPage } from "./pages/ListadoUsuarioPage";
 
 // Administación de Usuarios y Productos
 
@@ -84,7 +85,16 @@ function App() {
               element={
                 <ListadoProductosPage />
                 // <PrivateRoute roles={["admin"]}>
-                //   <CreaProductoPage />
+                //   <ListadoProductosPage />
+                // </PrivateRoute>
+              }
+            />
+            <Route
+              path="lista-usuarios"
+              element={
+                <ListadoUsuarioPage />
+                // <PrivateRoute roles={["admin"]}>
+                //   <ListadoUsuarioPage />
                 // </PrivateRoute>
               }
             />

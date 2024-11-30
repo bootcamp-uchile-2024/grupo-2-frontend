@@ -211,12 +211,8 @@ export const CreaUsuarioPage = () => {
           <label className="block text-gray-700 font-bold mb-2">
             Tipo de suscripción
           </label>
-          <select
-            className="form-select mt-1 block w-full border rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 p-3"
-            name="tipo_suscripcion"
-            onChange={handleChange}
-            value={usuario.tipo_suscripcion}
-          >
+          <select className="form-select mt-1 block w-full border rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 p-3"
+            name="tipo_suscripcion" onChange={handleChange} value={usuario.tipo_suscripcion}>
             <option value="BRONZE">BRONZE</option>
             <option value="SILVER">SILVER</option>
             <option value="GOLDEN">GOLDEN</option>
@@ -227,6 +223,7 @@ export const CreaUsuarioPage = () => {
             <p className="text-red-500 text-sm mt-1">{errorTipoSuscripcion}</p>
           )}
         </div>
+        
       </div>
       <div className="flex justify-center">
         <button className="btn-formulario-outline mr-4" type="submit"> Borrar </button>
