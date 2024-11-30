@@ -91,16 +91,16 @@ export const LoginPage = () => {
               </Link>
             </div>
             <div className="space-y-6">
-              <button
-                className="w-full px-4 py-2 font-bold text-grey-dark bg-yellow rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                type="submit"
-                onClick={handleSubmit}
-              >
+              <Link to="/admin">
+                <button className="w-full px-4 py-2 font-bold text-grey-dark bg-yellow rounded-md hover:bg-purple-100 hover:text-white">Iniciar sesión</button>
+              </Link>
+              {/* Se comenta provisionalmente hasta tener el email desde backend */}
+              {/* <button className="w-full px-4 py-2 font-bold text-grey-dark bg-yellow rounded-md hover:bg-purple-100 hover:text-white" type="submit" onClick={handleSubmit}>
                 Iniciar Sesión
-              </button>
+              </button> */}
               <button
                 type="button"
-                className="w-full px-4 py-2 font-bold text-white bg-purple rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="btn-formulario"
               >
                 <Link to="/crear-cuenta">Crear cuenta</Link>
               </button>
