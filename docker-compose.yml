@@ -46,7 +46,7 @@ services:
       - db
 
   front:
-    image: mankekez/entrega-taller-9
+    image: calvegh337/entrega-10
     depends_on:
       - cervezario-app-prod
     ports:
