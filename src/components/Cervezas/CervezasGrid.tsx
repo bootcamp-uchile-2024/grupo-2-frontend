@@ -18,9 +18,20 @@ export const CervezasGrid = () => {
     error,
   } = useFetch<CervezaInterface[]>(url_cervezas);
 
-  if (loading) return <div>Cargando...</div>;
-  if (error) return <div>Error al cargar las cervezas: {error}</div>;
+  const cargando = (
+    <div className="flex justify-center p-16 min-w-[960px]">
+      <h1 className="text-lato-2xl">Cargando...</h1>
+    </div>
+  );
 
+  if (error) return <div>Error al cargar las cervezas: {error}</div>;
+  const cervezasSeccion = (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1296px] mx-auto mt-8 gap-8">
+      {cervezas?.map((cerveza) => (
+        <CervezaCartaDetalle {...cerveza} key={cerveza.id} />
+      ))}
+    </div>
+  );
   return (
     <div>
       <div className="flex align-center justify-end font-lato text-custom-s text-gray-dark italic">
@@ -39,11 +50,7 @@ export const CervezasGrid = () => {
           </button>
         ))}
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1296px] mx-auto mt-8 gap-8">
-        {cervezas?.map((cerveza) => (
-          <CervezaCartaDetalle {...cerveza} key={cerveza.id} />
-        ))}
-      </div>
+      {loading ? cargando : cervezasSeccion}
 
       <div className="flex flex-col items-center ">
         <span className="font-lato text-custom-s text-gray-dark">

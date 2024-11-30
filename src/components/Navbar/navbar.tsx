@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const links = [
@@ -47,15 +47,21 @@ const Navbar = () => {
     },
     // { to: "/contacto", text: "Contacto", className: "nav-link", icon: null },
   ];
+  const { pathname } = useLocation();
 
   return (
-    <div className="mt-10 w-full">
-      <div className="flex justify-between w-full">
+    <div className="flex justify-center mt-10 w-full">
+      <div className="flex justify-between flex-wrap w-[90%]">
         {links.map((link, index) => {
           const { to, text, className, icon } = link;
           return (
-            <div key={index}>
-              <Link className={className} to={to}>
+            <div
+              key={index}
+              className={`p-2 px-4 ${
+                to == pathname ? "navbar-button-selected" : ""
+              }`}
+            >
+              <Link className={`${className} text-lato-m`} to={to}>
                 {icon && <img src={icon} alt="" className="me-2" />}
                 {text}
               </Link>

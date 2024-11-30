@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { USERS_ENDPOINT } from "../config/api.config";
 import { UsuarioPerfil } from "../types";
-import { MainLayout } from "@/layout/MainLayout";
 
 export const validarRut = (rut: string): boolean => {
   const rutLimpio = rut.replace(/\./g, "").replace(/-/g, "");
@@ -125,13 +124,13 @@ export const CreaUsuarioPage = () => {
   };
 
   return (
-    <MainLayout>
-      <form className="mt-5 w-3/2 mx-auto p-6" onSubmit={handleSubmit}>
-        <h1 className="text-2xl font-bold mb-4">Crear usuario</h1>
-        <p className="mb-6 text-gray-600">
-          A través de este formulario usted podrá crear un usuario
-        </p>
+    <form className="w-full p-8" onSubmit={handleSubmit}>
+      <h1 className="mb-4 font-lato  text-purple-100 text-custom-lg font-normal">Crear usuarios</h1>
+      <p className="mb-6 text-purple-100 text-custom-2xl">
+        Información a mostrar
+      </p>
 
+      <div className="grid grid-cols-3 gap-4 mb-4">
         <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-2">Rut</label>
           <input
@@ -228,15 +227,12 @@ export const CreaUsuarioPage = () => {
             <p className="text-red-500 text-sm mt-1">{errorTipoSuscripcion}</p>
           )}
         </div>
-
-        <button
-          className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300"
-          type="submit"
-        >
-          Registrar
-        </button>
-      </form>
-    </MainLayout>
+      </div>
+      <div className="flex justify-center">
+        <button className="btn-formulario-outline mr-4" type="submit"> Borrar </button>
+        <button className="btn-formulario" type="submit"> Ingresar usuario </button>
+      </div>
+    </form>
   );
 };
 
