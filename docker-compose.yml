@@ -50,6 +50,6 @@ services:
     depends_on:
       - cervezario-app-prod
     ports:
-      - "5174:5174"
+      - "5174:80"
 volumes:
   data_prod:
