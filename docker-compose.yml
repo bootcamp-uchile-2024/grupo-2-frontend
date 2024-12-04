@@ -53,6 +53,7 @@ services:
       - cervezario-app-prod
     ports:
       - "5174:80"
+    restart: always
   nginx:
     image: nginx:1.25-alpine
     container_name: nginx
