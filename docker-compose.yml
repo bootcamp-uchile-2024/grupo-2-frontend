@@ -46,19 +46,20 @@ services:
     depends_on:
       - db
     restart: always
+    volumes:
+      - shared-data:/usr/share/nginx/html
 
   front:
     image: calvegh337/entrega-10:deploy
     depends_on:
       - cervezario-app-prod
-    ports:
-      - "5174:80"
     restart: always
   nginx:
     image: nginx:1.25-alpine
     container_name: nginx
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+      - shared-data:/usr/share/nginx/html
     ports:
       - "80:80"
     depends_on:
@@ -67,3 +68,4 @@ services:
     restart: always
 volumes:
   data_prod:
+  shared-data:
