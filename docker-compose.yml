@@ -10,6 +10,7 @@ services:
     ports:
       - "3306:3306"
     platform: linux/amd64
+    restart: always
 
   flyway:
     image: flyway/flyway:10.20.1-alpine
@@ -24,7 +25,7 @@ services:
       DB_NAME: ${DB_NAME}
     depends_on:
       - db
-
+    restart: always
   cervezario-app-prod:
     image: kmreyes/cervezarionacional:2.2.3
     environment:
@@ -44,9 +45,10 @@ services:
     platform: linux/amd64
     depends_on:
       - db
+    restart: always
 
   front:
-    image: calvegh337/entrega-10
+    image: calvegh337/entrega-10:deploy
     depends_on:
       - cervezario-app-prod
     ports:
@@ -61,5 +63,6 @@ services:
     depends_on:
       - cervezario-app-prod
       - front
+    restart: always
 volumes:
   data_prod:
