@@ -59,7 +59,8 @@ services:
     volumes:
       - .nginx.conf:/etc/nginx/nginx.conf
     depends_on:
-      - frontend
-      - backend
+      - cervezario-app-prod
+      - front
+
 volumes:
   data_prod:
