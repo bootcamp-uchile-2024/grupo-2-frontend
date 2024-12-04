@@ -49,8 +49,6 @@ services:
     image: calvegh337/entrega-10
     depends_on:
       - cervezario-app-prod
-    ports:
-      - "5174:80"
   nginx:
     image: nginx:latest
     container_name: nginx
