@@ -57,7 +57,7 @@ services:
     ports:
       - "80:80" # Mapear puerto host 80 al puerto del contenedor
     volumes:
-      - .nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - cervezario-app-prod
       - front
