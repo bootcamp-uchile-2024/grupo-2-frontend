@@ -51,5 +51,15 @@ services:
       - cervezario-app-prod
     ports:
       - "5174:80"
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80" # Mapear puerto host 80 al puerto del contenedor
+    volumes:
+      - .nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - frontend
+      - backend
 volumes:
   data_prod:
