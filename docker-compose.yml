@@ -46,14 +46,14 @@ services:
     depends_on:
       - db
     restart: always
-    volumes:
-      - shared-data:/usr/share/nginx/html
 
   front:
     image: calvegh337/entrega-10:deploy
     depends_on:
       - cervezario-app-prod
     restart: always
+    volumes:
+      - shared-data:/usr/share/nginx/html
   nginx:
     image: nginx:1.25-alpine
     container_name: nginx
