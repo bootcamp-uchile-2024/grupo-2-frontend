@@ -45,6 +45,7 @@ services:
     platform: linux/amd64
     depends_on:
       - db
+
     restart: always
 
   front:
@@ -52,20 +53,8 @@ services:
     depends_on:
       - cervezario-app-prod
     restart: always
-    volumes:
-      - shared-data:/usr/share/nginx/html
-  nginx:
-    image: nginx:1.25-alpine
-    container_name: nginx
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-      - shared-data:/usr/share/nginx/html
     ports:
       - "80:80"
-    depends_on:
-      - cervezario-app-prod
-      - front
-    restart: always
+
 volumes:
   data_prod:
-  shared-data:
