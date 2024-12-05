@@ -25,22 +25,35 @@ export const validarRut = (rut: string): boolean => {
   return dv === dvCalculado;
 };
 
+// Función para validar el formato del correo electrónico
+const validarCorreo = (correo: string): boolean => {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(correo);
+};
+
 export const CreaUsuarioPage = () => {
   const [usuario, setUsuario] = useState<UsuarioPerfil>({
     rut: "",
     nombre: "",
     apellido: "",
-    password: "",
+    contrasenia: "",
+    correo_comprador: "",
+    telefono_comprador: "",
     edad: 0,
     tipo_suscripcion: "",
     birthday: "",
-    email: "",
   });
 
   const [errorRut, setErrorRut] = useState<string | null>(null);
   const [errorNombre, setErrorNombre] = useState<string | null>(null);
   const [errorApellido, setErrorApellido] = useState<string | null>(null);
-  const [errorPassword, setErrorPassword] = useState<string | null>(null);
+  const [errorContrasenia, setErrorContrasenia] = useState<string | null>(null);
+  const [errorCorreoComprador, setErrorCorreoComprador] = useState<
+    string | null
+  >(null);
+  const [errorTelefonoComprador, setErrorTelefonoComprador] = useState<
+    string | null
+  >(null);
   const [errorEdad, setErrorEdad] = useState<string | null>(null);
   const [errorTipoSuscripcion, setErrorTipoSuscripcion] = useState<
     string | null
@@ -51,6 +64,36 @@ export const CreaUsuarioPage = () => {
   ) => {
     const { name, value } = e.target;
     setUsuario({ ...usuario, [name]: value });
+
+    // Limpiar el mensaje de error correspondiente
+    switch (name) {
+      case "rut":
+        if (errorRut) setErrorRut(null);
+        break;
+      case "nombre":
+        if (errorNombre) setErrorNombre(null);
+        break;
+      case "apellido":
+        if (errorApellido) setErrorApellido(null);
+        break;
+      case "contrasenia":
+        if (errorContrasenia) setErrorContrasenia(null);
+        break;
+      case "correo_comprador":
+        if (errorCorreoComprador) setErrorCorreoComprador(null);
+        break;
+      case "telefono_comprador":
+        if (errorTelefonoComprador) setErrorTelefonoComprador(null);
+        break;
+      case "edad":
+        if (errorEdad) setErrorEdad(null);
+        break;
+      case "tipo_suscripcion":
+        if (errorTipoSuscripcion) setErrorTipoSuscripcion(null);
+        break;
+      default:
+        break;
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -78,11 +121,11 @@ export const CreaUsuarioPage = () => {
       setErrorApellido(null);
     }
 
-    if (usuario.password === "") {
-      setErrorPassword("La contraseña es obligatoria");
+    if (usuario.contrasenia === "") {
+      setErrorContrasenia("La contraseña es obligatoria");
       hasError = true;
     } else {
-      setErrorPassword(null);
+      setErrorContrasenia(null);
     }
 
     usuario.edad = parseInt(usuario.edad.toString());
@@ -99,6 +142,23 @@ export const CreaUsuarioPage = () => {
       hasError = true;
     } else {
       setErrorTipoSuscripcion(null);
+    }
+
+    if (usuario.correo_comprador === "") {
+      setErrorCorreoComprador("El correo es obligatorio");
+      hasError = true;
+    } else if (!validarCorreo(usuario.correo_comprador)) {
+      setErrorCorreoComprador("El formato del correo es inválido");
+      hasError = true;
+    } else {
+      setErrorCorreoComprador(null);
+    }
+
+    if (usuario.telefono_comprador === "") {
+      setErrorTelefonoComprador("El teléfono es obligatorio");
+      hasError = true;
+    } else {
+      setErrorTelefonoComprador(null);
     }
 
     if (!hasError) {
@@ -123,9 +183,35 @@ export const CreaUsuarioPage = () => {
     }
   };
 
+  const handleClear = () => {
+    setUsuario({
+      rut: "",
+      nombre: "",
+      apellido: "",
+      contrasenia: "",
+      correo_comprador: "",
+      telefono_comprador: "",
+      edad: 0,
+      tipo_suscripcion: "",
+      birthday: "",
+    });
+
+    // Limpiar los mensajes de error
+    setErrorRut(null);
+    setErrorNombre(null);
+    setErrorApellido(null);
+    setErrorContrasenia(null);
+    setErrorCorreoComprador(null);
+    setErrorTelefonoComprador(null);
+    setErrorEdad(null);
+    setErrorTipoSuscripcion(null);
+  };
+
   return (
     <form className="w-full p-8" onSubmit={handleSubmit}>
-      <h1 className="mb-4 font-lato  text-purple-100 text-custom-lg font-normal">Crear usuarios</h1>
+      <h1 className="mb-4 font-lato  text-purple-100 text-custom-lg font-normal">
+        Crear usuarios
+      </h1>
       <p className="mb-6 text-purple-100 text-custom-2xl">
         Información a mostrar
       </p>
@@ -184,10 +270,10 @@ export const CreaUsuarioPage = () => {
             type="password"
             placeholder="Tu contraseña"
             onChange={handleChange}
-            value={usuario.password}
+            value={usuario.contrasenia}
           />
-          {errorPassword && (
-            <p className="text-red-500 text-sm mt-1">{errorPassword}</p>
+          {errorContrasenia && (
+            <p className="text-red-500 text-sm mt-1">{errorContrasenia}</p>
           )}
         </div>
 
@@ -211,8 +297,12 @@ export const CreaUsuarioPage = () => {
           <label className="block text-gray-700 font-bold mb-2">
             Tipo de suscripción
           </label>
-          <select className="form-select mt-1 block w-full border rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 p-3"
-            name="tipo_suscripcion" onChange={handleChange} value={usuario.tipo_suscripcion}>
+          <select
+            className="form-select mt-1 block w-full border rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 p-3"
+            name="tipo_suscripcion"
+            onChange={handleChange}
+            value={usuario.tipo_suscripcion}
+          >
             <option value="BRONZE">BRONZE</option>
             <option value="SILVER">SILVER</option>
             <option value="GOLDEN">GOLDEN</option>
@@ -223,11 +313,51 @@ export const CreaUsuarioPage = () => {
             <p className="text-red-500 text-sm mt-1">{errorTipoSuscripcion}</p>
           )}
         </div>
-        
+
+        <div className="mb-4">
+          <label className="block text-gray-700 font-bold mb-2">Email</label>
+          <input
+            className="form-input mt-1 block w-full border rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 p-3"
+            name="correo_comprador"
+            type="text"
+            placeholder="Tu correo"
+            onChange={handleChange}
+            value={usuario.correo_comprador}
+          />
+          {errorCorreoComprador && (
+            <p className="text-red-500 text-sm mt-1">{errorCorreoComprador}</p>
+          )}
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-gray-700 font-bold mb-2">Teléfono</label>
+          <input
+            className="form-input mt-1 block w-full border rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 p-3"
+            name="telefono_comprador"
+            type="text"
+            placeholder="Tu teléfono"
+            onChange={handleChange}
+            value={usuario.telefono_comprador}
+          />
+          {errorTelefonoComprador && (
+            <p className="text-red-500 text-sm mt-1">
+              {errorTelefonoComprador}
+            </p>
+          )}
+        </div>
       </div>
       <div className="flex justify-center">
-        <button className="btn-formulario-outline mr-4" type="submit"> Borrar </button>
-        <button className="btn-formulario" type="submit"> Ingresar usuario </button>
+        <button
+          className="btn-formulario-outline mr-4"
+          type="button"
+          onClick={handleClear}
+        >
+          Borrar
+        </button>
+        <button className="btn-formulario" type="submit">
+          {" "}
+          Ingresar usuario{" "}
+        </button>
       </div>
     </form>
   );

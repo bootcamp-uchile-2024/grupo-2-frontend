@@ -1,5 +1,7 @@
 services:
   db:
+    env_file:
+      - .env.dev
     image: mysql:8.0.39-debian
     container_name: db
     volumes:
@@ -15,46 +17,37 @@ services:
   flyway:
     image: flyway/flyway:10.20.1-alpine
     volumes:
-      - ../grupo-2-backend/db/script-creacion:/flyway/sql
+      - ../../../grupo-2-backend/db/script-creacion:/flyway/sql
     command: "-url=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME} -user=${DB_USER} -password=${DB_PASSWORD} -connectRetries=60 migrate"
-    environment:
-      DB_HOST: ${DB_HOST}
-      DB_PORT: ${DB_PORT}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_NAME: ${DB_NAME}
+    container_name: flyway
     depends_on:
       - db
     restart: always
-  cervezario-app-prod:
+  backend:
+    env_file:
+      - .env.dev
     image: kmreyes/cervezarionacional:2.2.3
-    environment:
-      - APP_NAME=${APP_NAME}
-      - APP_VERSION=${APP_VERSION}
-      - NESTJS_PORT=${NESTJS_PORT}
-      - AMBIENTE=${AMBIENTE}
-      - NODE_VERSION=${NODE_VERSION}
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_NAME=${DB_NAME}
     ports:
       - "4500:4500"
     command: "npm run start:prod"
     platform: linux/amd64
+    container_name: backend
     depends_on:
       - db
 
     restart: always
 
   front:
-    image: calvegh337/entrega-10:deploy
+    build:
+      context: ../../
+      dockerfile: docker/development/Dockerfile
     depends_on:
-      - cervezario-app-prod
+      - backend
     restart: always
+    container_name: frontend
+
     ports:
-      - "5174:80"
-    platform: linux/amd64
+      - "${FRONT_PORT}:80"
+
 volumes:
   data_prod:

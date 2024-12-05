@@ -54,7 +54,7 @@ services:
       - cervezario-app-prod
     restart: always
     ports:
-      - "5174:80"
-    platform: linux/amd64
+      - "80:80"
+
 volumes:
   data_prod:

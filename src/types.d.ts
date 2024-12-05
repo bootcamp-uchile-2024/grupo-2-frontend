@@ -36,13 +36,14 @@ export interface CervezaInterface {
 }
 
 export interface Usuario {
+  rut: string;
   nombre: string;
   apellido: string;
-  email: string;
+  contrasenia: string;
+  re_contrasenia?: string;
+  correo_comprador: string;
+  telefono_comprador: string;
   birthday: string;
-  password: string;
-  rut: string;
-  re_password?: string;
 }
 export interface UsuarioPerfil extends Usuario {
   edad: number;

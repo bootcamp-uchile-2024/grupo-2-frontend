@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CervezaInterface } from "../types";
+import { CERVEZAS_ENDPOINT } from "../config/api.config";
 
 export const ListadoProductosPage = () => {
   const [productos, setProductos] = useState<CervezaInterface[]>([]);
@@ -10,7 +11,7 @@ export const ListadoProductosPage = () => {
   useEffect(() => {
     const fetchProductos = async () => {
       try {
-        const response = await fetch("http://localhost:4500/cervezas");
+        const response = await fetch(`${CERVEZAS_ENDPOINT}?pagina=${1}&cantproductos`);
         const data = await response.json();
         setProductos(data);
         setLoading(false);
@@ -24,7 +25,7 @@ export const ListadoProductosPage = () => {
 
   const handleDelete = async (id: number) => {
     try {
-      const response = await fetch(`http://localhost:4500/cervezas/${id}`, {
+      const response = await fetch(CERVEZAS_ENDPOINT + `${id}`, {
         method: 'DELETE',
       });
 
