@@ -10,4 +10,4 @@ start-development: ## Start the development docker container.
 
 .PHONY: stop-development
 stop-development: ## Stop the development docker container.
-	docker compose -f docker/development/docker-compose.yml down
+	docker compose -f docker/development/docker-compose.yml --env-file docker/development/.env.dev down
