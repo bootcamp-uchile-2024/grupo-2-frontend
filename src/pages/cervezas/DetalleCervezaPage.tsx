@@ -115,7 +115,7 @@ export const DetalleCervezaPage = () => {
             <div className="my-4 text-lato-l">{descripcion}</div>
           </div>
         </div>
-        <div className="flex flex-wrap justify-between shadow-recomendaciones p-5">
+        <div className="flex flex-wrap justify-between shadow-recomendaciones p-5 mt-10 border-2">
           {recomendaciones.map((recomendacion) => {
             const { titulo, descripcion, logo } = recomendacion;
             return (

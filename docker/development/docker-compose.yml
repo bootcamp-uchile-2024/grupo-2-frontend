@@ -34,7 +34,8 @@ services:
     container_name: backend
     depends_on:
       - db
-
+    volumes:
+      - ./imagenes-cervezas:/home/node/app/imagenes-cervezas
     restart: always
 
   front:
