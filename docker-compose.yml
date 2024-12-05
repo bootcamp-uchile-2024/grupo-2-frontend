@@ -51,5 +51,6 @@ services:
       - cervezario-app-prod
     ports:
       - "5174:80"
+    platform: linux/amd64
 volumes:
   data_prod:
