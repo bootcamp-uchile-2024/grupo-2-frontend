@@ -108,17 +108,11 @@ export const CheckAge: React.FC = () => {
               />
               <h1 className="text-4xl font-bold mb-4">{headerText}</h1>
               <p className="text-sm text-center">{contentText}</p>
-              <div className="mt-4">
-                <button
-                  className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
-                  onClick={handleYesClick}
-                >
+              <div className="mt-4 mx-auto">
+                <button className="btn-formulario mr-2" onClick={handleYesClick}>
                   Sí, soy mayor de edad
                 </button>
-                <button
-                  className="bg-red-500 text-white px-4 py-2 rounded"
-                  onClick={handleNoClick}
-                >
+                <button className="btn-formulario-outline" onClick={handleNoClick}>
                   No
                 </button>
               </div>
