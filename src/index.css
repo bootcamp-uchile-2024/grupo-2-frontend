@@ -36,19 +36,19 @@ h6 {
 }
 
 .btn-formulario {
-  @apply bg-purple text-white text-balance py-2 px-4 rounded w-full;
+  @apply bg-purple border-2 border-purple text-white text-balance py-2 px-4 rounded;
 }
 
 .btn-formulario:hover {
-  @apply bg-yellow text-black text-balance py-2 px-4 rounded w-full;
+  @apply bg-yellow border-2 border-yellow text-black text-balance py-2 px-4 rounded;
 }
 
 .btn-formulario-outline {
-  @apply border-2 border-purple text-purple text-balance py-2 px-4 rounded w-full;
+  @apply border-2 border-purple text-purple text-balance py-2 px-4 rounded;
 }
 
 .btn-formulario-outline:hover {
-  @apply border-2 border-yellow text-purple text-balance py-2 px-4 rounded w-full;
+  @apply border-2 border-yellow text-purple text-balance py-2 px-4 rounded;
 }
 
 .btn-detalle-carrito {

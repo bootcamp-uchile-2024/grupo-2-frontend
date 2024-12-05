@@ -73,7 +73,7 @@ export const LoginPage = () => {
               {/* <button className="w-full px-4 py-2 font-bold text-grey-dark bg-yellow rounded-md hover:bg-purple-100 hover:text-white" type="submit" onClick={handleSubmit}>
                 Iniciar Sesión
               </button> */}
-              <button type="button" className="btn-formulario">
+              <button type="button" className="btn-formulario w-full">
                 <Link to="/crear-cuenta">Crear cuenta</Link>
               </button>
             </div>
