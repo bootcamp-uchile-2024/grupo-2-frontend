@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { isAdmin, login } from "../services/getLogin";
+import { Link } from "react-router-dom";
 import { MainLayout } from "@/layout/MainLayout";
 
 interface IForm {
@@ -9,38 +8,12 @@ interface IForm {
 }
 
 export const LoginPage = () => {
-  const navigate = useNavigate();
-
   const [error, setError] = useState<boolean>(false);
   const [validCredential, setValidCredential] = useState<boolean>(true);
   const [form, setForm] = useState<IForm>({
     user: "",
     password: "",
   });
-
-  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-
-    //validacion de formulario
-    if (form.user === "" || form.password === "") {
-      setError(true);
-      return;
-    }
-
-    //validacion de credenciales
-    if (login(form)) {
-      if (isAdmin()) {
-        navigate("/admin");
-      } else {
-        navigate("/catalogo");
-      }
-    } else {
-      setValidCredential(false);
-    }
-
-    //termino de validaciones
-    console.log("enviar formulario");
-  };
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -92,16 +65,15 @@ export const LoginPage = () => {
             </div>
             <div className="space-y-6">
               <Link to="/admin">
-                <button className="w-full px-4 py-2 font-bold text-grey-dark bg-yellow rounded-md hover:bg-purple-100 hover:text-white">Iniciar sesión</button>
+                <button className="w-full px-4 py-2 font-bold text-grey-dark bg-yellow rounded-md hover:bg-purple-100 hover:text-white">
+                  Iniciar sesión
+                </button>
               </Link>
               {/* Se comenta provisionalmente hasta tener el email desde backend */}
               {/* <button className="w-full px-4 py-2 font-bold text-grey-dark bg-yellow rounded-md hover:bg-purple-100 hover:text-white" type="submit" onClick={handleSubmit}>
                 Iniciar Sesión
               </button> */}
-              <button
-                type="button"
-                className="btn-formulario"
-              >
+              <button type="button" className="btn-formulario">
                 <Link to="/crear-cuenta">Crear cuenta</Link>
               </button>
             </div>

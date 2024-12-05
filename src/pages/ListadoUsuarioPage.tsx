@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import { Usuario } from "../types";
 import { Link } from 'react-router-dom';
 import { USERS_ENDPOINT } from '@/config/api.config';
@@ -11,11 +11,11 @@ export const ListadoUsuarioPage = () => {
     fetch (USERS_ENDPOINT)
       .then(response => {
         if (!response.ok) {
-          throw new Error('Error al obtener los usuarios');
+          throw new Error("Error al obtener los usuarios");
         }
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
         setUsuarios(data);
         setLoading(false);
       })
@@ -67,7 +67,7 @@ export const ListadoUsuarioPage = () => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {usuarios.map(usuario => (
+            {usuarios.map((usuario) => (
               <tr key={usuario.rut}>
                 <td className="px-6 py-4 whitespace-nowrap">{usuario.rut}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{usuario.nombre}</td>
