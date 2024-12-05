@@ -64,7 +64,7 @@ export const FiltrosCervezas = () => {
     },
   ];
   return (
-    <div className="mt-16">
+    <div>
       {filtros.map((filtro, index) => {
         const { titulo, opciones } = filtro;
         return (

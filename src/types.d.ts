@@ -22,7 +22,7 @@ export interface CervezaInterface {
   stock: number;
   descripcion: string;
   precio: number;
-  proveedor?: {
+  proveedor: {
     nombre: string;
     id_comuna: string;
     contacto: string;

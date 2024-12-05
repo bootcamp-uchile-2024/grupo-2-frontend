@@ -1,7 +1,7 @@
 ###DEVELOPMENT 
 .PHONY: build-development
 build-development: ## Build the development docker image
-	docker compose -f docker/development/docker-compose.yml build
+	docker compose -f docker/development/docker-compose.yml --env-file docker/development/.env.dev build
 
 
 .PHONY: start-development
