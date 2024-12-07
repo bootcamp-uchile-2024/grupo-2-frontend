@@ -64,12 +64,14 @@ export const ListadoProductosPage = () => {
               <tbody className="bg-white divide-y divide-gray-200">
                 {productos.map((producto) => (
                   <tr key={producto.id}>
-                    <td className="px-6 py-4 whitespace-nowrap">{producto.nombre}</td>
+                    <td className="px-6 py-4 whitespace-nowrap"><Link to={`/admin/editar-producto/${producto.id}`}>{producto.nombre}</Link></td>
                     <td className="px-6 py-4 whitespace-nowrap">{producto.precio}</td>
                     <td className="px-6 py-4 whitespace-nowrap">{producto.stock}</td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      
-                      <button className="btn-formulario-outline" onClick={() => handleDelete(producto.id)}>
+                    <button className="btn-formulario-outline mx-2" onClick={() => navigate(`/admin/editar-producto/${producto.id}`)}>
+                        Editar
+                      </button>
+                      <button className="btn-formulario-outline mx-2" onClick={() => handleDelete(producto.id)}>
                         Eliminar
                       </button>
                     </td>

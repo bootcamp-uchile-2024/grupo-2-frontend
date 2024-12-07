@@ -23,6 +23,7 @@ import { PageNoFound } from "./pages/404";
 import { DetalleCervezaPage } from "./pages/cervezas/DetalleCervezaPage";
 import { ListadoProductosPage } from "./pages/ListadoProdutosPage";
 import { ListadoUsuarioPage } from "./pages/ListadoUsuarioPage";
+import { EditarCervezaPage } from "./pages/admin/EditarCervezaPage";
 
 // Administación de Usuarios y Productos
 
@@ -59,6 +60,7 @@ function App() {
                 // </PrivateRoute>
               }
             />
+            <Route path="editar-producto/:id" element={<EditarCervezaPage />} />
             <Route
               path="crea-usuario"
               element={
