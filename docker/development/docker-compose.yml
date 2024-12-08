@@ -27,7 +27,9 @@ services:
   backend:
     env_file:
       - .env.dev
-    image: kmreyes/cervezarionacional:2.3.2
+    build:
+      context: ../../../grupo-2-backend
+      dockerfile: Dockerfile
     ports:
       - "4500:4500"
     command: "npm run start:prod"

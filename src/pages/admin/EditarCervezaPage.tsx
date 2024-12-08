@@ -16,7 +16,8 @@ export const EditarCervezaPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch(`${CERVEZAS_ENDPOINT}/${id}/cargarimagen`, {
+    const action_url = data?.imagen ? "actualizarimagen" : "cargarimagen";
+    const response = await fetch(`${CERVEZAS_ENDPOINT}/${id}/${action_url}`, {
       method: "POST",
       body: new FormData(e.target as HTMLFormElement),
     });
@@ -46,7 +47,7 @@ export const EditarCervezaPage = () => {
             type="file"
             accept="image/jpeg,image/png,image/gif"
             onChange={(e) => {
-              setImagen(e.target.files[0].name);
+              console.log(e.target.files);
             }}
           />
           <button type="submit" className="btn btn-primary mt-4">

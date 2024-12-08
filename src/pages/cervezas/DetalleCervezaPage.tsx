@@ -32,9 +32,9 @@ export const DetalleCervezaPage = () => {
       </MainLayout>
     );
   }
-  const { stock, marca, nombre, tipo, precio, formato, descripcion } = cerveza;
-
-  const id_random = Math.ceil((Math.random() * 100) / 25);
+  const { stock, marca, nombre, tipo, precio, formato, descripcion, imagen } =
+    cerveza;
+  const path_imagen = `/docker/development/${imagen}`;
   const recomendaciones = [
     {
       titulo: "Tipo de vaso",
@@ -58,12 +58,7 @@ export const DetalleCervezaPage = () => {
       <div className="flex flex-col m-auto p-10 w-3/4   max-w-[1150px] min-h-[700px] ">
         <div className="flex justify-between  h-full  mb-10">
           <div className="flex items-end flex-col w-full ">
-            <img
-              src={`/assets/cerveza-${id_random}.png`}
-              alt={`/assets/cerveza-${id_random}.png`}
-              width={520}
-              height={520}
-            />
+            <img src={path_imagen} alt={path_imagen} width={520} height={520} />
             <div className="flex justify-between flex-wrap w-full max-w-[520px]">
               <img src="/assets/ABV.svg" alt="/assets/ABV.svg" />
               <img src="/assets/IBU.svg" alt="/assets/IBU.svg" />
