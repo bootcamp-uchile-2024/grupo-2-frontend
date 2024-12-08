@@ -4,18 +4,13 @@ import { AddRemoveCerveza } from "../AddRemoveBoton";
 
 export const ItemListaCarrito = (pedido: PedidoType) => {
   const { cerveza, cantidad } = pedido;
-  const { nombre, precio, marca, formato } = cerveza;
+  const { nombre, precio, marca, formato, imagen } = cerveza;
+  const path_imagen = `/docker/development/${imagen}`;
 
-  const idd = Math.ceil((Math.random() * 100) / 25);
   return (
     <div className="flex h-[134px] mb-2 ">
       <div className=" min-h-[96px] min-w-[96px] mr-4">
-        <img
-          src={`/assets/cerveza-${idd}.png`}
-          alt={nombre}
-          width={94}
-          height={94}
-        />
+        <img src={path_imagen} alt={path_imagen} width={94} height={94} />
       </div>
       <div className="flex flex-col w-full space-y-1">
         <div className="flex flex-col text-gray-dark text-custom-s font-bold">

@@ -55,23 +55,29 @@ export const ResumenCompra = ({
           type="button"
           onClick={async () => {
             if (finalizar) {
-              {
-                cervezas.map((pedido) => {
+              const promesas: Promise<Response>[] = cervezas.map(
+                async (pedido) => {
                   const { cantidad, cerveza } = pedido;
+                  const { id } = cerveza;
 
-                  fetch(`${CERVEZAS_ENDPOINT}/${1}`, {
+                  return await fetch(`${CERVEZAS_ENDPOINT}/${id}`, {
                     method: "PATCH",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                       ...cerveza,
                       amargor: cerveza.amargor.nivel,
                       formato: cerveza.formato.id,
+                      imagen: "test.jpg",
                       stock: cerveza.stock - cantidad,
                     }),
                   });
-                });
+                }
+              );
+              const resultados = await Promise.all(promesas);
+              const todosExitosos = resultados.every((response) => response.ok);
+              if (todosExitosos) {
+                dispatch(cleanCarrito());
               }
-              dispatch(cleanCarrito());
             }
             closeCartMenuStore();
             navigate("/resumen-carrito");

@@ -22,7 +22,7 @@ export interface CervezaInterface {
   stock: number;
   descripcion: string;
   precio: number;
-  proveedor?: {
+  proveedor: {
     nombre: string;
     id_comuna: string;
     contacto: string;
@@ -43,6 +43,7 @@ export interface Usuario {
   re_contrasenia?: string;
   correo_comprador: string;
   telefono_comprador: string;
+  birthday: string;
 }
 export interface UsuarioPerfil extends Usuario {
   edad: number;

@@ -5,8 +5,6 @@ export const ButonElegirProductos = ({
   title = "Elegir más productos",
   outlined = false,
 }) => {
-  console.log(outlined);
-
   const navigate = useNavigate();
   const closeCartMenuStore = cartMenuStore((state) => state.closeCartMenuStore);
   return (

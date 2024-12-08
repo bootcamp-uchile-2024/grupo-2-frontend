@@ -7,16 +7,21 @@ import { CervezaInterface } from "@/types";
 import { Pagination } from "../Pagination";
 import { CervezaCartaDetalle } from "./CervezaCartaDetalle";
 
-export const CervezasGrid = () => {
+export const CervezasGrid: React.FC<{ cervezaBuscada: string }> = ({
+  cervezaBuscada,
+}) => {
   const [cantproductos, setCantidadProductos] = useState<number>(10);
   const [pagina, setPagina] = useState<number>(1);
   const { registros } = useSelector((state: RootType) => state.cerveza); //Se obtiene el estado de la cantidad de cervezas para poder paginar bien
-  const url_cervezas = `${CERVEZAS_ENDPOINT}?pagina=${pagina}&cantproductos=${cantproductos}`;
+  const url_cervezas = `${CERVEZAS_ENDPOINT}?pagina=${pagina}&cantproductos=${cantproductos}&cerveza=${cervezaBuscada}`;
   const {
     data: cervezas,
     loading,
     error,
   } = useFetch<CervezaInterface[]>(url_cervezas);
+  const cervezasFiltradas = cervezas?.filter((obj) =>
+    obj.nombre.toLowerCase().includes(cervezaBuscada.toLowerCase())
+  );
 
   const cargando = (
     <div className="flex justify-center p-16 min-w-[960px]">
@@ -27,7 +32,7 @@ export const CervezasGrid = () => {
   if (error) return <div>Error al cargar las cervezas: {error}</div>;
   const cervezasSeccion = (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1296px] mx-auto mt-8 gap-8">
-      {cervezas?.map((cerveza) => (
+      {cervezasFiltradas?.map((cerveza) => (
         <CervezaCartaDetalle {...cerveza} key={cerveza.id} />
       ))}
     </div>

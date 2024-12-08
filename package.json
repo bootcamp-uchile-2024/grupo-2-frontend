@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "prepush-git": "npm run build",
     "push-git": "git add . && git commit   && git push",
-    "postpush-git": "docker build -t calvegh337/entrega-10 . && docker push calvegh337/entrega-10"
+    "apostpush-git": "docker build -t calvegh337/entrega-10 . && docker push calvegh337/entrega-10"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.1.2",

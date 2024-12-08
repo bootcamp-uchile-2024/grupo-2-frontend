@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AgregarCarritoBoton } from "../AgregarCarritoBoton";
 
 export const CervezaCartaDetalle = (cerveza: CervezaInterface) => {
-  const { nombre, marca, precio, stock, id } = cerveza;
+  const { nombre, marca, precio, stock, id, imagen } = cerveza;
   const [estrellas, setEstrellas] = useState<number>(
     Math.ceil(Math.random() * 5)
   );
@@ -14,15 +14,15 @@ export const CervezaCartaDetalle = (cerveza: CervezaInterface) => {
       .fill(false)
       .map((_, i) => i < estrellas);
   const navigate = useNavigate();
-  const id_random = Math.ceil((Math.random() * 100) / 25);
-
+  const path_imagen = `/docker/development/${imagen}`;
   return (
     <div className="flex flex-col space-y-2 max-w-[300px] shadow-custom-card">
-      <button type="button" onClick={() => navigate("/cervezas/" + id)}>
-        <img
-          src={`/assets/cerveza-${id_random}.png`}
-          alt={`/assets/cerveza-${id_random}.png`}
-        />
+      <button
+        type="button"
+        onClick={() => navigate("/cervezas/" + id)}
+        className="border-2 min-h-[300px] border-transparent hover:border-purple"
+      >
+        <img src={path_imagen} alt={path_imagen} width={300} height={300} />
       </button>
       <div className="flex flex-col px-6 pb-6 pt-2">
         <div className="flex justify-end" onClick={() => setFav(!fav)}>

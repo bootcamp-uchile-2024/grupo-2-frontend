@@ -11,15 +11,23 @@ export const CrearCuentaPage = () => {
     rut: "",
     nombre: "",
     apellido: "",
-    password: "",
+    contrasenia: "",
     birthday: "",
-    email: "",
-    re_password: "",
+    correo_comprador: "",
+    re_contrasenia: "",
+    telefono_comprador: "",
   });
   const [errores, setErrores] = useState<(string | undefined)[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const { rut, nombre, apellido, password, re_password, birthday, email } =
-    usuario;
+  const {
+    rut,
+    nombre,
+    apellido,
+    contrasenia,
+    re_contrasenia,
+    birthday,
+    correo_comprador,
+  } = usuario;
   const navigate = useNavigate();
   const formularioRegistro = [
     {
@@ -43,7 +51,7 @@ export const CrearCuentaPage = () => {
       name: "email",
       type: "email",
       placeholder: "Ejemplo: nombre@correo.cl",
-      value: email,
+      value: correo_comprador,
       error_message: "El correo es obligatorio",
     },
     {
@@ -67,7 +75,7 @@ export const CrearCuentaPage = () => {
       name: "password",
       type: "password",
       placeholder: "Contraseña",
-      value: password,
+      value: contrasenia,
       error_message: "La contraseña es obligatoria",
     },
     {
@@ -75,7 +83,7 @@ export const CrearCuentaPage = () => {
       name: "re_password",
       type: "password",
       placeholder: "Repetir Contraseña",
-      value: re_password,
+      value: re_contrasenia,
       error_message: "La contraseña es obligatoria",
     },
   ];
@@ -90,16 +98,16 @@ export const CrearCuentaPage = () => {
       return formularioRegistro.find((input) => input.name == key)
         ?.error_message;
     });
-    const { password, re_password, rut } = usuario;
+    const { contrasenia, re_contrasenia, rut } = usuario;
     if (!validarRut(rut) && rut != "") {
       erroresLista.push("El rut no es valido");
     }
-    if (password !== re_password) {
+    if (contrasenia !== re_contrasenia) {
       erroresLista.push("Las contraseñas no coinciden");
     }
     if (erroresLista.length === 0) {
       setLoading(true);
-      const { password: contrasenia, ...restoUsuario } = usuario;
+      const { contrasenia, ...restoUsuario } = usuario;
       const edad = new Date().getFullYear() - new Date(birthday).getFullYear();
       const tipo_suscripcion = "BRONZE";
       try {
@@ -110,13 +118,12 @@ export const CrearCuentaPage = () => {
             contrasenia,
             edad,
             tipo_suscripcion,
-            correo_comprador: email,
             ...restoUsuario,
           }),
         });
         if (response.ok) {
           toast.success("Cuenta creada correctamente");
-          navigate("/confirmacion-correo", { state: { email } });
+          navigate("/confirmacion-correo", { state: { correo_comprador } });
         } else {
           const { error } = await response.json();
           toast.error(`Error al crear la cuenta. ${error}`);
