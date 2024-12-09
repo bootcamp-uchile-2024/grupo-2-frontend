@@ -24,6 +24,7 @@ import { DetalleCervezaPage } from "./pages/cervezas/DetalleCervezaPage";
 import { ListadoProductosPage } from "./pages/ListadoProdutosPage";
 import { ListadoUsuarioPage } from "./pages/ListadoUsuarioPage";
 import { AdminLoginPage } from "./pages/AdminLoginPage";
+import { EditarCervezaPage } from "./pages/admin/EditarCervezaPage";
 
 // Administación de Usuarios y Productos
 
@@ -61,6 +62,7 @@ function App() {
                 // </PrivateRoute>
               }
             />
+            <Route path="editar-producto/:id" element={<EditarCervezaPage />} />
             <Route
               path="crea-usuario"
               element={

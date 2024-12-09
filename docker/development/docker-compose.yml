@@ -7,8 +7,8 @@ services:
     volumes:
       - data_prod:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: clave123
-      MYSQL_DATABASE: Cervezario
+      MYSQL_ROOT_PASSWORD: ${DB_PASS_ROOT}
+      MYSQL_DATABASE: ${DB_NAME}
     ports:
       - "3306:3306"
     platform: linux/amd64
@@ -18,22 +18,26 @@ services:
     image: flyway/flyway:10.20.1-alpine
     volumes:
       - ../../../grupo-2-backend/db/script-creacion:/flyway/sql
-    command: "-url=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME} -user=${DB_USER} -password=${DB_PASSWORD} -connectRetries=60 migrate"
+    command: -url=jdbc:mysql://db:${DB_PORT}/${DB_NAME}?allowPublicKeyRetrieval=true -user=${DB_USER} -password=${DB_PASS_ROOT} -connectRetries=60 migrate
     container_name: flyway
     depends_on:
-      - db
+      db:
+        condition: service_started
     restart: always
   backend:
     env_file:
       - .env.dev
-    image: kmreyes/cervezarionacional:2.2.3
+    build:
+      context: ../../../grupo-2-backend
+      dockerfile: Dockerfile
     ports:
       - "4500:4500"
     command: "npm run start:prod"
     platform: linux/amd64
     container_name: backend
     depends_on:
-      - db
+      db:
+        condition: service_started
     volumes:
       - ./imagenes-cervezas:/home/node/app/imagenes-cervezas
     restart: always

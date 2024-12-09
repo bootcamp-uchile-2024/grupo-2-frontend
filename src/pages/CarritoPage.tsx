@@ -10,13 +10,14 @@ import { useNavigate } from "react-router-dom";
 
 const ItemResumenCarrito = (pedido: PedidoType) => {
   const { cerveza, cantidad } = pedido;
-  const { nombre, precio, marca, formato } = cerveza;
-  const id_random = Math.ceil((Math.random() * 100) / 25);
+  const { nombre, precio, marca, formato, imagen } = cerveza;
+  const path_imagen = `/docker/development/${imagen}`;
+
   return (
     <div className="flex p-3 border-t-[1px] border-purple ">
       <img
-        src={`/assets/cerveza-${id_random}.png`}
-        alt=""
+        src={path_imagen}
+        alt={path_imagen}
         className="max-w-[192px] max-h-[192px]"
       />
       <div className="flex w-full justify-between px-3 flex-wrap ">
