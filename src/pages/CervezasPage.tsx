@@ -1,7 +1,7 @@
 import { MainLayout } from "@/layout/MainLayout";
 import { CervezasGrid } from "@/components/Cervezas/CervezasGrid";
 import { DescubreSection } from "@/sections/DescubreSection";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { CERVEZAS_ENDPOINT } from "@/config/api.config";
 import { useDispatch } from "react-redux";
 import { getCervezas } from "@/state/slices/cervezaSlice";
@@ -9,6 +9,7 @@ import { FiltrosCervezas } from "@/components/FiltrosCervezas";
 
 export const CervezasPage = () => {
   const dispatch = useDispatch();
+  const [cervezaBuscada, setCervezaBuscada] = useState("");
   useEffect(() => {
     const fetchCervezas = async () => {
       try {
@@ -25,6 +26,9 @@ export const CervezasPage = () => {
     };
     fetchCervezas();
   }, []);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCervezaBuscada(event.target.value);
+  };
   return (
     <MainLayout>
       <DescubreSection imageUrl="/assets/baner-descubre-top.png" />
@@ -47,8 +51,19 @@ export const CervezasPage = () => {
           </div>
         </div>
         <div className="flex ">
-          <FiltrosCervezas />
-          <CervezasGrid />
+          <div className="mt-16 mr-2">
+            <input
+              className="form-input mt-1 block w-full border rounded-md shadow-sm focus:border-purple focus:ring focus:ring-purple focus:ring-opacity-50 p-3"
+              name="cerveza"
+              type="text"
+              placeholder="Buscar cerveza"
+              onChange={handleChange}
+              value={cervezaBuscada}
+            />
+            <FiltrosCervezas />
+          </div>
+
+          <CervezasGrid cervezaBuscada={cervezaBuscada} />
         </div>
       </section>
       <DescubreSection imageUrl="/assets/48ae585a9e6a88eb0f00b865f7cb480f.png" />

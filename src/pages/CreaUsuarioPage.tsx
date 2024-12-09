@@ -29,8 +29,7 @@ export const validarRut = (rut: string): boolean => {
 const validarCorreo = (correo: string): boolean => {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(correo);
-}
-
+};
 
 export const CreaUsuarioPage = () => {
   const [usuario, setUsuario] = useState<UsuarioPerfil>({
@@ -42,14 +41,19 @@ export const CreaUsuarioPage = () => {
     telefono_comprador: "",
     edad: 0,
     tipo_suscripcion: "",
+    birthday: "",
   });
 
   const [errorRut, setErrorRut] = useState<string | null>(null);
   const [errorNombre, setErrorNombre] = useState<string | null>(null);
   const [errorApellido, setErrorApellido] = useState<string | null>(null);
   const [errorContrasenia, setErrorContrasenia] = useState<string | null>(null);
-  const [errorCorreoComprador, setErrorCorreoComprador] = useState<string | null>(null);
-  const [errorTelefonoComprador, setErrorTelefonoComprador] = useState<string | null>(null);
+  const [errorCorreoComprador, setErrorCorreoComprador] = useState<
+    string | null
+  >(null);
+  const [errorTelefonoComprador, setErrorTelefonoComprador] = useState<
+    string | null
+  >(null);
   const [errorEdad, setErrorEdad] = useState<string | null>(null);
   const [errorTipoSuscripcion, setErrorTipoSuscripcion] = useState<
     string | null
@@ -139,7 +143,7 @@ export const CreaUsuarioPage = () => {
     } else {
       setErrorTipoSuscripcion(null);
     }
-    
+
     if (usuario.correo_comprador === "") {
       setErrorCorreoComprador("El correo es obligatorio");
       hasError = true;
@@ -149,7 +153,7 @@ export const CreaUsuarioPage = () => {
     } else {
       setErrorCorreoComprador(null);
     }
-    
+
     if (usuario.telefono_comprador === "") {
       setErrorTelefonoComprador("El teléfono es obligatorio");
       hasError = true;
@@ -189,6 +193,7 @@ export const CreaUsuarioPage = () => {
       telefono_comprador: "",
       edad: 0,
       tipo_suscripcion: "",
+      birthday: "",
     });
 
     // Limpiar los mensajes de error
@@ -204,7 +209,9 @@ export const CreaUsuarioPage = () => {
 
   return (
     <form className="w-full p-8" onSubmit={handleSubmit}>
-      <h1 className="mb-4 font-lato  text-purple-100 text-custom-lg font-normal">Crear usuarios</h1>
+      <h1 className="mb-4 font-lato  text-purple-100 text-custom-lg font-normal">
+        Crear usuarios
+      </h1>
       <p className="mb-6 text-purple-100 text-custom-2xl">
         Información a mostrar
       </p>
@@ -290,8 +297,12 @@ export const CreaUsuarioPage = () => {
           <label className="block text-gray-700 font-bold mb-2">
             Tipo de suscripción
           </label>
-          <select className="form-select mt-1 block w-full border rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 p-3"
-            name="tipo_suscripcion" onChange={handleChange} value={usuario.tipo_suscripcion}>
+          <select
+            className="form-select mt-1 block w-full border rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 p-3"
+            name="tipo_suscripcion"
+            onChange={handleChange}
+            value={usuario.tipo_suscripcion}
+          >
             <option value="BRONZE">BRONZE</option>
             <option value="SILVER">SILVER</option>
             <option value="GOLDEN">GOLDEN</option>
@@ -317,7 +328,7 @@ export const CreaUsuarioPage = () => {
             <p className="text-red-500 text-sm mt-1">{errorCorreoComprador}</p>
           )}
         </div>
-        
+
         <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-2">Teléfono</label>
           <input
@@ -329,22 +340,25 @@ export const CreaUsuarioPage = () => {
             value={usuario.telefono_comprador}
           />
           {errorTelefonoComprador && (
-            <p className="text-red-500 text-sm mt-1">{errorTelefonoComprador}</p>
+            <p className="text-red-500 text-sm mt-1">
+              {errorTelefonoComprador}
+            </p>
           )}
         </div>
-
       </div>
       <div className="flex justify-center">
         <button
           className="btn-formulario-outline mr-4"
           type="button"
-          onClick={handleClear}>
+          onClick={handleClear}
+        >
           Borrar
         </button>
-        <button className="btn-formulario" type="submit"> Ingresar usuario </button>
+        <button className="btn-formulario" type="submit">
+          {" "}
+          Ingresar usuario{" "}
+        </button>
       </div>
     </form>
   );
 };
-
-export default CreaUsuarioPage;

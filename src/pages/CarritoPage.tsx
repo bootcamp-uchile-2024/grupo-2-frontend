@@ -4,17 +4,20 @@ import { MainLayout } from "@/layout/MainLayout";
 import { CervezasDestacadas } from "@/sections/CervezasDestacadas";
 import { PedidoType } from "@/state/slices/carritoSlice";
 import { RootType } from "@/state/store";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const ItemResumenCarrito = (pedido: PedidoType) => {
   const { cerveza, cantidad } = pedido;
-  const { nombre, precio, marca, formato } = cerveza;
-  const id_random = Math.ceil((Math.random() * 100) / 25);
+  const { nombre, precio, marca, formato, imagen } = cerveza;
+  const path_imagen = `/docker/development/${imagen}`;
+
   return (
     <div className="flex p-3 border-t-[1px] border-purple ">
       <img
-        src={`/assets/cerveza-${id_random}.png`}
-        alt=""
+        src={path_imagen}
+        alt={path_imagen}
         className="max-w-[192px] max-h-[192px]"
       />
       <div className="flex w-full justify-between px-3 flex-wrap ">
@@ -41,21 +44,34 @@ export const CarritoPage = () => {
     (state: RootType) => state.carrito
   );
   const articulos = cervezas.reduce((acc, item) => acc + item.cantidad, 0);
-  console.log("cervezas", cervezas);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (cervezas.length === 0) {
+      navigate("/");
+    }
+  }, [cervezas]);
   /* flex m-auto justify-center border-2 max-w-[1280px] */
   return (
     <MainLayout>
       <div className="flex m-auto justify-center flex-wrap">
-        <div className="min-w-[700px]  ">
-          <div className="border-b-[1px] border-purple">
+        <div className="min-w-[450px] w-[700px]  ">
+          <div className="border-b-[1px] border-purple overflow-y-auto max-h-[440px]">
             {cervezas.map((pedido) => (
               <ItemResumenCarrito {...pedido} />
             ))}
           </div>
           <div>Instrucciones especiales</div>
-          <div>Pedido Listo</div>
+          <div
+            className="flex items-center justify-center my-2 min-h-[200px] "
+            style={{ backgroundImage: `url(/assets/pattern-carrito.png)` }}
+          >
+            <h2 className="text-center w-3/4 text-riffic-2xl text-gray-G05">
+              ¡Tu pedido está casi listo, pronto disfrutarás de la mejor
+              experiencia cervecera!
+            </h2>
+          </div>
         </div>
-        <div className="mx-4 min-w-[300px] max-h-[450px] p-5 border-[1px] bg-white-100">
+        <div className="mx-4 min-w-[300px] max-h-[674px] p-5 border-[1px] bg-white-100">
           <ResumenCompra
             articulos={articulos}
             total_pagar={total_pagar}
