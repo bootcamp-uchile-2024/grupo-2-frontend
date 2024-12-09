@@ -3,3 +3,5 @@ export const API_URL = import.meta.env
 
 export const CERVEZAS_ENDPOINT = `${API_URL}/cervezas`;
 export const USERS_ENDPOINT = `${API_URL}/usuarios/`;
+export const AMARGOR_ENDPOINT = `${API_URL}/amargor`;
+export const TIPO_ENDPOINT = `${API_URL}/Estilo`;

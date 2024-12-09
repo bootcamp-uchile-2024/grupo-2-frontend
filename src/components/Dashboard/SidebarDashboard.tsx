@@ -12,18 +12,18 @@ export const SidebarDashboard = () => {
         </Link>
         <hr className="border-t-2 border-yellow-500 my-2" />
         <Link to="lista-producto">
-          <li className="p-2 hover:bg-yellow cursor-pointer">Listado de cervezas</li>
+          <li className="p-2 hover:bg-yellow cursor-pointer">Listar cervezas</li>
         </Link>
         <hr className="border-t-2 border-yellow-500 my-2" />
         {/* <li className="p-2 hover:bg-gray-700 cursor-pointer">Cargar packs</li> */}
         {/* <li className="p-2 hover:bg-gray-700 cursor-pointer">Cargar merchandising</li> */}
         {/* <li className="p-2 hover:bg-gray-700 cursor-pointer">Cargar contenido educativo</li> */}
         <Link to="crea-usuario">
-          <li className="p-2 hover:bg-yellow cursor-pointer">Actualizar comunidad</li>
+          <li className="p-2 hover:bg-yellow cursor-pointer">Crear usuario</li>
         </Link>
         <hr className="border-t-2 border-yellow-500 my-2" />
         <Link to="lista-usuarios">
-          <li className="p-2 hover:bg-yellow cursor-pointer">Listar comunidad</li>
+          <li className="p-2 hover:bg-yellow cursor-pointer">Listar usuarios</li>
         </Link>
         {/* <li className="p-2 hover:bg-gray-700 cursor-pointer">Cargar eventos</li> */}
         {/* <li className="p-2 hover:bg-gray-700 cursor-pointer">Seguimientos de pedidos</li> */}

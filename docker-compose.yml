@@ -27,7 +27,8 @@ services:
       - db
     restart: always
   cervezario-app-prod:
-    image: kmreyes/cervezarionacional:2.2.3
+    # Se actualiza la imagen a la versión 2.4.1
+    image: kmreyes/cervezarionacional:2.4.1
     environment:
       - APP_NAME=${APP_NAME}
       - APP_VERSION=${APP_VERSION}
