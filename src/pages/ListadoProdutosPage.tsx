@@ -67,7 +67,7 @@ export const ListadoProductosPage = () => {
     <div className="w-full p-8">
       <h1 className="mb-4 font-lato  text-purple-100 text-custom-lg font-normal">Listado de cervezas</h1>
         <div className="mt-4">
-          <Link to="/admin/crea-producto" className="btn-formulario">
+          <Link to="/dashboard/crea-producto" className="btn-formulario">
             Crear producto
           </Link>
         </div>

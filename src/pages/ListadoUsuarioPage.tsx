@@ -52,7 +52,7 @@ export const ListadoUsuarioPage = () => {
         Listado de Usuarios
       </h1>
       <div className="mt-4">
-        <Link to="/admin/crea-usuario" className="btn-formulario">
+        <Link to="/dashboard/crea-usuario" className="btn-formulario">
           Ingresar usuario producto
         </Link>
       </div>
