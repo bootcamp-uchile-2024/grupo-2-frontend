@@ -29,6 +29,7 @@ export const CervezasPage = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCervezaBuscada(event.target.value);
   };
+  const [filtros, setFiltros] = useState({ origen: "1" });
   return (
     <MainLayout>
       <DescubreSection imageUrl="/assets/baner-descubre-top.png" />
@@ -60,10 +61,10 @@ export const CervezasPage = () => {
               onChange={handleChange}
               value={cervezaBuscada}
             />
-            <FiltrosCervezas />
+            <FiltrosCervezas setFiltros={setFiltros} filtros={filtros} />
           </div>
 
-          <CervezasGrid cervezaBuscada={cervezaBuscada} />
+          <CervezasGrid cervezaBuscada={cervezaBuscada} filtros={filtros} />
         </div>
       </section>
       <DescubreSection imageUrl="/assets/48ae585a9e6a88eb0f00b865f7cb480f.png" />

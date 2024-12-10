@@ -5,6 +5,7 @@ import cartMenuStore from "@/store/cartMenuStore";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ButonElegirProductos } from "./ButtonElegirProductos";
+import { toast } from "react-toastify";
 
 export const ResumenCompra = ({
   articulos,
@@ -59,24 +60,38 @@ export const ResumenCompra = ({
                 async (pedido) => {
                   const { cantidad, cerveza } = pedido;
                   const { id } = cerveza;
-
-                  return await fetch(`${CERVEZAS_ENDPOINT}/${id}`, {
-                    method: "PATCH",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
+                  let body;
+                  if (!cerveza.amargor) {
+                    const cerveza = await fetch(`${CERVEZAS_ENDPOINT}/${id}`);
+                    const cervezaJson = await cerveza.json();
+                    body = {
+                      ...cervezaJson,
+                      amargor: cervezaJson.amargor.nivel,
+                      formato: cervezaJson.formato.id,
+                      stock: cervezaJson.stock - cantidad,
+                    };
+                  } else {
+                    body = {
                       ...cerveza,
                       amargor: cerveza.amargor.nivel,
                       formato: cerveza.formato.id,
-                      imagen: "test.jpg",
                       stock: cerveza.stock - cantidad,
-                    }),
+                    };
+                  }
+                  const response = await fetch(`${CERVEZAS_ENDPOINT}/${id}`, {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(body),
                   });
+                  return response;
                 }
               );
               const resultados = await Promise.all(promesas);
               const todosExitosos = resultados.every((response) => response.ok);
               if (todosExitosos) {
                 dispatch(cleanCarrito());
+              } else {
+                toast.error("Hubo un error al finalizar la compra");
               }
             }
             closeCartMenuStore();

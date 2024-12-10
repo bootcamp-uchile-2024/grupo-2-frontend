@@ -50,14 +50,13 @@ export const CarritoPage = () => {
       navigate("/");
     }
   }, [cervezas]);
-  /* flex m-auto justify-center border-2 max-w-[1280px] */
   return (
     <MainLayout>
       <div className="flex m-auto justify-center flex-wrap">
         <div className="min-w-[450px] w-[700px]  ">
           <div className="border-b-[1px] border-purple overflow-y-auto max-h-[440px]">
-            {cervezas.map((pedido) => (
-              <ItemResumenCarrito {...pedido} />
+            {cervezas.map((pedido, index) => (
+              <ItemResumenCarrito {...pedido} key={index} />
             ))}
           </div>
           <div>Instrucciones especiales</div>

@@ -1,7 +1,22 @@
-export const FiltrosCervezas = () => {
-  const filtros = [
+interface FiltrosCervezasProps {
+  filtros: { origen: string };
+  setFiltros: (filtros: { origen: string }) => void;
+}
+
+export const FiltrosCervezas = ({
+  filtros,
+  setFiltros,
+}: FiltrosCervezasProps) => {
+  const { origen } = filtros;
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFiltros({ ...filtros, [name]: value });
+  };
+  const opcionesFiltros = [
     {
       titulo: "Origen",
+      name: "origen",
+      value: origen,
       opciones: [
         { id: 1, texto: "Zona Norte" },
         { id: 2, texto: "Zona Centro" },
@@ -65,8 +80,8 @@ export const FiltrosCervezas = () => {
   ];
   return (
     <div>
-      {filtros.map((filtro, index) => {
-        const { titulo, opciones } = filtro;
+      {opcionesFiltros.map((filtro, index) => {
+        const { titulo, opciones, value, name } = filtro;
         return (
           <div className="mx-2 px-2 min-w-[300px]" key={index}>
             <p className="text-lato-m font-bold my-2">{titulo}</p>
@@ -76,8 +91,9 @@ export const FiltrosCervezas = () => {
                   className="checkbox-custom"
                   type="checkbox"
                   style={{ border: "2px solid red" }}
-                  value=""
-                  onChange={() => console.log("hola")}
+                  name={name}
+                  value={value}
+                  onChange={handleChange}
                 />
                 <label className="form-check-label mx-2 text-menu">
                   {estilo.texto}

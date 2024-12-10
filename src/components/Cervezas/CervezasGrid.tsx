@@ -7,13 +7,15 @@ import { CervezaInterface } from "@/types";
 import { Pagination } from "../Pagination";
 import { CervezaCartaDetalle } from "./CervezaCartaDetalle";
 
-export const CervezasGrid: React.FC<{ cervezaBuscada: string }> = ({
-  cervezaBuscada,
-}) => {
+export const CervezasGrid: React.FC<{
+  cervezaBuscada: string;
+  filtros: { origen: string };
+}> = ({ cervezaBuscada, filtros }) => {
   const [cantproductos, setCantidadProductos] = useState<number>(10);
   const [pagina, setPagina] = useState<number>(1);
+  const { origen } = filtros;
   const { registros } = useSelector((state: RootType) => state.cerveza); //Se obtiene el estado de la cantidad de cervezas para poder paginar bien
-  const url_cervezas = `${CERVEZAS_ENDPOINT}?pagina=${pagina}&cantproductos=${cantproductos}&cerveza=${cervezaBuscada}`;
+  const url_cervezas = `${CERVEZAS_ENDPOINT}?pagina=${pagina}&cantproductos=${cantproductos}&cerveza=${cervezaBuscada}&origen=${origen}`;
   const {
     data: cervezas,
     loading,
