@@ -15,7 +15,7 @@ import { DashboardPage } from "./pages/DashboardPage";
 import { CreaProductoPage } from "./pages/CreaProductoPage";
 import { HomePage } from "./pages/HomePage";
 import { RecuperarPasswordPage } from "./pages/RecupararPasswordPage";
-import CreaUsuarioPage from "./pages/CreaUsuarioPage";
+import { CreaUsuarioPage } from "./pages/CreaUsuarioPage";
 import { CrearCuentaPage } from "./pages/CrearCuentaPage";
 import { ConfirmarmacionCorreoPage } from "./pages/registro/ConfirmacionCorreoPage";
 import { CarritoPage } from "./pages/CarritoPage";
@@ -23,6 +23,7 @@ import { PageNoFound } from "./pages/404";
 import { DetalleCervezaPage } from "./pages/cervezas/DetalleCervezaPage";
 import { ListadoProductosPage } from "./pages/ListadoProdutosPage";
 import { ListadoUsuarioPage } from "./pages/ListadoUsuarioPage";
+import { AdminLoginPage } from "./pages/AdminLoginPage";
 import { EditarCervezaPage } from "./pages/admin/EditarCervezaPage";
 
 // Administación de Usuarios y Productos
@@ -50,7 +51,8 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/resumen-carrito" element={<CarritoPage />} />
           <Route path="*" element={<PageNoFound />} />
-          <Route path="/admin" element={<DashboardPage />}>
+          <Route path="/admin" element={<AdminLoginPage />} />
+          <Route path="/dashboard" element={<DashboardPage />}>
             <Route
               index
               element={

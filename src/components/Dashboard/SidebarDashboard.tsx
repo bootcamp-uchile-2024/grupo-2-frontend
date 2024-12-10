@@ -8,25 +8,32 @@ export const SidebarDashboard = () => {
       </div>
       <ul className="mt-4">
         <Link to="crea-producto">
-          <li className="p-2 hover:bg-yellow cursor-pointer">Cargar cervezas</li>
+            <li className="p-2 hover:bg-yellow hover:bg-opacity-40 cursor-pointer flex opacity-75"><img src="/assets/icon-cerveza.png" className="mr-2"/> <span>Cargar cervezas</span></li>
         </Link>
         <hr className="border-t-2 border-yellow-500 my-2" />
         <Link to="lista-producto">
-          <li className="p-2 hover:bg-yellow cursor-pointer">Listado de cervezas</li>
+          <li className="p-2 hover:bg-yellow hover:bg-opacity-40 cursor-pointer flex"><img src="/assets/icon-cerveza.png" className="mr-2" /><span>Listar cervezas</span></li>
         </Link>
         <hr className="border-t-2 border-yellow-500 my-2" />
-        {/* <li className="p-2 hover:bg-gray-700 cursor-pointer">Cargar packs</li> */}
-        {/* <li className="p-2 hover:bg-gray-700 cursor-pointer">Cargar merchandising</li> */}
-        {/* <li className="p-2 hover:bg-gray-700 cursor-pointer">Cargar contenido educativo</li> */}
+        <li className="p-2 hover:bg-yellow hover:bg-opacity-40 cursor-pointer flex"><img src="/assets/icon-packs.png" className="mr-2" /><span>Stock packs</span></li>
+        <hr className="border-t-2 border-yellow-500 my-2" />
+        <li className="p-2 hover:bg-yellow hover:bg-opacity-40 cursor-pointer flex"><img src="/assets/icon-merch.png" className="mr-2" /><span>Stock merch</span></li>
+        <hr className="border-t-2 border-yellow-500 my-2" />
+        <li className="p-2 hover:bg-yellow hover:bg-opacity-40 cursor-pointer flex"><img src="/assets/icon-cargar-packs.png" className="mr-2" /><span>Cargar merchandising</span></li>
+        <hr className="border-t-2 border-yellow-500 my-2" />
+        <li className="p-2 hover:bg-yellow hover:bg-opacity-40 cursor-pointer flex"><img src="/assets/icon-educacional.png" className="mr-2" /><span>Cargar contenido educ.</span></li>
+        <hr className="border-t-2 border-yellow-500 my-2" />
+        <li className="p-2 hover:bg-yellow hover:bg-opacity-40 cursor-pointer flex"><img src="/assets/icon-eventos.png" className="mr-2" /><span>Cargar eventos</span></li>
+        <hr className="border-t-2 border-yellow-500 my-2" />
+        <li className="p-2 hover:bg-yellow hover:bg-opacity-40 cursor-pointer flex"><img src="/assets/icon-seguimientos.png" className="mr-2" /><span>Seguimiento de pedidos</span></li>
+        <hr className="border-t-2 border-yellow-500 my-2" />
         <Link to="crea-usuario">
-          <li className="p-2 hover:bg-yellow cursor-pointer">Actualizar comunidad</li>
+          <li className="p-2 hover:bg-yellow hover:bg-opacity-40 cursor-pointer flex"><img src="/assets/icon-usuarios.png" className="mr-2"/><span>Crear usuario</span></li>
         </Link>
         <hr className="border-t-2 border-yellow-500 my-2" />
         <Link to="lista-usuarios">
-          <li className="p-2 hover:bg-yellow cursor-pointer">Listar comunidad</li>
+          <li className="p-2 hover:bg-yellow hover:bg-opacity-40 cursor-pointer flex"><img src="/assets/icon-usuarios.png" className="mr-2"/><span>Listar usuarios</span></li>
         </Link>
-        {/* <li className="p-2 hover:bg-gray-700 cursor-pointer">Cargar eventos</li> */}
-        {/* <li className="p-2 hover:bg-gray-700 cursor-pointer">Seguimientos de pedidos</li> */}
       </ul>
     </div>
   );

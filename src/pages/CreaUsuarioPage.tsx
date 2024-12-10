@@ -362,5 +362,3 @@ export const CreaUsuarioPage = () => {
     </form>
   );
 };
-
-export default CreaUsuarioPage;
