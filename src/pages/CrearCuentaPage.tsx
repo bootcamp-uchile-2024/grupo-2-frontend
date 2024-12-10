@@ -15,7 +15,6 @@ export const CrearCuentaPage = () => {
     birthday: "",
     correo_comprador: "",
     re_contrasenia: "",
-    telefono_comprador: "",
   });
   const [errores, setErrores] = useState<(string | undefined)[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -48,7 +47,7 @@ export const CrearCuentaPage = () => {
     },
     {
       label: "Correo electronico",
-      name: "email",
+      name: "correo_comprador",
       type: "email",
       placeholder: "Ejemplo: nombre@correo.cl",
       value: correo_comprador,
@@ -72,7 +71,7 @@ export const CrearCuentaPage = () => {
     },
     {
       label: "Contraseña",
-      name: "password",
+      name: "contrasenia",
       type: "password",
       placeholder: "Contraseña",
       value: contrasenia,
@@ -80,7 +79,7 @@ export const CrearCuentaPage = () => {
     },
     {
       label: "Confirmar contraseña",
-      name: "re_password",
+      name: "re_contrasenia",
       type: "password",
       placeholder: "Repetir Contraseña",
       value: re_contrasenia,
@@ -94,6 +93,7 @@ export const CrearCuentaPage = () => {
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(findEmptyStrings(usuario));
     const erroresLista = findEmptyStrings(usuario).map((key) => {
       return formularioRegistro.find((input) => input.name == key)
         ?.error_message;
@@ -134,6 +134,7 @@ export const CrearCuentaPage = () => {
         setLoading(false);
       }
     } else {
+      console.log(erroresLista);
       setErrores(erroresLista);
     }
   };

@@ -3,16 +3,16 @@ import { Link } from "react-router-dom";
 import { MainLayout } from "@/layout/MainLayout";
 
 interface IForm {
-  user: string;
-  password: string;
+  correo_comprador: string;
+  contrasenia: string;
 }
 
 export const LoginPage = () => {
   const [error, setError] = useState<boolean>(false);
   const [validCredential, setValidCredential] = useState<boolean>(true);
   const [form, setForm] = useState<IForm>({
-    user: "",
-    password: "",
+    correo_comprador: "",
+    contrasenia: "",
   });
 
   const handleChange = (
@@ -42,9 +42,9 @@ export const LoginPage = () => {
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 "
                 type="text"
                 placeholder="Ejemplo: nombre@correo.cl"
-                name="correo"
+                name="correo_comprador"
                 onChange={handleChange}
-                value={form.user}
+                value={form.correo_comprador}
               />
             </div>
             <div>
@@ -53,9 +53,9 @@ export const LoginPage = () => {
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="password"
                 placeholder="Contraseña"
-                name="password"
+                name="contrasenia"
                 onChange={handleChange}
-                value={form.password}
+                value={form.contrasenia}
               />
             </div>
             <div className="flex justify-end ">

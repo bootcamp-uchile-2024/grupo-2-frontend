@@ -43,7 +43,7 @@ export interface Usuario {
   contrasenia: string;
   re_contrasenia?: string;
   correo_comprador: string;
-  telefono_comprador: string;
+  telefono_comprador?: string;
   birthday: string;
 }
 export interface UsuarioPerfil extends Usuario {
@@ -54,49 +54,49 @@ export interface UsuarioPerfil extends Usuario {
 // //////////////////// Interfaces actualizadas  ////////////////////
 
 export interface Cervezas {
-    id:           number;
-    nombre:       string;
-    marca:        string;
-    id_tipo:      number;
-    stock:        number;
-    descripcion:  string;
-    precio:       number;
-    id_proveedor: number;
-    id_amargor:   string;
-    graduacion:   number;
-    id_formato:   string;
-    imagen:       null;
-    is_active:    boolean;
-    proveedor:    Proveedor;
-    formato:      Formato;
-    tipo:         Tipo;
-    amargor:      Amargor;
+  id: number;
+  nombre: string;
+  marca: string;
+  id_tipo: number;
+  stock: number;
+  descripcion: string;
+  precio: number;
+  id_proveedor: number;
+  id_amargor: string;
+  graduacion: number;
+  id_formato: string;
+  imagen: null;
+  is_active: boolean;
+  proveedor: Proveedor;
+  formato: Formato;
+  tipo: Tipo;
+  amargor: Amargor;
 }
 
 export interface Amargor {
-    id:          string;
-    nivel:       string;
-    descripcion: string;
+  id: string;
+  nivel: string;
+  descripcion: string;
 }
 
 export interface Formato {
-    id:          string;
-    descripcion: string;
+  id: string;
+  descripcion: string;
 }
 
 export interface Proveedor {
-    id:                 number;
-    nombre:             string;
-    id_comuna:          string;
-    contacto:           string;
-    telefono:           string;
-    correo_electronico: string;
+  id: number;
+  nombre: string;
+  id_comuna: string;
+  contacto: string;
+  telefono: string;
+  correo_electronico: string;
 }
 
 export interface Tipo {
-    id:           number;
-    nombre:       string;
-    descripcion:  string;
-    categoria_id: number;
-    color_id:     number;
+  id: number;
+  nombre: string;
+  descripcion: string;
+  categoria_id: number;
+  color_id: number;
 }

@@ -17,18 +17,20 @@ export const EditarCervezaPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const action_url = data?.imagen ? "actualizarimagen" : "cargarimagen";
+    const body = new FormData(e.target as HTMLFormElement);
     const response = await fetch(`${CERVEZAS_ENDPOINT}/${id}/${action_url}`, {
       method: "POST",
-      body: new FormData(e.target as HTMLFormElement),
+      body,
     });
     if (response.ok) {
       toast.success("Imagen cargada correctamente");
-      navigate("/admin/lista-producto");
+      navigate("/dashboard/lista-producto");
     } else {
+      console;
       toast.error("Error al cargar la imagen");
     }
   };
-  const path_imagen = `/docker/development/imagenes-cervezas/${data?.imagen}`;
+  const path_imagen = `/docker/development/${data?.imagen}`;
   return (
     <h1>
       Editar Cerveza {id}
@@ -46,9 +48,6 @@ export const EditarCervezaPage = () => {
             name="imagen"
             type="file"
             accept="image/jpeg,image/png,image/gif"
-            onChange={(e) => {
-              console.log(e.target.files);
-            }}
           />
           <button type="submit" className="btn btn-primary mt-4">
             Editar cerveza

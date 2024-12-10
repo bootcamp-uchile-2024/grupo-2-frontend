@@ -59,8 +59,14 @@ export const AdminLoginPage = () => {
       <NavbarDashboard />
       <div className="flex items-center justify-center min-h-screen">
         <div className="w-full max-w-md">
-          <img src="assets/logo-footer.svg" alt="Logo Cervezario" className="mx-auto pb-8"/>
-          <h1 className="text-[50px] font-bold text-center pb-8">¡Bienvenido!</h1>
+          <img
+            src="assets/logo-footer.svg"
+            alt="Logo Cervezario"
+            className="mx-auto pb-8"
+          />
+          <h1 className="text-[50px] font-bold text-center pb-8">
+            ¡Bienvenido!
+          </h1>
           <p className="text-center text-gray-600 pb-8">INICIA SESIÓN</p>
           <form className="space-y-6">
             <div>
@@ -93,8 +99,14 @@ export const AdminLoginPage = () => {
               </Link>
             </div>
             <div className="space-y-6">
-              {!validCredential && <p className="text-red-500">{errorMessage}</p>}
-              <button className="btn-formulario w-full" type="submit" onClick={handleSubmit}>
+              {!validCredential && (
+                <p className="text-red-500">{errorMessage}</p>
+              )}
+              <button
+                className="btn-formulario w-full"
+                type="submit"
+                onClick={handleSubmit}
+              >
                 Iniciar Sesión
               </button>
             </div>

@@ -88,7 +88,7 @@ export const ListadoProductosPage = () => {
               <tbody className="bg-white divide-y divide-gray-200">
                 {productos.map((producto) => (
                   <tr key={producto.id} className={producto.is_active ? '' : 'bg-slate-200'}>
-                    <td className="px-6 py-4 whitespace-nowrap">{producto.nombre}</td>
+                    <td className="px-6 py-4 whitespace-nowrap"><Link to={`/dashboard/editar-producto/${producto.id}`}>{producto.nombre}</Link></td>
                     <td className="px-6 py-4 whitespace-nowrap">{producto.descripcion}</td>
                     <td className="px-6 py-4 whitespace-nowrap">{producto.precio}</td>
                     <td className="px-6 py-4 whitespace-nowrap">{producto.stock}</td>

@@ -111,10 +111,10 @@ export const DetalleCervezaPage = () => {
           </div>
         </div>
         <div className="flex flex-wrap justify-between shadow-recomendaciones p-5 mt-10 border-2">
-          {recomendaciones.map((recomendacion) => {
+          {recomendaciones.map((recomendacion, index) => {
             const { titulo, descripcion, logo } = recomendacion;
             return (
-              <div className="max-w-[217px] p-2">
+              <div className="max-w-[217px] p-2" key={index}>
                 <div className="flex flex-row justify-center">
                   <img src={logo} alt={logo} />
                   <span className="text-riffic-2xl mx-2">{titulo}</span>
