@@ -38,6 +38,7 @@ export default {
         'yellow-900': '#D59B03',
         'purple': "#4E3B7F",
         'purple-100': "#675594",
+        'purple-200': "#8F7EB8",
         "gray-G05": "#000000",
         "gray-100": "#D9D8DB",
         "white-100": "#FBFAFC",
