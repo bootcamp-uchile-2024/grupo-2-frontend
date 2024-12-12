@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import { CERVEZAS_ENDPOINT, AMARGOR_ENDPOINT, TIPO_ENDPOINT } from "../config/api.config";
-import { AdminUploadImage } from "./AdminUploadImage";
-import { Amargor, Tipo} from "../types";
+import { ChangeEvent, useEffect, useState} from "react";
+import { CERVEZAS_ENDPOINT, AMARGOR_ENDPOINT, TIPO_ENDPOINT } from "../../config/api.config";
+import { Amargor, Tipo} from "../../types";
 
 export interface Cerveza {
   id: number;
@@ -15,6 +14,7 @@ export interface Cerveza {
   amargor: string;
   graduacion: number;
   formato: string;
+  imagen: File | null;
   is_active: boolean;
 }
 
@@ -44,6 +44,7 @@ export const CreaProductoPage = () => {
     amargor: "",
     graduacion: 0,
     formato: "",
+    imagen: null,
     is_active: true,
   });
 
@@ -62,6 +63,8 @@ export const CreaProductoPage = () => {
   const [errorContacto, setErrorContacto] = useState<string | null>(null);
   const [errorTelefono, setErrorTelefono] = useState<string | null>(null);
   const [errorCorreoElectronico, setErrorCorreoElectronico] = useState<string | null>(null);
+  
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -199,6 +202,7 @@ export const CreaProductoPage = () => {
 
         const data = await response.json();
         console.log("Producto creado:", data);
+        uploadImage(data.id);
       } catch (error) {
         console.error("Error:", error);
       }
@@ -234,6 +238,47 @@ export const CreaProductoPage = () => {
     fetchTipoCerveza();
   }, []);
 
+  const [imageSrc, setImageSrc] = useState("/assets/pattern.png");
+
+  function handleImageUpload(e: ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (file) {
+      setSelectedFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImageSrc(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+    const getImageEndpoint = (id: string) => `${CERVEZAS_ENDPOINT}/${id}/cargarimagen`;
+
+    const uploadImage = async (id:string) => {
+        if (!selectedFile) return;
+
+        const formData = new FormData();
+        formData.append("imagen", selectedFile);
+
+        try {
+          const response = await fetch(getImageEndpoint(`${id}`),
+            {
+              method: "POST",
+              body: formData,
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error("Error al cargar la imagen");
+          }
+
+          const data = await response.json();
+            setProducto({ ...producto, imagen: data.imageUrl });
+        } catch (error) {
+          console.error("Error al cargar la imagen:", error);
+        }
+    };
+
   return (
     <form className="w-full p-8" onSubmit={handleSubmit}>
       <h1 className="mb-4 font-lato  text-purple-100 text-custom-lg font-normal">Cargar cervezas</h1>
@@ -243,18 +288,38 @@ export const CreaProductoPage = () => {
 
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div>
-          <AdminUploadImage />
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="imagen">
+              Seleccionar una imagen
+            </label>
+            <img src={imageSrc} alt="Uploaded" className="w-full"/>
+            <div className="relative">
+              <input
+                  className="form-input mt-1 block w-full border p-3 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 opacity-0 absolute inset-0 z-50"
+                  name="imagen"
+                  type="file"
+                  accept="image/jpeg,image/png,image/gif"
+                  onChange={handleImageUpload}
+              />
+              <button
+                  type="button"
+                  className="form-input mt-1 block w-full border p-3 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+              >
+                <i className="far fa-images"></i> Seleccionar imagen
+              </button>
+            </div>
+          </div>
         </div>
         <div>
           <div className="mb-4">
             <label className="block text-gray-700 font-bold mb-2">Nombre de cerveza</label>
             <input
-              className="form-input mt-1 block w-full border p-3 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-              name="nombre"
-              type="text"
-              placeholder="Nombre de la cerveza"
-              onChange={handleChange}
-              value={producto.nombre}
+                className="form-input mt-1 block w-full border p-3 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                name="nombre"
+                type="text"
+                placeholder="Nombre de la cerveza"
+                onChange={handleChange}
+                value={producto.nombre}
             />
             {errorNombre && (<p className="text-red-500 text-sm mt-1">{errorNombre}</p>)}
           </div>
@@ -262,12 +327,12 @@ export const CreaProductoPage = () => {
           <div className="mb-4">
             <label className="block text-gray-700 font-bold mb-2">Marca</label>
             <input
-              className="form-input mt-1 block w-full border p-3 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-              name="marca"
-              type="text"
-              placeholder="Marca"
-              onChange={handleChange}
-              value={producto.marca}
+                className="form-input mt-1 block w-full border p-3 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                name="marca"
+                type="text"
+                placeholder="Marca"
+                onChange={handleChange}
+                value={producto.marca}
             />
             {errorMarca && (<p className="text-red-500 text-sm mt-1">{errorMarca}</p>)}
           </div>
@@ -428,7 +493,7 @@ export const CreaProductoPage = () => {
       </div>
 
       <div className="flex justify-center">
-        <button className="btn-formulario-outline mr-4" type="submit">Guardar producto</button>
+        <button className="btn-formulario mr-4" type="submit"><i className="far fa-save"></i> Guardar producto</button>
         {/* <button
       className="btn-formulario"
       type="submit">

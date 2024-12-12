@@ -27,12 +27,8 @@ export const SidebarDashboard = () => {
         <hr className="border-t-2 border-yellow-500 my-2" />
         <li className="p-2 hover:bg-yellow hover:bg-opacity-40 cursor-pointer flex"><img src="/assets/icon-seguimientos.png" className="mr-2" /><span>Seguimiento de pedidos</span></li>
         <hr className="border-t-2 border-yellow-500 my-2" />
-        <Link to="crea-usuario">
-          <li className="p-2 hover:bg-yellow hover:bg-opacity-40 cursor-pointer flex"><img src="/assets/icon-usuarios.png" className="mr-2"/><span>Crear usuario</span></li>
-        </Link>
-        <hr className="border-t-2 border-yellow-500 my-2" />
-        <Link to="lista-usuarios">
-          <li className="p-2 hover:bg-yellow hover:bg-opacity-40 cursor-pointer flex"><img src="/assets/icon-usuarios.png" className="mr-2"/><span>Listar usuarios</span></li>
+        <Link to="configuracion-usuario">
+          <li className="p-2 hover:bg-yellow hover:bg-opacity-40 cursor-pointer flex"><img src="/assets/icon-usuarios.png" className="mr-2" /><span>Configuración de usuario</span></li>
         </Link>
       </ul>
     </div>

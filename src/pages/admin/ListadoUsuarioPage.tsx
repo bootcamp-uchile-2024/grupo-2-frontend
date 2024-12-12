@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Usuario } from "../types";
+import { Usuario } from "../../types";
 import { Link } from "react-router-dom";
 import { USERS_ENDPOINT } from "@/config/api.config";
 
@@ -53,7 +53,7 @@ export const ListadoUsuarioPage = () => {
       </h1>
       <div className="mt-4">
         <Link to="/dashboard/crea-usuario" className="btn-formulario">
-          Ingresar usuario producto
+          Ingresar usuario
         </Link>
       </div>
       <div className="mt-4">

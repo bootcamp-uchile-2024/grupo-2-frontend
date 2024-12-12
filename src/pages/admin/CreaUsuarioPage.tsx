@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { USERS_ENDPOINT } from "../config/api.config";
-import { UsuarioPerfil } from "../types";
+import { USERS_ENDPOINT } from "../../config/api.config";
+import { UsuarioPerfil } from "../../types";
 
 export const validarRut = (rut: string): boolean => {
   const rutLimpio = rut.replace(/\./g, "").replace(/-/g, "");

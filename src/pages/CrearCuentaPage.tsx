@@ -1,7 +1,7 @@
 import { MainLayout } from "@/layout/MainLayout";
 import { Usuario } from "@/types";
 import { useState } from "react";
-import { validarRut } from "./CreaUsuarioPage";
+import { validarRut } from "./admin/CreaUsuarioPage";
 import { USERS_ENDPOINT } from "@/config/api.config";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
