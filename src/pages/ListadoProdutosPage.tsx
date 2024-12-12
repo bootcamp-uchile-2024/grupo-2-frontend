@@ -78,24 +78,27 @@ export const ListadoProductosPage = () => {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-40">Imagen</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descripción</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Precio</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/5">Acciones</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {productos.map((producto) => (
                   <tr key={producto.id} className={producto.is_active ? '' : 'bg-slate-200'}>
-                    <td className="px-6 py-4 whitespace-nowrap"><Link to={`/dashboard/editar-producto/${producto.id}`}>{producto.nombre}</Link></td>
-                    <td className="px-6 py-4 whitespace-nowrap">{producto.descripcion}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{producto.precio}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{producto.stock}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <button onClick={() => handleButtonClick(producto)} className="btn-formulario w-full">
-                        {producto.is_active ? 'Desactivar' : 'Activar'}
-                      </button>
+                    <td className="px-6 py-4">
+                      <img src={producto.imagen ? producto.imagen.replace('./', '/') : '/assets/no-imagen.png'} alt={producto.nombre} className="w-100"/>
+                    </td>
+                    <td className="px-6 py-4"><Link to={`/dashboard/editar-producto/${producto.id}`}>{producto.nombre}</Link></td>
+                    <td className="px-6 py-4">{producto.descripcion}</td>
+                    <td className="px-6 py-4">{producto.precio}</td>
+                    <td className="px-6 py-4">{producto.stock}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-right">
+                      <button onClick={() => handleButtonClick(producto)} className="btn-formulario mr-2"><i className="fas fa-power-off"></i> {producto.is_active ? 'Desactivar' : 'Activar'}</button>
+                      <button onClick={() => window.location.href = `/dashboard/editar-producto/${producto.id}`} className="btn-formulario"><i className="far fa-edit"></i> Editar</button>
                     </td>
                   </tr>
                 ))}

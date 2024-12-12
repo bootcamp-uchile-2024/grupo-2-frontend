@@ -48,6 +48,9 @@ services:
       - db
 
     restart: always
+    volumes:
+      - ./imagenes-cervezas:/home/node/app/imagenes-cervezas
+
 
   front:
     image: calvegh337/entrega-10:deploy
