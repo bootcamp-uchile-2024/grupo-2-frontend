@@ -12,21 +12,22 @@ import { ContactoPage } from "./pages/ContactoPage";
 import { LoginPage } from "./pages/LoginPage";
 import { DashboardPage } from "./pages/DashboardPage";
 
-import { CreaProductoPage } from "./pages/CreaProductoPage";
 import { HomePage } from "./pages/HomePage";
 import { RecuperarPasswordPage } from "./pages/RecupararPasswordPage";
-import { CreaUsuarioPage } from "./pages/CreaUsuarioPage";
 import { CrearCuentaPage } from "./pages/CrearCuentaPage";
 import { ConfirmarmacionCorreoPage } from "./pages/registro/ConfirmacionCorreoPage";
 import { CarritoPage } from "./pages/CarritoPage";
 import { PageNoFound } from "./pages/404";
 import { DetalleCervezaPage } from "./pages/cervezas/DetalleCervezaPage";
-import { ListadoProductosPage } from "./pages/ListadoProdutosPage";
-import { ListadoUsuarioPage } from "./pages/ListadoUsuarioPage";
-import { AdminLoginPage } from "./pages/AdminLoginPage";
-import { EditarCervezaPage } from "./pages/admin/EditarCervezaPage";
 
 // Administación de Usuarios y Productos
+import { CreaProductoPage } from "./pages/admin/CreaProductoPage";
+import { CreaUsuarioPage } from "./pages/admin/CreaUsuarioPage";
+import { ListadoProductosPage } from "./pages/admin/ListadoProdutosPage";
+import { ListadoUsuarioPage } from "./pages/admin/ListadoUsuarioPage";
+import { AdminLoginPage } from "./pages/admin/AdminLoginPage";
+import { EditarCervezaPage } from "./pages/admin/EditarCervezaPage";
+import { ConfiguracionUsuarioPage } from "./pages/admin/ConfiguracionUsuarioPage";
 
 // Secciones
 
@@ -55,49 +56,35 @@ function App() {
           <Route path="/dashboard" element={<DashboardPage />}>
             <Route
               index
-              element={
-                <CreaProductoPage />
-                // <PrivateRoute roles={["admin"]}>
-                //   <CreaProductoPage />
-                // </PrivateRoute>
-              }
+              element={<CreaProductoPage />}
             />
-            <Route path="editar-producto/:id" element={<EditarCervezaPage />} />
-            <Route
-              path="crea-usuario"
-              element={
-                <CreaUsuarioPage />
-                // <PrivateRoute roles={["admin"]}>
-                //   <CreaUsuarioPage />
-                // </PrivateRoute>
-              }
+            <Route 
+              path="editar-producto/:id" 
+              element={<EditarCervezaPage />}
             />
             <Route
               path="crea-producto"
-              element={
-                <CreaProductoPage />
-                // <PrivateRoute roles={["admin"]}>
-                //   <CreaProductoPage />
-                // </PrivateRoute>
-              }
+              element={<CreaProductoPage />}
             />
             <Route
               path="lista-producto"
-              element={
-                <ListadoProductosPage />
+              element={<ListadoProductosPage />
                 // <PrivateRoute roles={["admin"]}>
                 //   <ListadoProductosPage />
                 // </PrivateRoute>
               }
             />
             <Route
+              path="crea-usuario"
+              element={<CreaUsuarioPage />}
+            />
+            <Route
               path="lista-usuarios"
-              element={
-                <ListadoUsuarioPage />
-                // <PrivateRoute roles={["admin"]}>
-                //   <ListadoUsuarioPage />
-                // </PrivateRoute>
-              }
+              element={<ListadoUsuarioPage />}
+            />
+            <Route
+              path="configuracion-usuario"
+              element={<ConfiguracionUsuarioPage />}
             />
           </Route>
           <Route

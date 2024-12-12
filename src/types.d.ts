@@ -65,7 +65,7 @@ export interface Cervezas {
   id_amargor: string;
   graduacion: number;
   id_formato: string;
-  imagen: null;
+  imagen?: string;
   is_active: boolean;
   proveedor: Proveedor;
   formato: Formato;
