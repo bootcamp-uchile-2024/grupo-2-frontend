@@ -42,26 +42,19 @@ export const CreaUsuarioPage = () => {
     edad: 0,
     tipo_suscripcion: "",
     birthday: "",
+    rol: "user", // Se establece el rol por defecto como "user"
   });
 
   const [errorRut, setErrorRut] = useState<string | null>(null);
   const [errorNombre, setErrorNombre] = useState<string | null>(null);
   const [errorApellido, setErrorApellido] = useState<string | null>(null);
   const [errorContrasenia, setErrorContrasenia] = useState<string | null>(null);
-  const [errorCorreoComprador, setErrorCorreoComprador] = useState<
-    string | null
-  >(null);
-  const [errorTelefonoComprador, setErrorTelefonoComprador] = useState<
-    string | null
-  >(null);
+  const [errorCorreoComprador, setErrorCorreoComprador] = useState<string | null>(null);
+  const [errorTelefonoComprador, setErrorTelefonoComprador] = useState<string | null>(null);
   const [errorEdad, setErrorEdad] = useState<string | null>(null);
-  const [errorTipoSuscripcion, setErrorTipoSuscripcion] = useState<
-    string | null
-  >(null);
+  const [errorTipoSuscripcion, setErrorTipoSuscripcion] = useState<string | null>(null);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setUsuario({ ...usuario, [name]: value });
 
@@ -161,6 +154,12 @@ export const CreaUsuarioPage = () => {
       setErrorTelefonoComprador(null);
     }
 
+    // Asegurarse de que el rol sea "user" si está vacío
+    const dataToSubmit = {
+      ...usuario,
+      rol: usuario.rol || "admin",
+    };
+
     if (!hasError) {
       try {
         const response = await fetch(USERS_ENDPOINT, {
@@ -168,7 +167,7 @@ export const CreaUsuarioPage = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(usuario),
+          body: JSON.stringify(dataToSubmit),
         });
 
         if (!response.ok) {
@@ -194,6 +193,7 @@ export const CreaUsuarioPage = () => {
       edad: 0,
       tipo_suscripcion: "",
       birthday: "",
+      rol: "",
     });
 
     // Limpiar los mensajes de error

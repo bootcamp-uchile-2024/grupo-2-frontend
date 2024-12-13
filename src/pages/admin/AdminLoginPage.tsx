@@ -1,56 +1,41 @@
 import { useState } from "react";
-import { NavbarDashboard } from "@/components/Dashboard/NavbarDashboard";
-import { USERS_ENDPOINT } from "@/config/api.config";
 import { Link } from "react-router-dom";
+import { LOGIN_ENDPOINT } from "@/config/api.config";
+import { NavbarDashboard } from "@/components/Dashboard/NavbarDashboard";
+import { useNavigate } from 'react-router-dom';
+
+interface IForm {
+  rut: string;
+  contrasenia: string;
+}
 
 export const AdminLoginPage = () => {
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<IForm>({
+    rut: "",
     contrasenia: "",
-    correo_comprador: "",
   });
 
-  const [validCredential, setValidCredential] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setForm((prevForm) => ({
-      ...prevForm,
-      [name]: value,
-    }));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    if (form.correo_comprador === "" || form.contrasenia === "") {
-      setValidCredential(false);
-      setErrorMessage("Por favor, ingrese un correo y contraseña válidos.");
-      return;
-    }
-
-    try {
-      const response = await fetch(USERS_ENDPOINT, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error("Error:", errorData);
-        setValidCredential(false);
-        setErrorMessage(errorData.message || "Error al iniciar sesión.");
-        return;
-      }
-
-      const data = await response.json();
-      console.log("Success:", data);
-    } catch (error) {
-      console.error("Error:", error);
-      setValidCredential(false);
-      setErrorMessage("Error de conexión. Por favor, intente nuevamente.");
+  const handleLogin = async ({ rut, contrasenia }: IForm) => {
+    const response = await fetch(LOGIN_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ rut: rut, password: contrasenia }),
+    });
+    if (response.ok) {
+      const valor = await response.text();
+      localStorage.setItem("token_jwt", valor);
+      navigate('/dashboard');
+    } else {
+      alert('Usuario o contraseña incorrecta');
     }
   };
 
@@ -70,27 +55,25 @@ export const AdminLoginPage = () => {
           <p className="text-center text-gray-600 pb-8">INICIA SESIÓN</p>
           <form className="space-y-6">
             <div>
-              <label className="block" htmlFor="correo">
-                Correo electronico
+              <label className="block" htmlFor="rut">
+                RUT
               </label>
               <input
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 "
-                type="email"
-                placeholder="Ejemplo: nombre@correo.cl"
-                name="correo_comprador"
+                type="text"
+                placeholder="Ejemplo: 12345678-9"
+                name="rut"
                 onChange={handleChange}
-                value={form.correo_comprador}
               />
             </div>
             <div>
-              <label htmlFor="password">Contraseña</label>
+              <label htmlFor="contrasenia">Contraseña</label>
               <input
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="password"
                 placeholder="Contraseña"
                 name="contrasenia"
                 onChange={handleChange}
-                value={form.contrasenia}
               />
             </div>
             <div className="flex justify-end ">
@@ -99,14 +82,14 @@ export const AdminLoginPage = () => {
               </Link>
             </div>
             <div className="space-y-6">
-              {!validCredential && (
-                <p className="text-red-500">{errorMessage}</p>
-              )}
               <button
-                className="btn-formulario w-full"
-                type="submit"
-                onClick={handleSubmit}
-              >
+                className="btn-formulario w-full" 
+                type="submit" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLogin(form);
+                }}
+                >
                 Iniciar Sesión
               </button>
             </div>

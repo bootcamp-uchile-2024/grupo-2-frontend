@@ -28,7 +28,7 @@ services:
     restart: always
   cervezario-app-prod:
     # Se actualiza la imagen a la versión 2.4.1
-    image: kmreyes/cervezarionacional:2.5.1
+    image: kmreyes/cervezarionacional:2.5.2
     environment:
       - APP_NAME=${APP_NAME}
       - APP_VERSION=${APP_VERSION}

@@ -272,8 +272,8 @@ export const CreaProductoPage = () => {
             throw new Error("Error al cargar la imagen");
           }
 
-          const data = await response.json();
-            setProducto({ ...producto, imagen: data.imageUrl });
+          const data = await response.text();
+          console.log("Imagen cargada:", data);
         } catch (error) {
           console.error("Error al cargar la imagen:", error);
         }
