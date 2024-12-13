@@ -12,7 +12,7 @@ export const CartBtn = () => {
     0
   );
   return (
-    <div className="flex">
+    <div className="flex ">
       <TopNav />
       <div className="relative ms-4">
         <button onClick={openCartMenuStore}>

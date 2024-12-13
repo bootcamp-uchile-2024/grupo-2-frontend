@@ -1,7 +1,7 @@
 import { MainLayout } from "@/layout/MainLayout";
 import { CervezasGrid } from "@/components/Cervezas/CervezasGrid";
 import { DescubreSection } from "@/sections/DescubreSection";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { CERVEZAS_ENDPOINT } from "@/config/api.config";
 import { useDispatch } from "react-redux";
 import { getCervezas } from "@/state/slices/cervezaSlice";

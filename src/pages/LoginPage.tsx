@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MainLayout } from "@/layout/MainLayout";
+import { LOGIN_ENDPOINT } from "@/config/api.config";
 
 interface IForm {
   correo_comprador: string;
@@ -26,7 +27,15 @@ export const LoginPage = () => {
       [name]: type === "checkbox" ? checked : value,
     });
   };
-
+  const login = async ({ correo_comprador, contrasenia }: IForm) => {
+    const response = await fetch(LOGIN_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ rut: correo_comprador, password: contrasenia }),
+    });
+    const valor = await response.text();
+    localStorage.setItem("token_jwt", valor);
+  };
   return (
     <MainLayout>
       <div className="flex items-center justify-center ">
@@ -64,15 +73,16 @@ export const LoginPage = () => {
               </Link>
             </div>
             <div className="space-y-6">
-              <Link to="/admin">
-                <button className="w-full px-4 py-2 font-bold text-grey-dark bg-yellow rounded-md hover:bg-purple-100 hover:text-white">
-                  Iniciar sesión
-                </button>
-              </Link>
-              {/* Se comenta provisionalmente hasta tener el email desde backend */}
-              {/* <button className="w-full px-4 py-2 font-bold text-grey-dark bg-yellow rounded-md hover:bg-purple-100 hover:text-white" type="submit" onClick={handleSubmit}>
-                Iniciar Sesión
-              </button> */}
+              <button
+                type="button"
+                onClick={() => {
+                  login(form);
+                }}
+                className="w-full px-4 py-2 font-bold text-grey-dark bg-yellow rounded-md hover:bg-purple-100 hover:text-white"
+              >
+                Iniciar sesión
+              </button>
+
               <button type="button" className="btn-formulario w-full">
                 <Link to="/crear-cuenta">Crear cuenta</Link>
               </button>

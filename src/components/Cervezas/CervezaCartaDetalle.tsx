@@ -14,6 +14,7 @@ export const CervezaCartaDetalle = (cerveza: CervezaInterface) => {
       .fill(false)
       .map((_, i) => i < estrellas);
   const navigate = useNavigate();
+
   const path_imagen = `/docker/development/${imagen}`;
   return (
     <div className="flex flex-col space-y-2 max-w-[300px] max-h-[537px]   shadow-custom-card">

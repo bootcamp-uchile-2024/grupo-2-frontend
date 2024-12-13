@@ -45,6 +45,7 @@ export interface Usuario {
   correo_comprador: string;
   telefono_comprador?: string;
   birthday: string;
+  rol: string;
 }
 export interface UsuarioPerfil extends Usuario {
   edad: number;

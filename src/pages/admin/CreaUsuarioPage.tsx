@@ -42,6 +42,7 @@ export const CreaUsuarioPage = () => {
     edad: 0,
     tipo_suscripcion: "",
     birthday: "",
+    rol: "user",
   });
 
   const [errorRut, setErrorRut] = useState<string | null>(null);
@@ -194,6 +195,7 @@ export const CreaUsuarioPage = () => {
       edad: 0,
       tipo_suscripcion: "",
       birthday: "",
+      rol: "user",
     });
 
     // Limpiar los mensajes de error

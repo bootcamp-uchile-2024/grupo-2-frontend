@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootType } from "@/state/store";
 import { useFetch } from "@/hooks/useFetch";
@@ -15,7 +15,7 @@ export const CervezasGrid = () => {
   const [color, setColor] = useState<string[]>([]);
   const [grados, setGrados] = useState<string>("");
   const [categoria, setCategoria] = useState<string[]>([]);
-  const [estilo, setEstilos] = useState<string[]>(["1"]);
+  const [estilo, setEstilos] = useState<string[]>([]);
   const [amargor, setAmargor] = useState<string[]>([]);
   const { registros } = useSelector((state: RootType) => state.cerveza); //Se obtiene el estado de la cantidad de cervezas para poder paginar bien
   const queryParams = new URLSearchParams({
@@ -183,6 +183,31 @@ export const CervezasGrid = () => {
 
     return ""; // Si no se encuentra el filtro o la opción, retorna una cadena vacía
   };
+  const handleRemoveFilter = (clave: { tipo: string; valor: string }) => {
+    switch (clave.tipo) {
+      case "estilo":
+        setEstilos((prev) => prev.filter((val) => val !== clave.valor));
+        break;
+      case "origen":
+        setOrigen((prev) => prev.filter((val) => val !== clave.valor));
+        break;
+      case "categoria":
+        setCategoria((prev) => prev.filter((val) => val !== clave.valor));
+        break;
+      case "amargor":
+        setAmargor((prev) => prev.filter((val) => val !== clave.valor));
+        break;
+      case "color":
+        setColor((prev) => prev.filter((val) => val !== clave.valor));
+        break;
+      case "grados":
+        setGrados("");
+        break;
+      default:
+        break;
+    }
+  };
+
   if (error) return <div>Error al cargar las cervezas: {error}</div>;
   const cervezasSeccion =
     cervezasFiltradas?.length === 0 ? (
@@ -198,30 +223,73 @@ export const CervezasGrid = () => {
         ))}
       </div>
     );
+  let filtros_aplicados = [
+    ...estilo.map((a) => ({
+      texto: `Estilo: ${getLabelFromValue("Estilos", a)}`,
+      clave: { tipo: "estilo", valor: a },
+    })),
+    ...origen.map((a) => ({
+      texto: `Origen: ${getLabelFromValue("Origen", a)}`,
+      clave: { tipo: "origen", valor: a },
+    })),
+    ...categoria.map((a) => ({
+      texto: `Categoria: ${getLabelFromValue("Categorías", a)}`,
+      clave: { tipo: "categoria", valor: a },
+    })),
+    ...amargor.map((a) => ({
+      texto: `IBU: ${getLabelFromValue("IBU (amargor)", a)}`,
+      clave: { tipo: "amargor", valor: a },
+    })),
+    ...color.map((a) => ({
+      texto: `SMR: ${getLabelFromValue("SMR (coloración)", a)}`,
+      clave: { tipo: "color", valor: a },
+    })),
+  ];
 
   return (
     <div>
       <div className="flex align-center justify-end font-lato text-custom-s text-gray-dark">
-        <span className="flex items-center justify-center mr-2">Mostrar</span>
-        {[6, 12, 18, 24].map((cant) => (
-          <button
-            key={cant}
-            onClick={() => setCantidadProductos(cant)}
-            className={`h-[35px] w-[38px] text-purple ${
-              cantproductos == cant
-                ? "bg-purple-100 text-white font-bold rounded-md"
-                : ""
-            }`}
-          >
-            {cant}
-          </button>
-        ))}
-        <span className="flex items-center justify-center mx-2">productos</span>
+        <div className="flex w-full max-w-[980px] flex-wrap gap-[10px] pr-4">
+          {filtros_aplicados.map((filtro) => (
+            <button
+              onClick={() => handleRemoveFilter(filtro.clave)}
+              className="flex  bg-purple-100 px-[16px] py-[8px] rounded-[12px] text-lato-s-white "
+            >
+              {filtro.texto}
+              <img className="ml-4" src="/assets/close.svg" width={18} />
+            </button>
+          ))}
+          {grados != "" && (
+            <button
+              onClick={() => setGrados("")}
+              className="flex  bg-purple-100 px-[16px] py-[8px] rounded-[12px] text-lato-s-white "
+            >
+              Grados: {getLabelFromValue("Grados de Alcohol", grados)}
+              <img className="ml-4" src="/assets/close.svg" width={18} />
+            </button>
+          )}
+        </div>
+        <div className="flex justify-center items-center">
+          <span className="mr-2">Mostrar</span>
+          {[6, 12, 18, 24].map((cant) => (
+            <button
+              key={cant}
+              onClick={() => setCantidadProductos(cant)}
+              className={`h-[35px] w-[38px] text-purple ${
+                cantproductos == cant
+                  ? "bg-purple-100 text-white font-bold rounded-md"
+                  : ""
+              }`}
+            >
+              {cant}
+            </button>
+          ))}
+          <span className="mx-2">productos</span>
+        </div>
       </div>
 
       <div className="flex">
         <div className="flex flex-col mt-8 mr-2">
-          {estilo.map((estilo) => getLabelFromValue("Estilos", estilo))}
           <input
             className="form-input mt-1 block w-full border rounded-md shadow-sm focus:border-purple focus:ring focus:ring-purple focus:ring-opacity-50 p-3"
             name="cerveza"
