@@ -1,24 +1,23 @@
-
 interface ILogin {
-  user: string;
-  password: string;
-  roles?: string[];
+  rut: string;
+  contrasenia: string;
+  rol?: string[];
 }
 
 export function login(credenciales: ILogin): boolean {
-  const { user, password } = credenciales;
+  const { rut, contrasenia } = credenciales;
   let userResponse: ILogin;
-  if (user === 'admin' && password === 'admin') {
+  if (rut === 'admin' && contrasenia === 'admin') {
 
     userResponse = {
       ...credenciales,
-      roles: ['admin', "user"]
+      rol: ['admin', "user"]
     }
 
-  } else if (user === 'usuario' && password === 'usuario') {
+  } else if (rut === 'usuario' && contrasenia === 'usuario') {
     userResponse = {
       ...credenciales,
-      roles: ['user']
+      rol: ['user']
     }
 
   } else {
@@ -29,20 +28,20 @@ export function login(credenciales: ILogin): boolean {
   return true
 }
 
-export const isAuth = () => localStorage.getItem('user') ? true : false;
 export const isAdmin = () => {
   const user = localStorage.getItem('user');
   if (user) {
     const userResponse: ILogin = JSON.parse(user);
-    return userResponse.roles?.includes('admin');
+    return userResponse.rol?.includes('admin');
   }
   return false;
 }
+
 export const userHasRole = (roles: string[]) => {
   const user = localStorage.getItem('user');
   if (user) {
     const userResponse: ILogin = JSON.parse(user);
-    return roles.some(role => userResponse.roles?.includes(role));
+    return roles.some(role => userResponse.rol?.includes(role));
   }
   return false;
 }

@@ -28,6 +28,7 @@ import { ListadoUsuarioPage } from "./pages/admin/ListadoUsuarioPage";
 import { AdminLoginPage } from "./pages/admin/AdminLoginPage";
 import { EditarCervezaPage } from "./pages/admin/EditarCervezaPage";
 import { ConfiguracionUsuarioPage } from "./pages/admin/ConfiguracionUsuarioPage";
+import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 
 // Secciones
 
@@ -53,7 +54,11 @@ function App() {
           <Route path="/resumen-carrito" element={<CarritoPage />} />
           <Route path="*" element={<PageNoFound />} />
           <Route path="/admin" element={<AdminLoginPage />} />
-          <Route path="/dashboard" element={<DashboardPage />}>
+          <Route path="/dashboard" element={
+            <PrivateRoute>
+              <DashboardPage />
+            </PrivateRoute>
+          }>
             <Route
               index
               element={<CreaProductoPage />}
