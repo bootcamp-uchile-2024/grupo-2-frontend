@@ -15,6 +15,7 @@ export const CrearCuentaPage = () => {
     birthday: "",
     correo_comprador: "",
     re_contrasenia: "",
+    rol: "user",
   });
   const [errores, setErrores] = useState<(string | undefined)[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -26,6 +27,7 @@ export const CrearCuentaPage = () => {
     re_contrasenia,
     birthday,
     correo_comprador,
+    rol,
   } = usuario;
   const navigate = useNavigate();
   const formularioRegistro = [
@@ -107,7 +109,7 @@ export const CrearCuentaPage = () => {
     }
     if (erroresLista.length === 0) {
       setLoading(true);
-      const { contrasenia, ...restoUsuario } = usuario;
+      const { contrasenia } = usuario;
       const edad = new Date().getFullYear() - new Date(birthday).getFullYear();
       const tipo_suscripcion = "BRONZE";
       try {
@@ -118,7 +120,11 @@ export const CrearCuentaPage = () => {
             contrasenia,
             edad,
             tipo_suscripcion,
-            ...restoUsuario,
+            rut,
+            nombre,
+            apellido,
+            rol,
+            /* ...restoUsuario, */
           }),
         });
         if (response.ok) {

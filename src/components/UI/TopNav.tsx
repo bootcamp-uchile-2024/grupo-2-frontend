@@ -26,7 +26,7 @@ export const TopNav = () => {
       </Link>
     ) : (
       <Link className="nav-link" to="/login">
-        Login
+        <img src={"/assets/user-gray.svg"} />
       </Link>
     );
   }
@@ -45,4 +45,4 @@ export const TopNav = () => {
       </div>
     </div>
   );
-}
+};

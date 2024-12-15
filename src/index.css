@@ -67,6 +67,12 @@ h6 {
 .text-lato-m {
   @apply text-gray-dark font-bold text-custom-m;
 }
+.text-lato-s-white {
+  @apply text-white font-bold text-custom-s;
+}
+.text-lato-m-white {
+  @apply text-white font-bold text-custom-m;
+}
 .text-lato-l {
   @apply text-gray-dark font-bold text-custom-l;
 }
