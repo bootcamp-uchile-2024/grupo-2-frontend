@@ -49,12 +49,20 @@ export const CreaUsuarioPage = () => {
   const [errorNombre, setErrorNombre] = useState<string | null>(null);
   const [errorApellido, setErrorApellido] = useState<string | null>(null);
   const [errorContrasenia, setErrorContrasenia] = useState<string | null>(null);
-  const [errorCorreoComprador, setErrorCorreoComprador] = useState<string | null>(null);
-  const [errorTelefonoComprador, setErrorTelefonoComprador] = useState<string | null>(null);
+  const [errorCorreoComprador, setErrorCorreoComprador] = useState<
+    string | null
+  >(null);
+  const [errorTelefonoComprador, setErrorTelefonoComprador] = useState<
+    string | null
+  >(null);
   const [errorEdad, setErrorEdad] = useState<string | null>(null);
-  const [errorTipoSuscripcion, setErrorTipoSuscripcion] = useState<string | null>(null);
+  const [errorTipoSuscripcion, setErrorTipoSuscripcion] = useState<
+    string | null
+  >(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setUsuario({ ...usuario, [name]: value });
 
@@ -193,11 +201,7 @@ export const CreaUsuarioPage = () => {
       edad: 0,
       tipo_suscripcion: "",
       birthday: "",
-<<<<<<< HEAD
-      rol: "",
-=======
       rol: "user",
->>>>>>> feature/filtros
     });
 
     // Limpiar los mensajes de error
