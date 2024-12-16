@@ -193,11 +193,7 @@ export const CreaUsuarioPage = () => {
       edad: 0,
       tipo_suscripcion: "",
       birthday: "",
-<<<<<<< HEAD
-      rol: "",
-=======
       rol: "user",
->>>>>>> feature/filtros
     });
 
     // Limpiar los mensajes de error
