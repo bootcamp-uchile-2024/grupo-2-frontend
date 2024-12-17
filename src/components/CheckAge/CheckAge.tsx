@@ -92,7 +92,7 @@ export const CheckAge: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-40">
       <div className="bg-white p-6 rounded-lg shadow-lg w-max">
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div className="flex items-center justify-center">
@@ -109,10 +109,16 @@ export const CheckAge: React.FC = () => {
               <h1 className="text-4xl font-bold mb-4">{headerText}</h1>
               <p className="text-sm text-center">{contentText}</p>
               <div className="mt-4 mx-auto">
-                <button className="btn-formulario mr-2" onClick={handleYesClick}>
+                <button
+                  className="btn-formulario mr-2"
+                  onClick={handleYesClick}
+                >
                   Sí, soy mayor de edad
                 </button>
-                <button className="btn-formulario-outline" onClick={handleNoClick}>
+                <button
+                  className="btn-formulario-outline"
+                  onClick={handleNoClick}
+                >
                   No
                 </button>
               </div>

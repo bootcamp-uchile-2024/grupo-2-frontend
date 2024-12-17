@@ -1,5 +1,5 @@
-import { useEffect } from "react"; 
-import { useLocation, Routes, Route } from 'react-router-dom';
+import { useEffect } from "react";
+import { useLocation, Routes, Route } from "react-router-dom";
 import { CervezasPage } from "./pages/CervezasPage";
 import CervezasProvider from "./context/CervezasContext";
 import { SideMenu } from "./components/CartStore/SideMenu";
@@ -31,7 +31,11 @@ import { EditarCervezaPage } from "./pages/admin/EditarCervezaPage";
 import { ConfiguracionUsuarioPage } from "./pages/admin/ConfiguracionUsuarioPage";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 
-import { IStaticMethods } from 'flyonui/flyonui';
+import { IStaticMethods } from "flyonui/flyonui";
+import { useDispatch } from "react-redux";
+import { jwtDecode } from "jwt-decode";
+import { setUser } from "./state/slices/usuarioSlice";
+
 declare global {
   interface Window {
     HSStaticMethods: IStaticMethods;
@@ -43,87 +47,87 @@ function App() {
 
   useEffect(() => {
     const loadFlyonui = async () => {
-      await import('flyonui/flyonui');
+      await import("flyonui/flyonui");
 
       window.HSStaticMethods.autoInit();
     };
 
     loadFlyonui();
   }, [location.pathname]);
-
+  const dispatch = useDispatch();
+  const autentificar = () => {
+    const raw_token_jwt = localStorage.getItem("token_jwt");
+    if (raw_token_jwt) {
+      const decode_token_jwt = jwtDecode(raw_token_jwt);
+      dispatch(setUser({ ...decode_token_jwt, token: raw_token_jwt }));
+    } else {
+      console.log("No hay token");
+    }
+  };
+  useEffect(() => {
+    autentificar();
+  }, []);
   return (
     <CartProvider>
-
-        <SideMenu />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route
-            path="/cervezas"
-            element={
-              <CervezasProvider>
-                <CervezasPage />
-              </CervezasProvider>
-            }
-          />
-          <Route path="/cervezas/:id" element={<DetalleCervezaPage />} />
-          <Route path="/acerca" element={<AcercaPage />} />
-          <Route path="/contacto" element={<ContactoPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/resumen-carrito" element={<CarritoPage />} />
-          <Route path="*" element={<PageNoFound />} />
-          <Route path="/admin" element={<AdminLoginPage />} />
-          <Route path="/dashboard" element={
+      <SideMenu />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/cervezas"
+          element={
+            <CervezasProvider>
+              <CervezasPage />
+            </CervezasProvider>
+          }
+        />
+        <Route path="/cervezas/:id" element={<DetalleCervezaPage />} />
+        <Route path="/acerca" element={<AcercaPage />} />
+        <Route path="/contacto" element={<ContactoPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/resumen-carrito" element={<CarritoPage />} />
+        <Route path="*" element={<PageNoFound />} />
+        <Route path="/admin" element={<AdminLoginPage />} />
+        <Route
+          path="/dashboard"
+          element={
             <PrivateRoute>
               <DashboardPage />
             </PrivateRoute>
-          }>
-            <Route index element={<CreaProductoPage />} />
-            <Route 
-              path="editar-producto/:id" 
-              element={<EditarCervezaPage />}
-            />
-            <Route
-              path="crea-producto"
-              element={<CreaProductoPage />}
-            />
-            <Route
-              path="lista-producto"
-              element={<ListadoProductosPage />
-                // <PrivateRoute roles={["admin"]}>
-                //   <ListadoProductosPage />
-                // </PrivateRoute>
-              }
-            />
-            <Route
-              path="crea-usuario"
-              element={<CreaUsuarioPage />}
-            />
-            <Route
-              path="lista-usuarios"
-              element={<ListadoUsuarioPage />}
-            />
-            <Route
-              path="configuracion-usuario"
-              element={<ConfiguracionUsuarioPage />}
-            />
-          </Route>
+          }
+        >
+          <Route index element={<CreaProductoPage />} />
+          <Route path="editar-producto/:id" element={<EditarCervezaPage />} />
+          <Route path="crea-producto" element={<CreaProductoPage />} />
           <Route
-            path="/recuperar-password"
-            element={<RecuperarPasswordPage />}
+            path="lista-producto"
+            element={
+              <ListadoProductosPage />
+              // <PrivateRoute roles={["admin"]}>
+              //   <ListadoProductosPage />
+              // </PrivateRoute>
+            }
           />
-          <Route path="/crear-cuenta" element={<CrearCuentaPage />} />
+          <Route path="crea-usuario" element={<CreaUsuarioPage />} />
+          <Route path="lista-usuarios" element={<ListadoUsuarioPage />} />
           <Route
-            path="/confirmacion-correo"
-            element={<ConfirmarmacionCorreoPage />}
+            path="configuracion-usuario"
+            element={<ConfiguracionUsuarioPage />}
           />
-        </Routes>
-        <ToastContainer
-          position="bottom-right"
-          theme="colored"
-          autoClose={1500}
-          closeOnClick
-          className={"text-xs"}
+        </Route>
+        <Route path="/recuperar-password" element={<RecuperarPasswordPage />} />
+        <Route path="/crear-cuenta" element={<CrearCuentaPage />} />
+        <Route
+          path="/confirmacion-correo"
+          element={<ConfirmarmacionCorreoPage />}
         />
+      </Routes>
+      <ToastContainer
+        position="bottom-right"
+        theme="colored"
+        autoClose={1500}
+        closeOnClick
+        className={"text-xs"}
+      />
     </CartProvider>
   );
 }

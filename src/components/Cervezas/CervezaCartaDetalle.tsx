@@ -16,23 +16,24 @@ export const CervezaCartaDetalle = (cerveza: CervezaInterface) => {
       .map((_, i) => i < estrellas);
   const navigate = useNavigate();
 
-  const path_imagen = `${CERVEZAS_IMAGENES}${imagen}`;
+  const path_imagen = imagen
+    ? `${CERVEZAS_IMAGENES}${imagen}`
+    : "/assets/no-imagen.png";
 
   return (
     <div className="flex flex-col space-y-2 max-w-[300px] max-h-[537px]   shadow-custom-card">
       <button
+        onClick={() => navigate("/cervezas/" + id)}
         type="button"
         className="border-2 min-h-[300px]  border-transparent hover:border-purple relative"
       >
         <img src={path_imagen} alt={path_imagen} width={300} height={300} />
         <div className="absolute top-0 left-0 right-0 bottom-6 flex justify-center items-end opacity-0 hover:opacity-100 transition-opacity  ">
-          <button
-            type="button"
-            onClick={() => navigate("/cervezas/" + id)}
+          <div
             className={`bg-purple-200 text-white flex items-center justify-center min-h-[48px] min-w-[210px] px-5 rounded-[8px] text-gray-dark text-custom-m font-bold  `}
           >
             Ver más
-          </button>
+          </div>
         </div>
         <div
           className="absolute top-2 right-2 cursor-pointer"
@@ -44,6 +45,7 @@ export const CervezaCartaDetalle = (cerveza: CervezaInterface) => {
           />
         </div>
       </button>
+
       <div className="flex flex-col px-6 pb-6 pt-2">
         <button
           type="button"

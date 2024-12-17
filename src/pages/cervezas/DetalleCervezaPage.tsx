@@ -34,7 +34,9 @@ export const DetalleCervezaPage = () => {
   }
   const { stock, marca, nombre, tipo, precio, formato, descripcion, imagen } =
     cerveza;
-  const path_imagen = `${CERVEZAS_IMAGENES}${imagen}`;
+  const path_imagen = imagen
+    ? `${CERVEZAS_IMAGENES}${imagen}`
+    : "/assets/no-imagen.png";
   const recomendaciones = [
     {
       titulo: "Tipo de vaso",

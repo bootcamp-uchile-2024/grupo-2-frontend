@@ -54,14 +54,26 @@ const Navbar = () => {
   return (
     <div className="flex justify-center mt-10 w-full">
       <div className="flex justify-center items-center w-full lg:w-auto">
-        <button className="lg:hidden p-2 absolute top-2 left-2" onClick={() => setIsOpen(!isOpen)}>
+        <button
+          className="lg:hidden p-2 absolute top-2 left-2"
+          onClick={() => setIsOpen(!isOpen)}
+        >
           <img src="assets/icon-hamburger.svg" alt="Menu" />
         </button>
-        <div className={`flex flex-col lg:flex-row lg:flex-wrap w-full ${isOpen ? 'block' : 'hidden'} lg:flex`}>
+        <div
+          className={`flex flex-col lg:flex-row lg:flex-wrap w-full ${
+            isOpen ? "block" : "hidden"
+          } lg:flex`}
+        >
           {links.map((link, index) => {
             const { to, text, className, icon } = link;
             return (
-              <div key={index} className={`p-2 px-4 ${to == pathname ? "navbar-button-selected" : ""}`}>
+              <div
+                key={index}
+                className={`p-2 px-4 ${
+                  to == pathname ? "navbar-button-selected" : ""
+                }`}
+              >
                 <Link className={`${className} text-lato-m`} to={to}>
                   {icon && <img src={icon} alt="" className="me-2" />}
                   {text}

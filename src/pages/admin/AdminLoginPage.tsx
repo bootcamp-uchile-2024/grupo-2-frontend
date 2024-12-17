@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { LOGIN_ENDPOINT } from "@/config/api.config";
 import { NavbarDashboard } from "@/components/Dashboard/NavbarDashboard";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 interface IForm {
   rut: string;
@@ -28,14 +28,14 @@ export const AdminLoginPage = () => {
     const response = await fetch(LOGIN_ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ rut: rut, password: contrasenia }),
+      body: JSON.stringify({ correo: rut, password: contrasenia }),
     });
     if (response.ok) {
       const valor = await response.text();
       localStorage.setItem("token_jwt", valor);
-      navigate('/dashboard');
+      navigate("/dashboard");
     } else {
-      alert('Usuario o contraseña incorrecta');
+      alert("Usuario o contraseña incorrecta");
     }
   };
 
@@ -83,13 +83,13 @@ export const AdminLoginPage = () => {
             </div>
             <div className="space-y-6">
               <button
-                className="btn-formulario w-full" 
-                type="submit" 
+                className="btn-formulario w-full"
+                type="submit"
                 onClick={(e) => {
                   e.preventDefault();
                   handleLogin(form);
                 }}
-                >
+              >
                 Iniciar Sesión
               </button>
             </div>

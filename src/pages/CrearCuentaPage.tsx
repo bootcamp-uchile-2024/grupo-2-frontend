@@ -124,6 +124,7 @@ export const CrearCuentaPage = () => {
             nombre,
             apellido,
             rol,
+            correo_comprador,
             /* ...restoUsuario, */
           }),
         });
