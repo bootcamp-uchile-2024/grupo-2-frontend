@@ -1,6 +1,7 @@
 import { ChangeEvent, useEffect, useState} from "react";
 import { CERVEZAS_ENDPOINT, AMARGOR_ENDPOINT, TIPO_ENDPOINT } from "../../config/api.config";
 import { Amargor, Tipo} from "../../types";
+import { toast } from "react-toastify";
 
 export interface Cerveza {
   id: number;
@@ -274,6 +275,7 @@ export const CreaProductoPage = () => {
 
           const data = await response.text();
           console.log("Imagen cargada:", data);
+          toast.success("Producto creado con éxito");
         } catch (error) {
           console.error("Error al cargar la imagen:", error);
         }

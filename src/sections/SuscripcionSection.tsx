@@ -26,9 +26,9 @@ export const SuscripcionSection = () => {
             />
           </div>
         </div>
-        <div className="pt-8">
-          <button className="border-2 border-gray-500 text-gray-500 px-4 py-2 rounded hover:bg-yellow transition duration-300">
-            Me anoto en el CLUB!
+        <div className="flex justify-center pt-8">
+          <button className="hover:bg-purple hover:text-white flex items-center justify-center min-h-[48px] min-w-[132px] px-5 rounded-[8px] text-gray-dark text-custom-m font-bold border-[2px] border-purple-100">
+            <img src="assets/icon-club.svg" alt="" className="mr-2"/>Me anoto en el CLUB!
           </button>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { AgregarCarritoBoton } from "@/components/AgregarCarritoBoton";
-import { CERVEZAS_ENDPOINT } from "@/config/api.config";
+import { CERVEZAS_ENDPOINT, CERVEZAS_IMAGENES } from "@/config/api.config";
 import { useFetch } from "@/hooks/useFetch";
 import { MainLayout } from "@/layout/MainLayout";
 import { DescubreSection } from "@/sections/DescubreSection";
@@ -34,7 +34,7 @@ export const DetalleCervezaPage = () => {
   }
   const { stock, marca, nombre, tipo, precio, formato, descripcion, imagen } =
     cerveza;
-  const path_imagen = `/docker/development/${imagen}`;
+  const path_imagen = `${CERVEZAS_IMAGENES}${imagen}`;
   const recomendaciones = [
     {
       titulo: "Tipo de vaso",

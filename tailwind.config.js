@@ -4,6 +4,7 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/flyonui/dist/js/*.js"
   ],
   theme: {
     screens: {
@@ -68,5 +69,12 @@ export default {
       },
     }
   },
-  plugins: [require("tailwindcss-animate")],
+  flyonui: {
+    themes: ['light'],
+  },
+  plugins: [
+    require('tailwindcss-animate'),
+    require('flyonui'), 
+    require('flyonui/plugin')
+  ],
 }

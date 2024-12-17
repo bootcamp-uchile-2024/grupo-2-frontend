@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useEffect } from "react"; 
+import { useLocation, Routes, Route } from 'react-router-dom';
 import { CervezasPage } from "./pages/CervezasPage";
 import CervezasProvider from "./context/CervezasContext";
 import { SideMenu } from "./components/CartStore/SideMenu";
@@ -30,12 +31,29 @@ import { EditarCervezaPage } from "./pages/admin/EditarCervezaPage";
 import { ConfiguracionUsuarioPage } from "./pages/admin/ConfiguracionUsuarioPage";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 
-// Secciones
+import { IStaticMethods } from 'flyonui/flyonui';
+declare global {
+  interface Window {
+    HSStaticMethods: IStaticMethods;
+  }
+}
 
 function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const loadFlyonui = async () => {
+      await import('flyonui/flyonui');
+
+      window.HSStaticMethods.autoInit();
+    };
+
+    loadFlyonui();
+  }, [location.pathname]);
+
   return (
     <CartProvider>
-      <Router>
+
         <SideMenu />
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -59,10 +77,7 @@ function App() {
               <DashboardPage />
             </PrivateRoute>
           }>
-            <Route
-              index
-              element={<CreaProductoPage />}
-            />
+            <Route index element={<CreaProductoPage />} />
             <Route 
               path="editar-producto/:id" 
               element={<EditarCervezaPage />}
@@ -109,7 +124,6 @@ function App() {
           closeOnClick
           className={"text-xs"}
         />
-      </Router>
     </CartProvider>
   );
 }

@@ -1,5 +1,6 @@
 import { AddRemoveCerveza } from "@/components/AddRemoveBoton";
 import { ResumenCompra } from "@/components/ResumenCompra";
+import { CERVEZAS_IMAGENES } from "@/config/api.config";
 import { MainLayout } from "@/layout/MainLayout";
 import { CervezasDestacadas } from "@/sections/CervezasDestacadas";
 import { PedidoType } from "@/state/slices/carritoSlice";
@@ -11,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 const ItemResumenCarrito = (pedido: PedidoType) => {
   const { cerveza, cantidad } = pedido;
   const { nombre, precio, marca, formato, imagen } = cerveza;
-  const path_imagen = `/docker/development/${imagen}`;
+  const path_imagen = `${CERVEZAS_IMAGENES}${imagen}`;
 
   return (
     <div className="flex p-3 border-t-[1px] border-purple ">

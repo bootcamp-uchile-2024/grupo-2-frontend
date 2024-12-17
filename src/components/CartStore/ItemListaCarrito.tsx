@@ -1,11 +1,12 @@
 import { PedidoType } from "@/state/slices/carritoSlice";
 
 import { AddRemoveCerveza } from "../AddRemoveBoton";
+import { CERVEZAS_IMAGENES } from "@/config/api.config";
 
 export const ItemListaCarrito = (pedido: PedidoType) => {
   const { cerveza, cantidad } = pedido;
   const { nombre, precio, marca, formato, imagen } = cerveza;
-  const path_imagen = `/docker/development/${imagen}`;
+  const path_imagen = `${CERVEZAS_IMAGENES}${imagen}`;
 
   return (
     <div className="flex h-[134px] mb-2 ">
