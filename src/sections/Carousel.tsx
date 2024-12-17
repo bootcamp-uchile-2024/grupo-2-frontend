@@ -1,7 +1,7 @@
 export const CarouselSection = () => {
 
   return (
-    <div id="auto-play" data-carousel='{ "loadingClasses": "opacity-0", "dotsItemClasses": "carousel-dot", "isAutoPlay": true, "speed": 3000  }' className="relative w-full" >
+    <div id="auto-play" data-carousel='{ "loadingClasses": "opacity-0", "dotsItemClasses": "carousel-dot", "isAutoPlay": true, "speed": 3000}' className="relative w-full">
       <div className="carousel h-[300px] overflow-hidden rounded-none">
         <div className="carousel-body opacity-0 h-full">
           <div className="carousel-slide">

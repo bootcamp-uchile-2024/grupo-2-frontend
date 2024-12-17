@@ -92,7 +92,7 @@ export const CheckAge: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-40">
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-[999]">
       <div className="bg-white p-6 rounded-lg shadow-lg w-max">
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div className="flex items-center justify-center">
