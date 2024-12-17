@@ -2,6 +2,7 @@ import { CervezaInterface } from "@/types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AgregarCarritoBoton } from "../AgregarCarritoBoton";
+import { CERVEZAS_IMAGENES } from "@/config/api.config";
 
 export const CervezaCartaDetalle = (cerveza: CervezaInterface) => {
   const { nombre, marca, precio, stock, id, imagen } = cerveza;
@@ -15,7 +16,8 @@ export const CervezaCartaDetalle = (cerveza: CervezaInterface) => {
       .map((_, i) => i < estrellas);
   const navigate = useNavigate();
 
-  const path_imagen = `/docker/development/${imagen}`;
+  const path_imagen = `${CERVEZAS_IMAGENES}${imagen}`;
+
   return (
     <div className="flex flex-col space-y-2 max-w-[300px] max-h-[537px]   shadow-custom-card">
       <button
