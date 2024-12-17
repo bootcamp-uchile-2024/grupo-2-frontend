@@ -67,6 +67,9 @@ export default {
       fontWeight: {
         normal: 400, // Ya está por defecto, pero puedes asegurarte de incluirlo si lo necesitas
       },
+      zIndex: {
+        '999': '999',
+      },
     }
   },
   flyonui: {

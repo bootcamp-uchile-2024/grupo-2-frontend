@@ -92,7 +92,7 @@ export const CheckAge: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-[999]">
       <div className="bg-white p-6 rounded-lg shadow-lg w-max">
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div className="flex items-center justify-center">
@@ -137,11 +137,7 @@ export const CheckAge: React.FC = () => {
                 onChange={handleDateChange}
                 className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
               />
-              {isValidAge ? (
-                <p className="text-green-500 mt-4 font-semibold text-center">
-                  Bienvenido... eres mayor de edad.
-                </p>
-              ) : (
+              {isValidAge ? (<p className="text-green-500 mt-4 font-semibold text-center">Bienvenido... eres mayor de edad.</p>) : (
                 <p className="mt-4 text-center">{contentText}</p>
               )}
             </div>
