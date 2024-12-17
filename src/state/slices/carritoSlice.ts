@@ -12,6 +12,7 @@ export interface CarritoType {
   costo_envio: number;
   id_documento?: number;
   id_pedido?: number;
+  id_carrito?: number;
 }
 const initialState: CarritoType = {
   cervezas: [],
@@ -23,6 +24,10 @@ export const carritoSlice = createSlice({
   name: "carrito",
   initialState,
   reducers: {
+    createCarrito: (state, action) => {
+      console.log(action, action.payload);
+      state.id_carrito = action.payload.id_carrito;
+    },
     cleanCarrito: () => {
       return initialState;
     },
@@ -76,6 +81,11 @@ export const carritoSlice = createSlice({
   },
 });
 
-export const { addCerveza, removeCerveza, discountCerveza, cleanCarrito } =
-  carritoSlice.actions;
+export const {
+  addCerveza,
+  removeCerveza,
+  discountCerveza,
+  cleanCarrito,
+  createCarrito,
+} = carritoSlice.actions;
 export default carritoSlice.reducer;

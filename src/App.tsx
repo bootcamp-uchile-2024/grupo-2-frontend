@@ -35,6 +35,7 @@ import { IStaticMethods } from "flyonui/flyonui";
 import { useDispatch } from "react-redux";
 import { jwtDecode } from "jwt-decode";
 import { setUser } from "./state/slices/usuarioSlice";
+import { PagoPage } from "./pages/PagoPage";
 
 declare global {
   interface Window {
@@ -120,6 +121,7 @@ function App() {
           path="/confirmacion-correo"
           element={<ConfirmarmacionCorreoPage />}
         />
+        <Route path="/proceso-pago" element={<PagoPage />} />
       </Routes>
       <ToastContainer
         position="bottom-right"

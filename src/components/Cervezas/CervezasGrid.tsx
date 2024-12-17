@@ -250,8 +250,9 @@ export const CervezasGrid = () => {
     <div>
       <div className="flex align-center justify-end font-lato text-custom-s text-gray-dark">
         <div className="flex w-full max-w-[980px] flex-wrap gap-[10px] pr-4">
-          {filtros_aplicados.map((filtro) => (
+          {filtros_aplicados.map((filtro, index) => (
             <button
+              key={index}
               onClick={() => handleRemoveFilter(filtro.clave)}
               className="flex  bg-purple-100 px-[16px] py-[8px] rounded-[12px] text-lato-s-white "
             >

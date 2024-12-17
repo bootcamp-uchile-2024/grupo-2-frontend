@@ -6,7 +6,9 @@ import { CERVEZAS_IMAGENES } from "@/config/api.config";
 export const ItemListaCarrito = (pedido: PedidoType) => {
   const { cerveza, cantidad } = pedido;
   const { nombre, precio, marca, formato, imagen } = cerveza;
-  const path_imagen = `${CERVEZAS_IMAGENES}${imagen}`;
+  const path_imagen = imagen
+    ? `${CERVEZAS_IMAGENES}${imagen}`
+    : "/assets/no-imagen.png";
 
   return (
     <div className="flex h-[134px] mb-2 ">

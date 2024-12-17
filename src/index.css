@@ -95,6 +95,12 @@ h6 {
 .text-riffic-4xl {
   @apply font-light font-riffic text-custom-4xl text-gray-dark;
 }
+.text-headline-lato-2xl {
+  @apply font-bold font-lato text-purple-100 text-custom-2xl mt-5 mb-2;
+}
+.input-pago {
+  @apply mt-1 block w-full border rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 p-3;
+}
 .shadow-recomendaciones {
   box-shadow: 0px 4px 5px rgba(244, 180, 12, 0.5);
 }
@@ -151,5 +157,5 @@ h6 {
 }
 
 .active.carousel-dot {
-  background-color: #F3B409;
+  background-color: #f3b409;
 }

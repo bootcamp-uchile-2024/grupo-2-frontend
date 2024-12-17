@@ -21,11 +21,20 @@ export const CervezaCartaDetalle = (cerveza: CervezaInterface) => {
     : "/assets/no-imagen.png";
 
   return (
-    <div className="flex flex-col space-y-2 max-w-[300px] max-h-[537px]   shadow-custom-card">
+    <div className="relative flex flex-col space-y-2 max-w-[300px] max-h-[537px]   shadow-custom-card">
+      <div
+        className="absolute top-3 right-2  z-20 flex justify-end p-2 cursor-pointer  "
+        onClick={() => setFav(!fav)}
+      >
+        <img
+          src={`/assets/${fav ? "coolicon.svg" : "coolicon_null.svg"}`}
+          alt="corazon"
+        />
+      </div>
       <button
         onClick={() => navigate("/cervezas/" + id)}
         type="button"
-        className="border-2 min-h-[300px]  border-transparent hover:border-purple relative"
+        className="border-2 min-h-[300px]  border-transparent hover:border-purple relative "
       >
         <img src={path_imagen} alt={path_imagen} width={300} height={300} />
         <div className="absolute top-0 left-0 right-0 bottom-6 flex justify-center items-end opacity-0 hover:opacity-100 transition-opacity  ">
@@ -34,15 +43,6 @@ export const CervezaCartaDetalle = (cerveza: CervezaInterface) => {
           >
             Ver más
           </div>
-        </div>
-        <div
-          className="absolute top-2 right-2 cursor-pointer"
-          onClick={() => setFav(!fav)}
-        >
-          <img
-            src={`/assets/${fav ? "coolicon.svg" : "coolicon_null.svg"}`}
-            alt="corazon"
-          />
         </div>
       </button>
 

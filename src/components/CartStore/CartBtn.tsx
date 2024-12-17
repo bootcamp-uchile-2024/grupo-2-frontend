@@ -7,6 +7,7 @@ import { RootType } from "@/state/store";
 export const CartBtn = () => {
   const { openCartMenuStore } = cartMenuStore();
   const { cervezas } = useSelector((state: RootType) => state.carrito);
+
   const articulosTotales = cervezas.reduce(
     (acc, item) => acc + item.cantidad,
     0
@@ -18,7 +19,7 @@ export const CartBtn = () => {
         <button onClick={openCartMenuStore}>
           <FaCartShopping className="size-5 mr-2" />
           {articulosTotales > 0 ? (
-            <span className="absolute bottom-16 -right-2 bg-yellow rounded-full text-black w-5 h-5 flex items-center justify-center text-xs">
+            <span className="absolute top-3 left-3 bg-yellow rounded-full text-black w-5 h-5 flex items-center justify-center text-xs">
               {articulosTotales}
             </span>
           ) : null}
