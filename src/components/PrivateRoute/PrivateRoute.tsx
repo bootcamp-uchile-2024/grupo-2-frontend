@@ -1,17 +1,17 @@
 import { ReactNode } from "react";
-import { isAuth, userHasRole } from "../../services/getLogin";
+import { isAuth } from "@/utils/auth";
 
 interface PrivateRouteProps {
   children: ReactNode;
-  roles: string[];
+  // rol: string[];
 }
 
 export const PrivateRoute = (props: PrivateRouteProps) => {
   const auth = isAuth();
-  const hasRole = userHasRole(props.roles)
+  console.log("Auth:", auth); // Depuración
   return (
     <>
-      {auth && hasRole ? props.children : <p className="error">Acceso denegado</p>}
+      {auth ? props.children : <p className="error">Acceso denegado</p>}
     </>
   );
 }

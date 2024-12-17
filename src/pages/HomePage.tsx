@@ -5,16 +5,14 @@ import { PackSection } from "@/sections/PackSection";
 import { SuscripcionSection } from "@/sections/SuscripcionSection";
 import { CheckAge } from "@/components/CheckAge/CheckAge";
 import { CervezasDestacadas } from "@/sections/CervezasDestacadas";
+import { CarouselSection } from "@/sections/Carousel";
 
 export const HomePage = () => {
   return (
     <div>
       <MainLayout>
         <CheckAge />
-        <DescubreSection imageUrl="/assets/baner-atrevete.png" />
-        <div className="flex w-full justify-center items-center min-h-[180px]">
-          <img src="/assets/puntitos-slider.svg" alt="puntitos-sliders" />
-        </div>
+        <CarouselSection />
         <CervezasDestacadas />
         <PackSection />
         <SuscripcionSection />

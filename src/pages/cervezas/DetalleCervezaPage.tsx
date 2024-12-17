@@ -1,5 +1,5 @@
 import { AgregarCarritoBoton } from "@/components/AgregarCarritoBoton";
-import { CERVEZAS_ENDPOINT } from "@/config/api.config";
+import { CERVEZAS_ENDPOINT, CERVEZAS_IMAGENES } from "@/config/api.config";
 import { useFetch } from "@/hooks/useFetch";
 import { MainLayout } from "@/layout/MainLayout";
 import { DescubreSection } from "@/sections/DescubreSection";
@@ -34,7 +34,9 @@ export const DetalleCervezaPage = () => {
   }
   const { stock, marca, nombre, tipo, precio, formato, descripcion, imagen } =
     cerveza;
-  const path_imagen = `/docker/development/${imagen}`;
+  const path_imagen = imagen
+    ? `${CERVEZAS_IMAGENES}${imagen}`
+    : "/assets/no-imagen.png";
   const recomendaciones = [
     {
       titulo: "Tipo de vaso",
@@ -111,10 +113,10 @@ export const DetalleCervezaPage = () => {
           </div>
         </div>
         <div className="flex flex-wrap justify-between shadow-recomendaciones p-5 mt-10 border-2">
-          {recomendaciones.map((recomendacion) => {
+          {recomendaciones.map((recomendacion, index) => {
             const { titulo, descripcion, logo } = recomendacion;
             return (
-              <div className="max-w-[217px] p-2">
+              <div className="max-w-[217px] p-2" key={index}>
                 <div className="flex flex-row justify-center">
                   <img src={logo} alt={logo} />
                   <span className="text-riffic-2xl mx-2">{titulo}</span>

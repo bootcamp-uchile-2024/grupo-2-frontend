@@ -67,6 +67,12 @@ h6 {
 .text-lato-m {
   @apply text-gray-dark font-bold text-custom-m;
 }
+.text-lato-s-white {
+  @apply text-white font-bold text-custom-s;
+}
+.text-lato-m-white {
+  @apply text-white font-bold text-custom-m;
+}
 .text-lato-l {
   @apply text-gray-dark font-bold text-custom-l;
 }
@@ -88,6 +94,12 @@ h6 {
 }
 .text-riffic-4xl {
   @apply font-light font-riffic text-custom-4xl text-gray-dark;
+}
+.text-headline-lato-2xl {
+  @apply font-bold font-lato text-purple-100 text-custom-2xl mt-5 mb-2;
+}
+.input-pago {
+  @apply mt-1 block w-full border rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 p-3;
 }
 .shadow-recomendaciones {
   box-shadow: 0px 4px 5px rgba(244, 180, 12, 0.5);
@@ -139,6 +151,11 @@ h6 {
 .boton-descubre-carrito {
   @apply text-lato-m;
 }
+
 .boton-iniciar-carrito {
   @apply text-lato-m;
+}
+
+.active.carousel-dot {
+  background-color: #f3b409;
 }

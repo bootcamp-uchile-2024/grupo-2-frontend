@@ -1,7 +1,7 @@
 import { MainLayout } from "@/layout/MainLayout";
 import { Usuario } from "@/types";
 import { useState } from "react";
-import { validarRut } from "./CreaUsuarioPage";
+import { validarRut } from "./admin/CreaUsuarioPage";
 import { USERS_ENDPOINT } from "@/config/api.config";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,7 @@ export const CrearCuentaPage = () => {
     birthday: "",
     correo_comprador: "",
     re_contrasenia: "",
-    telefono_comprador: "",
+    rol: "user",
   });
   const [errores, setErrores] = useState<(string | undefined)[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -27,6 +27,7 @@ export const CrearCuentaPage = () => {
     re_contrasenia,
     birthday,
     correo_comprador,
+    rol,
   } = usuario;
   const navigate = useNavigate();
   const formularioRegistro = [
@@ -48,7 +49,7 @@ export const CrearCuentaPage = () => {
     },
     {
       label: "Correo electronico",
-      name: "email",
+      name: "correo_comprador",
       type: "email",
       placeholder: "Ejemplo: nombre@correo.cl",
       value: correo_comprador,
@@ -72,7 +73,7 @@ export const CrearCuentaPage = () => {
     },
     {
       label: "Contraseña",
-      name: "password",
+      name: "contrasenia",
       type: "password",
       placeholder: "Contraseña",
       value: contrasenia,
@@ -80,7 +81,7 @@ export const CrearCuentaPage = () => {
     },
     {
       label: "Confirmar contraseña",
-      name: "re_password",
+      name: "re_contrasenia",
       type: "password",
       placeholder: "Repetir Contraseña",
       value: re_contrasenia,
@@ -94,6 +95,7 @@ export const CrearCuentaPage = () => {
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(findEmptyStrings(usuario));
     const erroresLista = findEmptyStrings(usuario).map((key) => {
       return formularioRegistro.find((input) => input.name == key)
         ?.error_message;
@@ -107,7 +109,7 @@ export const CrearCuentaPage = () => {
     }
     if (erroresLista.length === 0) {
       setLoading(true);
-      const { contrasenia, ...restoUsuario } = usuario;
+      const { contrasenia } = usuario;
       const edad = new Date().getFullYear() - new Date(birthday).getFullYear();
       const tipo_suscripcion = "BRONZE";
       try {
@@ -118,7 +120,12 @@ export const CrearCuentaPage = () => {
             contrasenia,
             edad,
             tipo_suscripcion,
-            ...restoUsuario,
+            rut,
+            nombre,
+            apellido,
+            rol,
+            correo_comprador,
+            /* ...restoUsuario, */
           }),
         });
         if (response.ok) {
@@ -134,6 +141,7 @@ export const CrearCuentaPage = () => {
         setLoading(false);
       }
     } else {
+      console.log(erroresLista);
       setErrores(erroresLista);
     }
   };

@@ -31,7 +31,7 @@ export const SideMenu = () => {
 
       <div
         className={clsx(
-          "fixed p-5 right-0 top-0 w-full md:w-[420px]  bg-white z-20 shadow-2xl transform transition-all duration-300",
+          "fixed p-5 right-0 top-0 w-full md:w-[420px]  bg-white z-30 shadow-2xl transform transition-all duration-300",
           {
             "translate-x-full": !cartMenu,
             "translate-x-0": cartMenu,
@@ -79,8 +79,9 @@ export const SideMenu = () => {
 const CarritoVacio = () => {
   const closeCartMenuStore = cartMenuStore((state) => state.closeCartMenuStore);
   const navigate = useNavigate();
+  const { token } = useSelector((state: RootType) => state.usuario);
   return (
-    <div className="flex flex-col p-2">
+    <div className="flex flex-col p-2 ">
       <button
         onClick={closeCartMenuStore}
         className="text-3xl text-neutral-800 flex justify-end "
@@ -92,25 +93,28 @@ const CarritoVacio = () => {
           <span className="text-purple">Tu carrito esta vacio</span>
         </div>
         <ButonElegirProductos title={"Elegir productos"} outlined={false} />
-        <div className="text-lato-2xl ">
-          {" "}
-          <span className="text-purple">¿Tienes una cuenta?</span>
-        </div>
-        <div className="text-lato-m  text-center">
-          <span className="text-purple">
-            Inicia sesión para finalizar tus compras con mayor rapidez
-          </span>
-        </div>
-        <button
-          className="flex boton-iniciar-carrito"
-          onClick={() => {
-            closeCartMenuStore();
-            navigate("/login");
-          }}
-        >
-          <img src={"/assets/User.svg"} />
-          Iniciar sesión
-        </button>
+        {token ? null : (
+          <>
+            <div className="text-lato-2xl ">
+              <span className="text-purple">¿Tienes una cuenta?</span>
+            </div>
+            <div className="text-lato-m  text-center">
+              <span className="text-purple">
+                Inicia sesión para finalizar tus compras con mayor rapidez
+              </span>
+            </div>
+            <button
+              className="flex boton-iniciar-carrito"
+              onClick={() => {
+                closeCartMenuStore();
+                navigate("/login");
+              }}
+            >
+              <img src={"/assets/User.svg"} />
+              Iniciar sesión
+            </button>
+          </>
+        )}
         <div
           className="w-[370px] h-[300px] bg-cover bg-center bg-no-repeat flex items-end justify-center "
           style={{

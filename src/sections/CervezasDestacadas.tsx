@@ -17,7 +17,7 @@ export const CervezasDestacadas = ({ title = "DESTACADAS" }) => {
   <div></div>;
   return (
     <div className="section">
-      <div className="container mx-auto text-center py-5 pb-10">
+      <div className="container mx-auto text-center mt-24 py-5 pb-10">
         <h1 className="text-riffic-4xl mb-5">{title}</h1>
         <div className="flex flex-wrap justify-center gap-4 md:flex-nowrap">
           {cervezas?.map((cerveza) => (

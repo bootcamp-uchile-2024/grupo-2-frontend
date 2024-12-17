@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Usuario } from "../types";
+import { Usuario } from "../../types";
 import { Link } from "react-router-dom";
 import { USERS_ENDPOINT } from "@/config/api.config";
 
@@ -35,14 +35,14 @@ export const ListadoUsuarioPage = () => {
         method: "DELETE",
       });
       if (!response.ok) {
-        throw new Error("Error eliminando el usuario");
+        throw new Error("Error desactivando el usuario");
       }
-      alert("Usuario eliminado exitosamente");
+      alert("Usuario desactivado exitosamente");
       // Aquí puedes agregar lógica para actualizar la lista de usuarios después de la eliminación
       setUsuarios(usuarios.filter((usuario) => usuario.rut !== rut));
     } catch (error) {
-      console.error("Error eliminando el usuario:", error);
-      alert("Hubo un error al eliminar el usuario");
+      console.error("Error desactivando el usuario:", error);
+      alert("Hubo un error al desactivar el usuario");
     }
   };
 
@@ -53,7 +53,7 @@ export const ListadoUsuarioPage = () => {
       </h1>
       <div className="mt-4">
         <Link to="/dashboard/crea-usuario" className="btn-formulario">
-          Ingresar usuario producto
+          Ingresar usuario
         </Link>
       </div>
       <div className="mt-4">
@@ -97,11 +97,9 @@ export const ListadoUsuarioPage = () => {
                   {usuario.telefono_comprador}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <button
-                    className="btn-formulario-outline"
-                    onClick={() => handleEliminar(usuario.rut)}
-                  >
-                    Eliminar
+                  {/* No hay endpoint para desactivar usuario */}
+                  <button className="btn-formulario-outline disabled" onClick={() => handleEliminar(usuario.rut)}>
+                    Desactivar
                   </button>
                 </td>
               </tr>

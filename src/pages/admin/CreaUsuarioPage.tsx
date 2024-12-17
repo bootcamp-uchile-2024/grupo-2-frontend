@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { USERS_ENDPOINT } from "../config/api.config";
-import { UsuarioPerfil } from "../types";
+import { USERS_ENDPOINT } from "../../config/api.config";
+import { UsuarioPerfil } from "../../types";
 
 export const validarRut = (rut: string): boolean => {
   const rutLimpio = rut.replace(/\./g, "").replace(/-/g, "");
@@ -42,6 +42,7 @@ export const CreaUsuarioPage = () => {
     edad: 0,
     tipo_suscripcion: "",
     birthday: "",
+    rol: "user", // Se establece el rol por defecto como "user"
   });
 
   const [errorRut, setErrorRut] = useState<string | null>(null);
@@ -161,6 +162,12 @@ export const CreaUsuarioPage = () => {
       setErrorTelefonoComprador(null);
     }
 
+    // Asegurarse de que el rol sea "user" si está vacío
+    const dataToSubmit = {
+      ...usuario,
+      rol: usuario.rol || "admin",
+    };
+
     if (!hasError) {
       try {
         const response = await fetch(USERS_ENDPOINT, {
@@ -168,7 +175,7 @@ export const CreaUsuarioPage = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(usuario),
+          body: JSON.stringify(dataToSubmit),
         });
 
         if (!response.ok) {
@@ -194,6 +201,7 @@ export const CreaUsuarioPage = () => {
       edad: 0,
       tipo_suscripcion: "",
       birthday: "",
+      rol: "user",
     });
 
     // Limpiar los mensajes de error

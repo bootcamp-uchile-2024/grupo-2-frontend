@@ -1,10 +1,11 @@
-import { CERVEZAS_ENDPOINT } from "@/config/api.config";
-import { cleanCarrito } from "@/state/slices/carritoSlice";
+import { API_URL, CERVEZAS_ENDPOINT } from "@/config/api.config";
+import { cleanCarrito, createCarrito } from "@/state/slices/carritoSlice";
 import { RootType } from "@/state/store";
 import cartMenuStore from "@/store/cartMenuStore";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ButonElegirProductos } from "./ButtonElegirProductos";
+import { toast } from "react-toastify";
 
 export const ResumenCompra = ({
   articulos,
@@ -19,6 +20,9 @@ export const ResumenCompra = ({
   const navigate = useNavigate();
   const closeCartMenuStore = cartMenuStore((state) => state.closeCartMenuStore);
   const dispatch = useDispatch();
+  const { id_carrito: existe_carrito } = useSelector(
+    (state: RootType) => state.carrito
+  );
   return (
     <div className="flex flex-col h-full justify-between gap-y-2">
       <div className="space-y-1">
@@ -55,32 +59,40 @@ export const ResumenCompra = ({
           type="button"
           onClick={async () => {
             if (finalizar) {
-              const promesas: Promise<Response>[] = cervezas.map(
-                async (pedido) => {
-                  const { cantidad, cerveza } = pedido;
-                  const { id } = cerveza;
-
-                  return await fetch(`${CERVEZAS_ENDPOINT}/${id}`, {
-                    method: "PATCH",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                      ...cerveza,
-                      amargor: cerveza.amargor.nivel,
-                      formato: cerveza.formato.id,
-                      imagen: "test.jpg",
-                      stock: cerveza.stock - cantidad,
+              const response = await fetch(
+                `${API_URL}/carrito/${existe_carrito}/cervezas`,
+                {
+                  method: "PATCH",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    items: cervezas.map((elemento) => {
+                      const { cantidad, cerveza } = elemento;
+                      return {
+                        id_cerveza: cerveza.id,
+                        cantidad: cantidad,
+                        precio_venta: cerveza.precio,
+                      };
                     }),
-                  });
+                  }),
                 }
               );
-              const resultados = await Promise.all(promesas);
-              const todosExitosos = resultados.every((response) => response.ok);
-              if (todosExitosos) {
-                dispatch(cleanCarrito());
+              if (response.ok) {
+                navigate("/proceso-pago");
+              } else {
+                toast.error("Hubo un error al finalizar la compra");
               }
+            } else {
+              if (!existe_carrito) {
+                const response = await fetch(`${API_URL}/carrito`, {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                });
+                const id_carrito = await response.text();
+                dispatch(createCarrito({ id_carrito }));
+              }
+              closeCartMenuStore();
+              navigate("/resumen-carrito");
             }
-            closeCartMenuStore();
-            navigate("/resumen-carrito");
           }}
         >
           <img src="/assets/credit-card.svg" alt="" className="mx-2" />

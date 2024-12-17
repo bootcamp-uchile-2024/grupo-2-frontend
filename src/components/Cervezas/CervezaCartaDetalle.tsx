@@ -2,6 +2,7 @@ import { CervezaInterface } from "@/types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AgregarCarritoBoton } from "../AgregarCarritoBoton";
+import { CERVEZAS_IMAGENES } from "@/config/api.config";
 
 export const CervezaCartaDetalle = (cerveza: CervezaInterface) => {
   const { nombre, marca, precio, stock, id, imagen } = cerveza;
@@ -14,23 +15,38 @@ export const CervezaCartaDetalle = (cerveza: CervezaInterface) => {
       .fill(false)
       .map((_, i) => i < estrellas);
   const navigate = useNavigate();
-  const path_imagen = `/docker/development/${imagen}`;
+
+  const path_imagen = imagen
+    ? `${CERVEZAS_IMAGENES}${imagen}`
+    : "/assets/no-imagen.png";
+
   return (
-    <div className="flex flex-col space-y-2 max-w-[300px] shadow-custom-card">
+    <div className="relative flex flex-col space-y-2 max-w-[300px] max-h-[537px]   shadow-custom-card">
+      <div
+        className="absolute top-3 right-2  z-20 flex justify-end p-2 cursor-pointer  "
+        onClick={() => setFav(!fav)}
+      >
+        <img
+          src={`/assets/${fav ? "coolicon.svg" : "coolicon_null.svg"}`}
+          alt="corazon"
+        />
+      </div>
       <button
-        type="button"
         onClick={() => navigate("/cervezas/" + id)}
-        className="border-2 min-h-[300px] border-transparent hover:border-purple"
+        type="button"
+        className="border-2 min-h-[300px]  border-transparent hover:border-purple relative "
       >
         <img src={path_imagen} alt={path_imagen} width={300} height={300} />
-      </button>
-      <div className="flex flex-col px-6 pb-6 pt-2">
-        <div className="flex justify-end" onClick={() => setFav(!fav)}>
-          <img
-            src={`/assets/${fav ? "coolicon.svg" : "coolicon_null.svg"}`}
-            alt="corazon"
-          />
+        <div className="absolute top-0 left-0 right-0 bottom-6 flex justify-center items-end opacity-0 hover:opacity-100 transition-opacity  ">
+          <div
+            className={`bg-purple-200 text-white flex items-center justify-center min-h-[48px] min-w-[210px] px-5 rounded-[8px] text-gray-dark text-custom-m font-bold  `}
+          >
+            Ver más
+          </div>
         </div>
+      </button>
+
+      <div className="flex flex-col px-6 pb-6 pt-2">
         <button
           type="button"
           className="text-left text-purple font-bold font-lato text-custom-l"

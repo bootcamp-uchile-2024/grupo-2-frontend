@@ -1,17 +1,26 @@
 import { AddRemoveCerveza } from "@/components/AddRemoveBoton";
 import { ResumenCompra } from "@/components/ResumenCompra";
+import {
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+  Accordion,
+} from "@/components/ui/accordion";
+import { CERVEZAS_IMAGENES } from "@/config/api.config";
 import { MainLayout } from "@/layout/MainLayout";
 import { CervezasDestacadas } from "@/sections/CervezasDestacadas";
 import { PedidoType } from "@/state/slices/carritoSlice";
 import { RootType } from "@/state/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const ItemResumenCarrito = (pedido: PedidoType) => {
   const { cerveza, cantidad } = pedido;
   const { nombre, precio, marca, formato, imagen } = cerveza;
-  const path_imagen = `/docker/development/${imagen}`;
+  const path_imagen = imagen
+    ? `${CERVEZAS_IMAGENES}${imagen}`
+    : "/assets/no-imagen.png";
 
   return (
     <div className="flex p-3 border-t-[1px] border-purple ">
@@ -43,6 +52,7 @@ export const CarritoPage = () => {
   const { cervezas, total_pagar } = useSelector(
     (state: RootType) => state.carrito
   );
+  const [instrucciones, setInstrucciones] = useState("");
   const articulos = cervezas.reduce((acc, item) => acc + item.cantidad, 0);
   const navigate = useNavigate();
   useEffect(() => {
@@ -50,17 +60,32 @@ export const CarritoPage = () => {
       navigate("/");
     }
   }, [cervezas]);
-  /* flex m-auto justify-center border-2 max-w-[1280px] */
   return (
     <MainLayout>
       <div className="flex m-auto justify-center flex-wrap">
         <div className="min-w-[450px] w-[700px]  ">
           <div className="border-b-[1px] border-purple overflow-y-auto max-h-[440px]">
-            {cervezas.map((pedido) => (
-              <ItemResumenCarrito {...pedido} />
+            {cervezas.map((pedido, index) => (
+              <ItemResumenCarrito {...pedido} key={index} />
             ))}
           </div>
-          <div>Instrucciones especiales</div>
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+              <AccordionTrigger className="text-lato-s">
+                Instrucciones especiales:
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="border-2">
+                  <textarea
+                    className="w-full"
+                    placeholder="Ingresa acá las instrucciones especiales"
+                    value={instrucciones}
+                    onChange={(e) => setInstrucciones(e.target.value)}
+                  />
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
           <div
             className="flex items-center justify-center my-2 min-h-[200px] "
             style={{ backgroundImage: `url(/assets/pattern-carrito.png)` }}
