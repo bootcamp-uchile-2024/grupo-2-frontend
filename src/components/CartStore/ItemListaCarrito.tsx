@@ -18,11 +18,11 @@ export const ItemListaCarrito = (pedido: PedidoType) => {
       <div className="flex flex-col w-full space-y-1">
         <div className="flex flex-col text-gray-dark text-custom-s font-bold">
           <span>{nombre}</span>
-          <span>{marca}</span>
+          <span className=" text-gray-dark-67">{marca}</span>
         </div>
 
         <div className="text-gray-dark-67 text-custom-xs">{formato.id}</div>
-        <div className="text-gray-dark-67 text-custom-xs">
+        <div className="text-gray-dark-67 text-custom-xs font-bold">
           ${precio.toLocaleString("es-CL")}
         </div>
 

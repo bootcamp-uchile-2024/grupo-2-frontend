@@ -1,9 +1,23 @@
 import { CERVEZAS_IMAGENES } from "@/config/api.config";
 import { MainLayout } from "@/layout/MainLayout";
 import { RootType } from "@/state/store";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
+interface IPedidosDatos {
+  rut: string;
+  nombre: string;
+  apellido: string;
+  correo_comprador: string;
+}
 export const PagoPage = () => {
+  const [usuario, setUsuario] = useState<IPedidosDatos>({
+    rut: "",
+    nombre: "",
+    apellido: "",
+    correo_comprador: "",
+  });
   const inputListPago = [
     {
       label: "Nombre",
@@ -72,8 +86,13 @@ export const PagoPage = () => {
   const { cervezas, total_pagar } = useSelector(
     (state: RootType) => state.carrito
   );
-
   const articulos = cervezas.reduce((acc, item) => acc + item.cantidad, 0);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (cervezas.length === 0) {
+      navigate("/");
+    }
+  }, []);
   return (
     <MainLayout>
       <div className="flex flex-wrap m-auto p-5 ">
@@ -158,10 +177,16 @@ export const PagoPage = () => {
               </label>
             </div>
           </div>
-          <div>
-            <h2>Acciones</h2>
-            <button>Pagar ahora</button>
-            <button>Vovler al carro</button>
+          <div className="flex flex-col items-center">
+            <button
+              type="button"
+              onClick={() => console.log("hola")}
+              className="flex justify-center gap-[10px] btn-primary min-w-[280px] my-[24px] "
+            >
+              <img src="/assets/credit-card-black.svg" alt="credit-card" />
+              Pagar ahora
+            </button>
+            <button>Volver al carro</button>
           </div>
         </div>
         <div>
@@ -188,11 +213,15 @@ export const PagoPage = () => {
                       />
                     </div>
 
-                    <div className="flex flex-col w-full p-2">
-                      <div>{nombre}</div>
-                      <div>{formato.id}</div>
+                    <div className="flex flex-col text-gray-dark text-custom-s font-bold">
+                      <span>
+                        {nombre} x {cantidad}
+                      </span>
+                      <div className="text-gray-dark-67 text-custom-xs">
+                        {formato.id}
+                      </div>
                     </div>
-                    <div className=" flex justify-end items-center min-w-[80px]">
+                    <div className="flex justify-end min-w-[80px] text-gray-dark font-bold">
                       ${(precio * cantidad).toLocaleString("es-CL")}
                     </div>
                   </div>
@@ -236,7 +265,10 @@ export const PagoPage = () => {
               </div>
             </div>
             <div>
-              <div>Impuestos</div>
+              <div>
+                Incluye ${(total_pagar * 0.19).toLocaleString("es-CL")} de
+                impuestos
+              </div>
             </div>
           </div>
         </div>
