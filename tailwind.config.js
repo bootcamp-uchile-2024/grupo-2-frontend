@@ -44,6 +44,7 @@ export default {
 				"gray-G05": "#000000",
 				"gray-100": "#D9D8DB",
 				"white-100": "#FBFAFC",
+				"gray-figma": "#E5E5E5"
 
 			},
 			fontFamily: {

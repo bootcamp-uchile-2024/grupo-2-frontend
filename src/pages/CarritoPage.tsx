@@ -64,7 +64,7 @@ export const CarritoPage = () => {
     <MainLayout>
       <div className="flex m-auto justify-center flex-wrap">
         <div className="min-w-[450px] w-[700px]  ">
-          <div className="border-b-[1px] border-purple overflow-y-auto max-h-[440px]">
+          <div className="border-b-[1px] border-gray overflow-y-auto max-h-[440px]">
             {cervezas.map((pedido, index) => (
               <ItemResumenCarrito {...pedido} key={index} />
             ))}

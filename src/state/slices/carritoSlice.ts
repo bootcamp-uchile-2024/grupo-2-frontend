@@ -12,6 +12,7 @@ export interface CarritoType {
   costo_envio: number;
   id_documento?: number;
   id_pedido?: number;
+  rut?: string;
   id_carrito?: number;
 }
 const initialState: CarritoType = {

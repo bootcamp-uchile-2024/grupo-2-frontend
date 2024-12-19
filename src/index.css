@@ -26,6 +26,9 @@ h6 {
     --radius: 0.5rem;
   }
 }
+.titulo-pasarela {
+  @apply font-light text-riffic-2xl mb-2;
+}
 .btn-primary {
   @apply bg-yellow text-gray-dark text-lato-m rounded-[8px] py-[8px] px-[16px];
 }
