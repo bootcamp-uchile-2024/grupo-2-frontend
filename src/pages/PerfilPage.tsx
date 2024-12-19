@@ -94,8 +94,9 @@ export const Perfil = () => {
           <div>
               {perfilSideBar.map((item) => {
                 const { texto, icono, action } = item;
+                const uniqueId = `${texto}-${Math.random().toString(36).substr(2, 9)}`;
                 return (
-                  <div>
+                  <div key={uniqueId}>
                     <button type="button" onClick={action} className="flex py-4" key={texto}>
                       <img
                         src={icono}
@@ -136,9 +137,12 @@ export const Perfil = () => {
                   <div className="border p-4 rounded-md">
                     {direcciones.length > 0 ? (
                       <ul>
-                        {direcciones.map((direccion, index) => (
-                          <li key={index}>
-                            {direccion.calle} {direccion.numero}, {direccion.departamento}, {direccion.codigo_Postal}, {direccion.estado}
+                        {direcciones.map((direccion) => (
+                          <li key={direccion.rut_usuario}>
+                            {direccion.calle} {direccion.numero}, 
+                            {direccion.departamento}, 
+                            {direccion.codigo_Postal}, 
+                            {direccion.estado}
                           </li>
                         ))}
                       </ul>
