@@ -5,13 +5,13 @@ import { NavbarDashboard } from "@/components/Dashboard/NavbarDashboard";
 import { useNavigate } from "react-router-dom";
 
 interface IForm {
-  rut: string;
+  correo: string;
   contrasenia: string;
 }
 
 export const AdminLoginPage = () => {
   const [form, setForm] = useState<IForm>({
-    rut: "",
+    correo: "",
     contrasenia: "",
   });
 
@@ -24,11 +24,11 @@ export const AdminLoginPage = () => {
     });
   };
 
-  const handleLogin = async ({ rut, contrasenia }: IForm) => {
+  const handleLogin = async ({ correo, contrasenia }: IForm) => {
     const response = await fetch(LOGIN_ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ correo: rut, password: contrasenia }),
+      body: JSON.stringify({ correo: correo, password: contrasenia }),
     });
     if (response.ok) {
       const valor = await response.text();
@@ -56,13 +56,13 @@ export const AdminLoginPage = () => {
           <form className="space-y-6">
             <div>
               <label className="block" htmlFor="rut">
-                RUT
+                Correo
               </label>
               <input
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 "
                 type="text"
-                placeholder="Ejemplo: 12345678-9"
-                name="rut"
+                placeholder="Ejemplo: mail@mail.cl"
+                name="correo"
                 onChange={handleChange}
               />
             </div>
