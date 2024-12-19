@@ -28,7 +28,7 @@ export const PagoPage = () => {
   const carrito = useSelector((state: RootType) => state.carrito);
   // ESTADOS DE LA COMPONENTE
   const [loading, setLoading] = useState<boolean>(false);
-  const [id_direccion, setIdDireccion] = useState<number>(0);
+
   const [errores, setErrores] = useState<{ name: string; message: string }[]>(
     []
   );
@@ -162,7 +162,6 @@ export const PagoPage = () => {
     setErrores(erroresList);
     if (errores.length > 0) {
       console.log(errores);
-
       toast.error("Completa tus datos");
       return;
     }
@@ -200,23 +199,19 @@ export const PagoPage = () => {
           }
         );
       }
-      const response_direccion = await fetch(`${API_URL}/direcciones`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          calle,
-          departamento,
-
-          id_comuna: comuna,
-          numero: parseInt(numero),
-          rut_usuario: rut,
-        }),
-      });
-      const { id } = await response_direccion.json();
-      setIdDireccion(id);
-
-      console.log("no hay token");
     }
+    const response_direccion = await fetch(`${API_URL}/direcciones`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        calle,
+        departamento,
+        id_comuna: comuna.replace(" ", ""),
+        numero: parseInt(numero),
+        rut_usuario: rut,
+      }),
+    });
+    const { id: id_direccion } = await response_direccion.json();
     const response_rut = await fetch(`${API_URL}/carrito/${id_carrito}/Rut`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },

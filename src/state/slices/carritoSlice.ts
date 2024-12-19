@@ -26,16 +26,12 @@ export const carritoSlice = createSlice({
   initialState,
   reducers: {
     createCarrito: (state, action) => {
-      console.log(action, action.payload);
       state.id_carrito = action.payload.id_carrito;
     },
     cleanCarrito: () => {
       return initialState;
     },
     addCerveza: (state, action) => {
-      const { cervezas } = state;
-      console.log(cervezas);
-
       const { id } = action.payload.cerveza;
       const { cantidad } = action.payload;
       const cervezaExistente = state.cervezas.find(
@@ -45,7 +41,6 @@ export const carritoSlice = createSlice({
       if (cervezaExistente) {
         cervezaExistente.cantidad += cantidad;
       } else {
-        console.log("cerveza", action.payload);
         state.cervezas.push({
           cerveza: action.payload.cerveza,
           cantidad,

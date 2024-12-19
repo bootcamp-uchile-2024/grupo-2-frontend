@@ -140,7 +140,6 @@ export const CrearCuentaPage = () => {
         setLoading(false);
       }
     } else {
-      console.log(erroresLista);
       setErrores(erroresLista);
     }
   };
