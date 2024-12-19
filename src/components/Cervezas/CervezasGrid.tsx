@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootType } from "@/state/store";
 import { useFetch } from "@/hooks/useFetch";
@@ -11,6 +11,8 @@ export const CervezasGrid = () => {
   const [cantproductos, setCantidadProductos] = useState<number>(12);
   const [pagina, setPagina] = useState<number>(1);
   const [cervezaBuscada, setCervezaBuscada] = useState<string>("");
+  const [cervezaBuscadaDebounced, setCervezaBuscadaDebounced] =
+    useState<string>("");
   const [origen, setOrigen] = useState<string[]>([]);
   const [color, setColor] = useState<string[]>([]);
   const [grados, setGrados] = useState<string>("");
@@ -21,7 +23,7 @@ export const CervezasGrid = () => {
   const queryParams = new URLSearchParams({
     pagina: pagina.toString(),
     cantproductos: cantproductos.toString(),
-    cerveza: cervezaBuscada,
+    buscar: cervezaBuscadaDebounced,
     origen: origen.join(","),
     color: color.join(","),
     grados,
@@ -31,16 +33,20 @@ export const CervezasGrid = () => {
   });
 
   const url_cervezas = `${CERVEZAS_ENDPOINT}?${queryParams.toString()}`;
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setCervezaBuscadaDebounced(cervezaBuscada);
+    }, 500);
 
+    // Limpia el timeout si `cervezaBuscada` cambia antes de que termine el tiempo
+    return () => clearTimeout(handler);
+  }, [cervezaBuscada]);
   const {
-    data: cervezas,
+    data: cervezas = [],
     loading,
     error,
   } = useFetch<CervezaInterface[]>(url_cervezas);
-  const cervezasFiltradas =
-    cervezas?.filter((obj) =>
-      obj.nombre.toLowerCase().includes(cervezaBuscada.toLowerCase())
-    ) || [];
+
   const handleChangeCerveza = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCervezaBuscada(e.target.value);
   };
@@ -210,15 +216,15 @@ export const CervezasGrid = () => {
 
   if (error) return <div>Error al cargar las cervezas: {error}</div>;
   const cervezasSeccion =
-    cervezasFiltradas?.length === 0 ? (
+    cervezas?.length === 0 ? (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  max-w-[1296px] mx-auto mt-8 gap-8 ">
         <div className="flex justify-center col-start-1 md:col-start-1 lg:col-start-2 min-w-[300px] text-center mt-16 px-5">
           <h1>No hay cervezas disponibles</h1>
         </div>
       </div>
     ) : (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  max-w-[1296px] mx-auto mt-8 gap-8 ">
-        {cervezasFiltradas?.map((cerveza) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  max-w-[1296px] mx-3 mt-8 gap-8 ">
+        {cervezas?.map((cerveza) => (
           <CervezaCartaDetalle {...cerveza} key={cerveza.id} />
         ))}
       </div>
@@ -331,9 +337,9 @@ export const CervezasGrid = () => {
           <div className="flex flex-col items-center mt-6">
             <span className="font-lato text-custom-s text-gray-dark">
               Mostrando{" "}
-              {cantproductos < cervezasFiltradas?.length
+              {cantproductos < (cervezas?.length || 0)
                 ? cantproductos
-                : cervezasFiltradas?.length}{" "}
+                : cervezas?.length}{" "}
               artículos{" "}
             </span>
             <Pagination
