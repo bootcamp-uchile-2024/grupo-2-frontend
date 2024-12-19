@@ -29,17 +29,28 @@ export const ListadoUsuarioPage = () => {
     return <div>Cargando...</div>;
   }
 
-  const handleEliminar = async (rut: string) => {
+  const handleDesactivar = async (rut: string, isActive: boolean) => {
     try {
-      const response = await fetch(`${USERS_ENDPOINT}${rut}`, {
-        method: "DELETE",
+      const response = await fetch(`${USERS_ENDPOINT}/${rut}/estado`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ is_active: !isActive }),
       });
       if (!response.ok) {
-        throw new Error("Error desactivando el usuario");
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+          const errorText = await response.json();
+          throw new Error(`Error desactivando el usuario: ${errorText}`);
+        }
       }
-      alert("Usuario desactivado exitosamente");
-      // Aquí puedes agregar lógica para actualizar la lista de usuarios después de la eliminación
-      setUsuarios(usuarios.filter((usuario) => usuario.rut !== rut));
+      alert(`Usuario ${isActive ? "desactivado" : "activado"} exitosamente`);
+      setUsuarios(
+        usuarios.map((usuario) =>
+          usuario.rut === rut ? { ...usuario, is_active: !isActive } : usuario
+        )
+      );
     } catch (error) {
       console.error("Error desactivando el usuario:", error);
       alert("Hubo un error al desactivar el usuario");
@@ -48,7 +59,7 @@ export const ListadoUsuarioPage = () => {
 
   return (
     <div className="w-full p-8">
-      <h1 className="mb-4 font-lato  text-purple-100 text-custom-lg font-normal">
+      <h1 className="mb-4 font-lato text-purple-100 text-custom-lg font-normal">
         Listado de Usuarios
       </h1>
       <div className="mt-4">
@@ -97,9 +108,11 @@ export const ListadoUsuarioPage = () => {
                   {usuario.telefono_comprador}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  {/* No hay endpoint para desactivar usuario */}
-                  <button className="btn-formulario-outline disabled" onClick={() => handleEliminar(usuario.rut)}>
-                    Desactivar
+                  <button
+                    className="btn-formulario-outline"
+                    onClick={() => handleDesactivar(usuario.rut, usuario.is_active)}
+                  >
+                    {usuario.is_active ? "Desactivar" : "Activar"}
                   </button>
                 </td>
               </tr>

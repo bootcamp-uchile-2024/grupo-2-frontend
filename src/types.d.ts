@@ -46,6 +46,7 @@ export interface Usuario {
   telefono_comprador?: string;
   birthday: string;
   rol: string;
+  is_active: boolean;
 }
 export interface UsuarioPerfil extends Usuario {
   edad: number;
