@@ -18,12 +18,8 @@ services:
     image: flyway/flyway:10.20.1-alpine
     volumes:
       - ../../../grupo-2-backend/db/script-creacion:/flyway/sql
-    command: >
-      -url=jdbc:mysql://db:${DB_PORT}/${DB_NAME}?allowPublicKeyRetrieval=true
-      -user=${DB_USER}
-      -password=${DB_PASS_ROOT}
-      -connectRetries=60
-      migrate
+    command: -url=jdbc:mysql://db:${DB_PORT}/${DB_NAME}?allowPublicKeyRetrieval=true -user=${DB_USER} -password=${DB_PASS_ROOT} -connectRetries=60 migrate
+
     container_name: flyway
     depends_on:
       db:
