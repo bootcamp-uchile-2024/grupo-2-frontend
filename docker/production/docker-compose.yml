@@ -1,7 +1,7 @@
 services:
   db:
     env_file:
-      - .env.dev
+      - ../../.env.prod
     image: mysql:8.0.39-debian
     container_name: db
     volumes:
@@ -14,27 +14,28 @@ services:
     platform: linux/amd64
     restart: always
 
-   flyway:
+  flyway:
     image: flyway/flyway:10.20.1-alpine
     volumes:
       - ../../../grupo-2-backend/db/script-creacion:/flyway/sql
-    command: -url=jdbc:mysql://db:${DB_PORT}/${DB_NAME}?allowPublicKeyRetrieval=true -user=${DB_USER} -password=${DB_PASS_ROOT} -connectRetries=60 migrate
+    command: >
+      -url=jdbc:mysql://db:${DB_PORT}/${DB_NAME}?allowPublicKeyRetrieval=true
+      -user=${DB_USER}
+      -password=${DB_PASS_ROOT}
+      -connectRetries=60
+      migrate
     container_name: flyway
     depends_on:
       db:
         condition: service_started
     restart: always
 
-   backend:
+  backend:
     env_file:
-      - .env.dev
-    build:
-      context: ../../../grupo-2-backend
-      dockerfile: Dockerfile
-    #image: kmreyes/cervezarionacional:2.5.2
+      - ../../.env.prod
+    image: kmreyes/cervezarionacional:3.2.0
     ports:
       - "4500:4500"
-    command: "npm run start:prod"
     platform: linux/amd64
     container_name: backend
     depends_on:
@@ -45,17 +46,13 @@ services:
     restart: always
 
   front:
-    build:
-      context: ../../
-      dockerfile: docker/development/Dockerfile
+    image: calvegh337/cervezario-front
     depends_on:
       - backend
     restart: always
     container_name: frontend
     ports:
-      - "5173:5173"
-    volumes:
-      - ../../:/usr/src/app
+      - "${PORT_FRONT}:80"
 
 volumes:
   data_prod:
