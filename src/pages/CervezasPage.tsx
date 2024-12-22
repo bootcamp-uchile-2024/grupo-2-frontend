@@ -3,9 +3,8 @@ import { CervezasGrid } from "@/components/Cervezas/CervezasGrid";
 import { DescubreSection } from "@/sections/DescubreSection";
 import { useEffect } from "react";
 import { CERVEZAS_ENDPOINT } from "@/config/api.config";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getCervezas } from "@/state/slices/cervezaSlice";
-import { RootType } from "@/state/store";
 
 export const CervezasPage = () => {
   const dispatch = useDispatch();

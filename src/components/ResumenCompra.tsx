@@ -1,5 +1,5 @@
-import { API_URL, CERVEZAS_ENDPOINT } from "@/config/api.config";
-import { cleanCarrito, createCarrito } from "@/state/slices/carritoSlice";
+import { API_URL } from "@/config/api.config";
+import { createCarrito } from "@/state/slices/carritoSlice";
 import { RootType } from "@/state/store";
 import cartMenuStore from "@/store/cartMenuStore";
 import { useDispatch, useSelector } from "react-redux";

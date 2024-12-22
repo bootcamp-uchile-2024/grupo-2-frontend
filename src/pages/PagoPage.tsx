@@ -27,7 +27,6 @@ export const PagoPage = () => {
   const { token } = useSelector((state: RootType) => state.usuario);
   const carrito = useSelector((state: RootType) => state.carrito);
   // ESTADOS DE LA COMPONENTE
-  const [loading, setLoading] = useState<boolean>(false);
 
   const [errores, setErrores] = useState<{ name: string; message: string }[]>(
     []
@@ -198,8 +197,10 @@ export const PagoPage = () => {
             }),
           }
         );
+        console.log(response_perfil_invitado);
       }
     }
+
     const response_direccion = await fetch(`${API_URL}/direcciones`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -217,6 +218,7 @@ export const PagoPage = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ Rut: rut }),
     });
+    console.log(response_rut);
 
     const response = await fetch(`${API_URL}/carrito/${id_carrito}/cervezas`, {
       method: "PATCH",
@@ -225,6 +227,7 @@ export const PagoPage = () => {
       },
       body: JSON.stringify(body),
     });
+    console.log(response);
 
     const response_pedido = await fetch(`${API_URL}/pedidos`, {
       method: "POST",
@@ -383,7 +386,6 @@ export const PagoPage = () => {
             <div className="flex flex-col items-center">
               <button
                 type="submit"
-                disabled={loading}
                 className="flex justify-center gap-[10px] btn-primary min-w-[280px] my-[24px] "
               >
                 <img src="/assets/credit-card-black.svg" alt="credit-card" />

@@ -37,10 +37,7 @@ import { jwtDecode } from "jwt-decode";
 import { setUser } from "./state/slices/usuarioSlice";
 import { PagoPage } from "./pages/PagoPage";
 import { PasarelaPagoPage } from "./pages/PasarelaPagoPage";
-import {
-  CompraExistosaPage,
-  CompraExitosaPage,
-} from "./pages/CompraExitosaPage";
+import { CompraExitosaPage } from "./pages/CompraExitosaPage";
 
 declare global {
   interface Window {

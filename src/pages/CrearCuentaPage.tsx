@@ -20,6 +20,7 @@ export const CrearCuentaPage = () => {
     correo_comprador: "",
     re_contrasenia: "",
     rol: "user",
+    is_active: false,
   });
   const [errores, setErrores] = useState<(string | undefined)[]>([]);
   const [loading, setLoading] = useState<boolean>(false);

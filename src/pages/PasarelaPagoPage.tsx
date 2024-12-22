@@ -1,7 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const PasarelaPagoPage = () => {
-  const navigate = useNavigate();
   return (
     <div className="min-w-screen min-h-screen bg-gray-figma p-16">
       <div className="flex border-2 bg-blue">

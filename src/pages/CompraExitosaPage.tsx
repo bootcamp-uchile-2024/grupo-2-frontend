@@ -1,8 +1,6 @@
 import { MainLayout } from "@/layout/MainLayout";
-import { useNavigate } from "react-router-dom";
 
 export const CompraExitosaPage = () => {
-  const navigate = useNavigate();
   const articulos = 5;
   const total_pagar = 25000;
   return (
@@ -58,19 +56,13 @@ export const CompraExitosaPage = () => {
             </div>
             <div className="flex justify-between ">
               <span className="text-lato-xl">Envío</span>
-              <span>
-                {total_pagar > 19990
-                  ? "Gratis"
-                  : total_pagar == 0
-                  ? "Por calcular"
-                  : "$2.990"}
-              </span>
+              <span>{total_pagar > 19990 ? "Gratis" : "$2.990"}</span>
             </div>
             <div className="flex justify-between ">
               <span className={"text-lato-2xl"}>Total</span>
               <span className={"text-lato-l"}>
                 CLP $
-                {(total_pagar > 19990 || total_pagar == 0
+                {(total_pagar > 19990
                   ? total_pagar
                   : total_pagar + 2990
                 ).toLocaleString("es-CL")}
