@@ -31,7 +31,7 @@ services:
       - ../../.env.prod
     image: kmreyes/cervezarionacional:3.2.0
     ports:
-      - "3000:4500"
+      - "4500:4500"
     platform: linux/amd64
     container_name: backend
     depends_on:
