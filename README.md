@@ -1,50 +1,88 @@
-# React + TypeScript + Vite
+# Cervezario - Grupo 2 Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es la parte frontend de la aplicación Cervezario desarrollada por el Grupo 2. Está construida con React y proporciona una interfaz de usuario para la administración de usuarios y otras funcionalidades relacionadas con la gestión de cervezas.
 
-Currently, two official plugins are available:
+## Requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node.js (versión 14 o superior)
+- npm (versión 6 o superior)
 
-## Expanding the ESLint configuration
+## Instalación en Entorno de Desarrollo
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Clona el repositorio en tu máquina local:
+    ```bash
+    git clone https://github.com/bootcamp-uchile-2024/grupo-2-frontend
+    ```
 
-- Configure the top-level `parserOptions` property like this:
+2. Navega al directorio del proyecto:
+    ```bash
+    cd cervezario-frontend
+    ```
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+3. Instala las dependencias del proyecto:
+    ```bash
+    npm install
+    ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+4. Crea un archivo [.env](http://_vscodecontentref_/0) en la raíz del proyecto y configura las variables de entorno necesarias. Un ejemplo de archivo [.env](http://_vscodecontentref_/1) podría ser:
+    ```env
+    # FRONTEND
+    VITE_SERVER_API = http://localhost:4500
+    
+    # BACKEND
+    APP_NAME = Cervezario Nacional
+    APP_VERSION = 1.0.1
+    NESTJS_PORT = 4500
+    AMBIENTE = Develop
+    NODE_VERSION = 22.9.0-alpine3.19
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+    DB_HOST=db
+    DB_PORT=3306
+    DB_USER=root
+    DB_PASSWORD=clave123
+    DB_NAME=Cervezario
+    ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+5. Inicia el servidor de desarrollo:
+    ```bash
+    npm run dev
+    ```
+
+6. Abre tu navegador y navega a `http://localhost:5173` para ver la aplicación en funcionamiento. 
+
+## Compilación e Instalación en Producción
+
+1. Asegúrate de tener configuradas las variables de entorno adecuadas en un archivo [.env](http://_vscodecontentref_/2) para el entorno de producción. Un ejemplo de archivo [.env](http://_vscodecontentref_/3) para producción podría ser:
+    ```env
+    REACT_APP_API_URL=https://api.tu-dominio.com
+    REACT_APP_ENV=production
+    REACT_APP_FEATURE_FLAG=false
+    ```
+
+2. Compila la aplicación para producción:
+    ```bash
+    npm run build
+    ```
+
+3. Los archivos compilados se encontrarán en el directorio `build`. Puedes servir estos archivos estáticos utilizando un servidor web como Nginx, Apache o cualquier servicio de hosting estático.
+
+4. Configura tu servidor web para servir los archivos del directorio `build`. Un ejemplo de configuración para Nginx podría ser:
+    ```nginx
+    server {
+        listen 80;
+        server_name tu-dominio.com;
+
+        location / {
+            root /ruta/a/tu/proyecto/build;
+            try_files $uri /index.html;
+        }
+    }
+    ```
+
+5. Reinicia tu servidor web para aplicar los cambios.
+
+¡Y eso es todo! Ahora tu aplicación debería estar corriendo en producción.
+
+## Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT.
