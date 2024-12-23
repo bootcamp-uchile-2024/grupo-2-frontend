@@ -83,6 +83,30 @@ Este proyecto es la parte frontend de la aplicación Cervezario desarrollada por
 
 ¡Y eso es todo! Ahora tu aplicación debería estar corriendo en producción.
 
+## Despligue docker
+1. Para poder crear una imagen latest del frontend se tiene que ejecutar el siguiente comando:
+   ```
+npm run push-latest-prod
+   ```
+El cual tiene un prehook que permite buildear la imagen antes de ser enviada a docker hub
+2. Para poder desarrollar se pueden utilizar los siguientes comandos para construir, iniciar y terminar los servicios del stack de tecnologicas:
+```
+make build-development
+make start-development
+make stop-development
+```
+Para que funcione adecuadamente lo anterior se tiene que configurar el archivo .env.dev que esta en la raiz del proyecto y en env.example son las variables necesarias para que funcione.
+La principal caracteristica de este docker compose es que el codigo es compilado en tiempo real para poder ver los cambios inmediatamente
+3. Para produccion se pueden utilizar los siguientes comandos también:
+```
+make build-production
+make start-production
+make stop-production
+```
+Para que funcione adecuadamente lo anterior se tiene que configurar el archivo .env.prod que esta en la raiz del proyecto y en env.example son las variables necesarias para que funcione.
+La principal caracteristica de este docker compose es que las imagenes son traidas desde docker hub, ya compiladas
+
+4. Por ultimo, la aplicación en estos momentos esta funcionando en http://18.221.105.249/ en un EC2
 ## Licencia
 
 Este proyecto está licenciado bajo la Licencia MIT.
