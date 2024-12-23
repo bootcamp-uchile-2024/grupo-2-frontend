@@ -1,4 +1,4 @@
-import { CERVEZAS_ENDPOINT } from "@/config/api.config";
+import { CERVEZAS_ENDPOINT, API_URL } from "@/config/api.config";
 import { useFetch } from "@/hooks/useFetch";
 import { CervezaInterface } from "@/types";
 import { useNavigate, useParams } from "react-router-dom";
@@ -30,8 +30,9 @@ export const EditarCervezaPage = () => {
       toast.error("Error al cargar la imagen");
     }
   };
-  const path_imagen = `/${data?.imagen}`;
-  
+  const path_imagen = data?.imagen
+    ? `${API_URL}/${data?.imagen}`
+    : "/assets/no-imagen.png";
   return (
     <div className="w-full p-8">
       <h1 className="mb-4 font-lato  text-purple-100 text-custom-lg font-normal">
@@ -39,9 +40,13 @@ export const EditarCervezaPage = () => {
       </h1>
       <div className="mt-4">
         <div className="grid grid-cols-4 gap-4">
-            <div className="col-span-1">
-            <img src={path_imagen} alt={path_imagen} className="w-full border-2 border-gray-300"/>
-            </div>
+          <div className="col-span-1">
+            <img
+              src={path_imagen}
+              alt={path_imagen}
+              className="w-full border-2 border-gray-300"
+            />
+          </div>
           <div className="col-span-3">
             <form className="w-full p-8" onSubmit={handleSubmit}>
               <label

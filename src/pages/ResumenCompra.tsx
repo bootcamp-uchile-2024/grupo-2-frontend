@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { CERVEZAS_IMAGENES } from "@/config/api.config";
+import { API_URL } from "@/config/api.config";
 import { RootType } from "@/state/store";
 
 export const ResumenCompra = () => {
@@ -18,7 +18,7 @@ export const ResumenCompra = () => {
             const { cerveza, cantidad } = e;
             const { nombre, precio, formato, imagen } = cerveza;
             const path_imagen = imagen
-              ? `${CERVEZAS_IMAGENES}${imagen}`
+              ? `${API_URL}${imagen}`.replace("./", "/")
               : "/assets/no-imagen.png";
             return (
               <div className="flex justify-between p-1 border-b-2" key={index}>

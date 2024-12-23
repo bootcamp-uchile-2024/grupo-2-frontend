@@ -11,7 +11,7 @@
     "prepush-git": "npm run build",
     "push-git": "git add . && git commit && git push",
     "postpush-git": "docker build -t calvegh337 . && docker push calvegh337",
-    "pre-push-latest-prod": "npm run build",
+    "prepush-latest-prod": "npm run build",
     "push-latest-prod": "docker build -f docker/production/Dockerfile -t calvegh337/cervezario-front . && docker push calvegh337/cervezario-front"
   },
   "dependencies": {

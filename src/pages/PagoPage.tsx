@@ -8,7 +8,7 @@ import { validarRut } from "./admin/CreaUsuarioPage";
 import { API_URL } from "@/config/api.config";
 import { toast } from "react-toastify";
 import { ComunasPorRegion, Region } from "@/comunas";
-import { cleanCarrito } from "@/state/slices/carritoSlice";
+import { addPedidoCarrito } from "@/state/slices/carritoSlice";
 
 interface IPedidosDatos {
   rut: string;
@@ -24,7 +24,7 @@ interface IPedidosDatos {
 }
 export const PagoPage = () => {
   // REDUX
-  const { token } = useSelector((state: RootType) => state.usuario);
+
   const carrito = useSelector((state: RootType) => state.carrito);
   // ESTADOS DE LA COMPONENTE
 
@@ -175,30 +175,27 @@ export const PagoPage = () => {
         };
       }),
     };
-    if (token) {
-      console.log(token);
-    } else {
-      const existe_user = await fetch(`${API_URL}/usuarios/${rut}`);
-      if (!existe_user.ok) {
-        const response_perfil_invitado = await fetch(
-          `${API_URL}/usuarios/invitado`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              rut,
-              nombre,
-              apellido,
-              edad: 99,
-              tipo_suscripcion: "SIN_SUSCRIPCION",
-              correo_comprador,
-              telefono_comprador,
-              rol: "invitado",
-            }),
-          }
-        );
-        console.log(response_perfil_invitado);
-      }
+
+    const existe_user = await fetch(`${API_URL}/usuarios/${rut}`);
+    if (!existe_user.ok) {
+      const response_perfil_invitado = await fetch(
+        `${API_URL}/usuarios/invitado`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            rut,
+            nombre,
+            apellido,
+            edad: 99,
+            tipo_suscripcion: "SIN_SUSCRIPCION",
+            correo_comprador,
+            telefono_comprador,
+            rol: "invitado",
+          }),
+        }
+      );
+      console.log(response_perfil_invitado);
     }
 
     const response_direccion = await fetch(`${API_URL}/direcciones`, {
@@ -241,7 +238,9 @@ export const PagoPage = () => {
       }),
     });
     if (response_pedido.ok) {
-      dispatch(cleanCarrito());
+      const respoonse_pedido = await response_pedido.json();
+      const { id } = respoonse_pedido;
+      dispatch(addPedidoCarrito({ id_pedido: id }));
       navigate("/pasarela-pago");
       toast.success("Pedido creado correctamente");
     } else {

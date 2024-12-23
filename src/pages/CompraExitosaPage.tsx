@@ -1,8 +1,16 @@
 import { MainLayout } from "@/layout/MainLayout";
+import { cleanCarrito } from "@/state/slices/carritoSlice";
+import { RootType } from "@/state/store";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const CompraExitosaPage = () => {
-  const articulos = 5;
-  const total_pagar = 25000;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { cervezas, total_pagar, id_pedido } = useSelector(
+    (state: RootType) => state.carrito
+  );
+  const articulos = cervezas.reduce((acc, item) => acc + item.cantidad, 0);
   return (
     <MainLayout>
       <div className="flex flex-col m-auto p-10 px-20 max-w-[1062px]">
@@ -17,7 +25,14 @@ export const CompraExitosaPage = () => {
               siendo procesado. ¡Pronto lo tendrás en tus manos!
             </p>
             <div className="flex justify-center flex-col gap-4 mt-6 lg:flex-row ">
-              <button className="btn-tertiary flex items-center gap-2 justify-center px-4 py-2">
+              <button
+                className="btn-tertiary flex items-center gap-2 justify-center px-4 py-2"
+                type="button"
+                onClick={() => {
+                  navigate("/");
+                  dispatch(cleanCarrito());
+                }}
+              >
                 <img
                   src="/assets/icon-home.svg"
                   alt="icon-home"
@@ -25,7 +40,14 @@ export const CompraExitosaPage = () => {
                 />
                 Volver al inicio
               </button>
-              <button className="btn-secondary flex items-center gap-2 justify-center px-4 py-2">
+              <button
+                className="btn-secondary flex items-center gap-2 justify-center px-4 py-2"
+                type="button"
+                onClick={() => {
+                  navigate("/");
+                  dispatch(cleanCarrito());
+                }}
+              >
                 <img
                   src="/assets/icon-home.svg"
                   alt="icon-home"
@@ -40,10 +62,10 @@ export const CompraExitosaPage = () => {
           Resumen de tu compra
         </div>
         <div className="flex justify-center items-center text-lato-2xl min-h-[84px]">
-          Orden: #1
+          Orden: {id_pedido}
         </div>
-        <div className="border-2">Dirección</div>
-        <div className="border-2">Productos</div>
+        <div className="border-2 my-3 p-2">Dirección</div>
+        <div className="border-2 my-3 p-2">Productos</div>
         <div className="flex flex-col h-full justify-between gap-y-2">
           <div className="space-y-1">
             <div className="flex justify-between">

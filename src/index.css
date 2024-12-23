@@ -27,7 +27,10 @@ h6 {
   }
 }
 .titulo-pasarela {
-  @apply font-light text-riffic-2xl mb-2;
+  @apply font-light text-riffic-2xl mb-2 p-2;
+}
+.pagar {
+  @apply bg-yellow text-gray-dark text-lato-m rounded-[8px] py-[8px] px-[16px] m-5;
 }
 .btn-primary {
   @apply bg-yellow text-gray-dark text-lato-m rounded-[8px] py-[8px] px-[16px];

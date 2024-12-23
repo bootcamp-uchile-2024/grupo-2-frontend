@@ -28,6 +28,9 @@ export const carritoSlice = createSlice({
     createCarrito: (state, action) => {
       state.id_carrito = action.payload.id_carrito;
     },
+    addPedidoCarrito: (state, action) => {
+      state.id_pedido = action.payload.id_pedido;
+    },
     cleanCarrito: () => {
       return initialState;
     },
@@ -83,5 +86,6 @@ export const {
   discountCerveza,
   cleanCarrito,
   createCarrito,
+  addPedidoCarrito,
 } = carritoSlice.actions;
 export default carritoSlice.reducer;
