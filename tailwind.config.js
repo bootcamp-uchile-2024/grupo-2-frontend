@@ -35,6 +35,7 @@ export default {
 			colors: {
 				'gray-dark': '#393939',
 				'gray-dark-67': '#676768',
+				'gray-dark-10': '#ADACAE',
 				'yellow': '#F4B40C',
 				'yellow-900': '#D59B03',
 				'purple': "#4E3B7F",
@@ -43,6 +44,8 @@ export default {
 				"gray-G05": "#000000",
 				"gray-100": "#D9D8DB",
 				"white-100": "#FBFAFC",
+				"gray-figma": "#E5E5E5",
+				"gray-mercado": "#f3f3f3",
 
 			},
 			fontFamily: {

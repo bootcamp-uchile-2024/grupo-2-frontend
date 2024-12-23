@@ -1,12 +1,14 @@
 services:
   db:
+    env_file:
+      - ../../.env.prod
     image: mysql:8.0.39-debian
     container_name: db
     volumes:
       - data_prod:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: clave123
-      MYSQL_DATABASE: Cervezario
+      MYSQL_ROOT_PASSWORD: ${DB_PASS_ROOT}
+      MYSQL_DATABASE: ${DB_NAME}
     ports:
       - "3306:3306"
     platform: linux/amd64
@@ -15,46 +17,38 @@ services:
   flyway:
     image: flyway/flyway:10.20.1-alpine
     volumes:
-      - ../grupo-2-backend/db/script-creacion:/flyway/sql
-    command: "-url=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME} -user=${DB_USER} -password=${DB_PASSWORD} -connectRetries=60 migrate"
-    environment:
-      DB_HOST: ${DB_HOST}
-      DB_PORT: ${DB_PORT}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_NAME: ${DB_NAME}
+      - ../../../grupo-2-backend/db/script-creacion:/flyway/sql
+    command: -url=jdbc:mysql://db:${DB_PORT}/${DB_NAME}?allowPublicKeyRetrieval=true -user=${DB_USER} -password=${DB_PASS_ROOT} -connectRetries=60 migrate
+
+    container_name: flyway
     depends_on:
-      - db
+      db:
+        condition: service_started
     restart: always
-  cervezario-app-prod:
-    image: kmreyes/cervezarionacional:2.2.3
-    environment:
-      - APP_NAME=${APP_NAME}
-      - APP_VERSION=${APP_VERSION}
-      - NESTJS_PORT=${NESTJS_PORT}
-      - AMBIENTE=${AMBIENTE}
-      - NODE_VERSION=${NODE_VERSION}
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_NAME=${DB_NAME}
+
+  backend:
+    env_file:
+      - ../../.env.prod
+    image: kmreyes/cervezarionacional:3.2.0
     ports:
       - "4500:4500"
-    command: "npm run start:prod"
     platform: linux/amd64
+    container_name: backend
     depends_on:
-      - db
-
+      db:
+        condition: service_started
+    volumes:
+      - ./imagenes-cervezas:/home/node/app/imagenes-cervezas
     restart: always
 
   front:
-    image: calvegh337/entrega-10:deploy
+    image: calvegh337/cervezario-front
     depends_on:
-      - cervezario-app-prod
+      - backend
     restart: always
+    container_name: frontend
     ports:
-      - "80:80"
+      - "${PORT_FRONT}:80"
 
 volumes:
   data_prod:

@@ -1,13 +1,13 @@
 import { PedidoType } from "@/state/slices/carritoSlice";
 
 import { AddRemoveCerveza } from "../AddRemoveBoton";
-import { CERVEZAS_IMAGENES } from "@/config/api.config";
+import { API_URL } from "@/config/api.config";
 
 export const ItemListaCarrito = (pedido: PedidoType) => {
   const { cerveza, cantidad } = pedido;
   const { nombre, precio, marca, formato, imagen } = cerveza;
   const path_imagen = imagen
-    ? `${CERVEZAS_IMAGENES}${imagen}`
+    ? `${API_URL}${imagen}`.replace("./", "/")
     : "/assets/no-imagen.png";
 
   return (
@@ -18,11 +18,11 @@ export const ItemListaCarrito = (pedido: PedidoType) => {
       <div className="flex flex-col w-full space-y-1">
         <div className="flex flex-col text-gray-dark text-custom-s font-bold">
           <span>{nombre}</span>
-          <span>{marca}</span>
+          <span className=" text-gray-dark-67">{marca}</span>
         </div>
 
         <div className="text-gray-dark-67 text-custom-xs">{formato.id}</div>
-        <div className="text-gray-dark-67 text-custom-xs">
+        <div className="text-gray-dark-67 text-custom-xs font-bold">
           ${precio.toLocaleString("es-CL")}
         </div>
 

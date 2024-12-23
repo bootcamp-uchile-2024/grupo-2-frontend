@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 
 
 COPY package*.json ./
-COPY docker/development/.env.dev .env
+COPY .env.dev .env
 
 RUN npm install
 

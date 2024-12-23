@@ -1,7 +1,7 @@
 services:
   db:
     env_file:
-      - .env.dev
+      - ../../.env.dev
     image: mysql:8.0.39-debian
     container_name: db
     volumes:
@@ -26,13 +26,12 @@ services:
     restart: always
   backend:
     env_file:
-      - .env.dev
+      - ../../.env.dev
     build:
       context: ../../../grupo-2-backend
       dockerfile: Dockerfile
-    #image: kmreyes/cervezarionacional:2.5.2
     ports:
-      - "4500:4500"
+      - "${NESTJS_PORT}:${NESTJS_PORT}"
     command: "npm run start:prod"
     platform: linux/amd64
     container_name: backend
@@ -52,7 +51,7 @@ services:
     restart: always
     container_name: frontend
     ports:
-      - "5173:5173"
+      - "${FRONT_PORT}:${FRONT_PORT}"
     volumes:
       - ../../:/usr/src/app
 

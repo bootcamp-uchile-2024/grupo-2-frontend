@@ -6,7 +6,7 @@ import {
   AccordionTrigger,
   Accordion,
 } from "@/components/ui/accordion";
-import { CERVEZAS_IMAGENES } from "@/config/api.config";
+import { API_URL } from "@/config/api.config";
 import { MainLayout } from "@/layout/MainLayout";
 import { CervezasDestacadas } from "@/sections/CervezasDestacadas";
 import { PedidoType } from "@/state/slices/carritoSlice";
@@ -19,7 +19,7 @@ const ItemResumenCarrito = (pedido: PedidoType) => {
   const { cerveza, cantidad } = pedido;
   const { nombre, precio, marca, formato, imagen } = cerveza;
   const path_imagen = imagen
-    ? `${CERVEZAS_IMAGENES}${imagen}`
+    ? `${API_URL}${imagen}`.replace("./", "/")
     : "/assets/no-imagen.png";
 
   return (
@@ -64,7 +64,7 @@ export const CarritoPage = () => {
     <MainLayout>
       <div className="flex m-auto justify-center flex-wrap">
         <div className="min-w-[450px] w-[700px]  ">
-          <div className="border-b-[1px] border-purple overflow-y-auto max-h-[440px]">
+          <div className="border-b-[1px] border-gray overflow-y-auto max-h-[440px]">
             {cervezas.map((pedido, index) => (
               <ItemResumenCarrito {...pedido} key={index} />
             ))}

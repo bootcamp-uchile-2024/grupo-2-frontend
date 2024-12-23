@@ -6,7 +6,7 @@ const Navbar = () => {
   const links = [
     {
       to: "/",
-      text: "Inicio",
+      text: "Inicia",
       className: "nav-link flex",
       icon: "/assets/icon-home.svg",
     },

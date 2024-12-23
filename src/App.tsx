@@ -36,6 +36,8 @@ import { useDispatch } from "react-redux";
 import { jwtDecode } from "jwt-decode";
 import { setUser } from "./state/slices/usuarioSlice";
 import { PagoPage } from "./pages/PagoPage";
+import { PasarelaPagoPage } from "./pages/PasarelaPagoPage";
+import { CompraExitosaPage } from "./pages/CompraExitosaPage";
 
 declare global {
   interface Window {
@@ -122,6 +124,8 @@ function App() {
           element={<ConfirmarmacionCorreoPage />}
         />
         <Route path="/proceso-pago" element={<PagoPage />} />
+        <Route path="/pasarela-pago" element={<PasarelaPagoPage />} />
+        <Route path="/compra-exitosa" element={<CompraExitosaPage />} />
       </Routes>
       <ToastContainer
         position="bottom-right"

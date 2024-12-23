@@ -23,9 +23,7 @@ export const LoginPage = () => {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { email, role, token, rut } = useSelector(
-    (state: RootType) => state.usuario
-  );
+  const { role, token } = useSelector((state: RootType) => state.usuario);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>

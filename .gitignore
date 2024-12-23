@@ -22,6 +22,8 @@
 
 /db/data_prod
 .vscode/
-/docker/*
+
 
 imagenes-cervezas/
+.env.dev
+.env.prod

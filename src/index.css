@@ -26,7 +26,21 @@ h6 {
     --radius: 0.5rem;
   }
 }
-
+.titulo-pasarela {
+  @apply font-light text-riffic-2xl mb-2 p-2;
+}
+.pagar {
+  @apply bg-yellow text-gray-dark text-lato-m rounded-[8px] py-[8px] px-[16px] m-5;
+}
+.btn-primary {
+  @apply bg-yellow text-gray-dark text-lato-m rounded-[8px] py-[8px] px-[16px];
+}
+.btn-secondary {
+  @apply min-h-[48px] min-w-[132px] rounded-[8px] px-5 m-2 hover:bg-white hover:text-gray-dark hover:border-[2px] hover:border-purple-100 bg-purple-100 text-white text-custom-m font-bold;
+}
+.btn-tertiary {
+  @apply min-h-[48px] min-w-[132px] rounded-[8px] px-5 m-2 hover:bg-purple-100 hover:text-white text-gray-dark text-custom-m font-bold border-[2px] border-purple-100;
+}
 .btn-carro {
   @apply bg-yellow text-balance py-2 px-4 rounded w-full;
 }
@@ -88,9 +102,11 @@ h6 {
 .text-lato-4xl {
   @apply text-gray-G05 font-medium text-custom-3xl;
 }
-
+.text-riffic {
+  @apply font-riffic font-normal text-custom-lg text-gray-dark;
+}
 .text-riffic-2xl {
-  @apply font-normal font-riffic text-custom-r-2xl text-gray-G05;
+  @apply font-normal font-riffic text-custom-r-2xl text-gray-dark;
 }
 .text-riffic-4xl {
   @apply font-light font-riffic text-custom-4xl text-gray-dark;

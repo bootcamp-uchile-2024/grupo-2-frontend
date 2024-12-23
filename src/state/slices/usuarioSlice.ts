@@ -11,7 +11,6 @@ export const usuarioSlice = createSlice({
   initialState,
   reducers: {
     setUser(_, action) {
-      console.log(action.payload);
       return action.payload;
     },
     cleanUser() {

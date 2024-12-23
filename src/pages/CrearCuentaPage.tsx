@@ -5,7 +5,11 @@ import { validarRut } from "./admin/CreaUsuarioPage";
 import { USERS_ENDPOINT } from "@/config/api.config";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-
+export const findEmptyStrings = (obj: any) => {
+  return Object.entries(obj)
+    .filter(([_, value]) => value === "")
+    .map(([key]) => key);
+};
 export const CrearCuentaPage = () => {
   const [usuario, setUsuario] = useState<Usuario>({
     rut: "",
@@ -16,6 +20,7 @@ export const CrearCuentaPage = () => {
     correo_comprador: "",
     re_contrasenia: "",
     rol: "user",
+    is_active: false,
   });
   const [errores, setErrores] = useState<(string | undefined)[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -88,14 +93,9 @@ export const CrearCuentaPage = () => {
       error_message: "La contraseña es obligatoria",
     },
   ];
-  const findEmptyStrings = (obj: any) => {
-    return Object.entries(obj)
-      .filter(([_, value]) => value === "")
-      .map(([key]) => key);
-  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(findEmptyStrings(usuario));
     const erroresLista = findEmptyStrings(usuario).map((key) => {
       return formularioRegistro.find((input) => input.name == key)
         ?.error_message;
@@ -141,7 +141,6 @@ export const CrearCuentaPage = () => {
         setLoading(false);
       }
     } else {
-      console.log(erroresLista);
       setErrores(erroresLista);
     }
   };

@@ -43,6 +43,7 @@ export const CreaUsuarioPage = () => {
     tipo_suscripcion: "",
     birthday: "",
     rol: "user", // Se establece el rol por defecto como "user"
+    is_active: false,
   });
 
   const [errorRut, setErrorRut] = useState<string | null>(null);
@@ -202,6 +203,7 @@ export const CreaUsuarioPage = () => {
       tipo_suscripcion: "",
       birthday: "",
       rol: "user",
+      is_active: false,
     });
 
     // Limpiar los mensajes de error

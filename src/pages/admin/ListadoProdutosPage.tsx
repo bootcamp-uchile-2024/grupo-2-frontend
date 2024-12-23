@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Cervezas } from "../../types";
-import { CERVEZAS_ENDPOINT, CERVEZAS_IMAGENES } from "../../config/api.config";
+import { CERVEZAS_ENDPOINT, API_URL } from "../../config/api.config";
 
 export const ListadoProductosPage = () => {
   const [productos, setProductos] = useState<Cervezas[]>([]);
@@ -117,7 +117,7 @@ export const ListadoProductosPage = () => {
                   stock,
                 } = producto;
                 const path_imagen = imagen
-                  ? `${CERVEZAS_IMAGENES}${imagen}`
+                  ? `${API_URL}${imagen}`.replace("./", "/")
                   : "/assets/no-imagen.png";
                 return (
                   <tr key={id} className={is_active ? "" : "bg-slate-200"}>
