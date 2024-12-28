@@ -1,8 +1,8 @@
-export const SuscripcionSection = () => {
+export const SuscripcionSection = ({ title = "SUSCRIPCIÓN CLUB"}) => {
   return (
     <section>
       <div className="container mx-auto text-center py-10">
-        <h1 className="font-title text-6xl pb-8">Packs</h1>
+        <h1 className="font-title text-6xl pb-16">{title}</h1>
         <div className="flex flex-wrap justify-center">
           <div className="w-100 md:w-1/3 flex justify-center items-center">
             <img

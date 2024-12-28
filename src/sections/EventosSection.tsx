@@ -1,8 +1,8 @@
-export const EventosSection = () => {
+export const EventosSection = ({title = "EVENTOS"}) => {
   return (
     <section>
       <div className="container mx-auto text-center py-10">
-        <h1 className="font-title text-6xl pb-8">Eventos</h1>
+        <h1 className="font-title text-6xl pb-8">{title}</h1>
         <div className="flex flex-wrap">
           <div className="w-full sm:w-1/3 px-2 flex flex-col items-center justify-center">
             <figure className="w-52 h-52 bg-cover rounded-full" style={{ backgroundImage: 'url(/assets/evento-1.png)' }}></figure>

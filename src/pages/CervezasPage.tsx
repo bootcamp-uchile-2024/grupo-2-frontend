@@ -27,9 +27,9 @@ export const CervezasPage = () => {
 
   return (
     <MainLayout>
-      <DescubreSection imageUrl="/assets/baner-descubre-top.png" />
+      <DescubreSection imageUrl="/assets/baner-somo-o-no-somo.png" />
       <section className="flex flex-col items-center my-12 ">
-        <div className="flex w-full xl:flex-row sm:flex-col sm:items-center justify-center flex-wrap space-x-2">
+        {/* <div className="flex w-full xl:flex-row sm:flex-col sm:items-center justify-center flex-wrap space-x-2">
           <div className="flex ">
             <img src="/assets/copas-1.svg" alt="" width={210} />
             <img src="/assets/copas-4.svg" alt="" width={210} />
@@ -45,7 +45,7 @@ export const CervezasPage = () => {
             <img src="/assets/copas-2.svg" alt="" width={210} />
             <img src="/assets/copas-3.svg" alt="" width={210} />
           </div>
-        </div>
+        </div> */}
         <div className="flex ">
           <CervezasGrid />
         </div>

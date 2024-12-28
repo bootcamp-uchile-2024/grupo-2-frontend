@@ -18,7 +18,7 @@ export const CervezasDestacadas = ({ title = "DESTACADAS" }) => {
   return (
     <div className="section">
       <div className="container mx-auto text-center mt-24 py-5 pb-10">
-        <h1 className="text-riffic-4xl mb-5">{title}</h1>
+        <h1 className="text-6xl mb-16">{title}</h1>
         <div className="flex flex-wrap justify-center gap-4 md:flex-nowrap">
           {cervezas?.map((cerveza) => (
             <CervezaCartaDetalle {...cerveza} key={cerveza.id} />
