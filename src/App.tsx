@@ -38,6 +38,7 @@ import { setUser } from "./state/slices/usuarioSlice";
 import { PagoPage } from "./pages/PagoPage";
 import { PasarelaPagoPage } from "./pages/PasarelaPagoPage";
 import { CompraExitosaPage } from "./pages/CompraExitosaPage";
+import { ClubPage } from "./pages/ClubPage";
 
 declare global {
   interface Window {
@@ -88,6 +89,7 @@ function App() {
         <Route path="/contacto" element={<ContactoPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/resumen-carrito" element={<CarritoPage />} />
+        <Route path="/club" element={<ClubPage />} />
         <Route path="*" element={<PageNoFound />} />
         <Route path="/admin" element={<AdminLoginPage />} />
         <Route
