@@ -9,6 +9,7 @@ import { API_URL } from "@/config/api.config";
 import { toast } from "react-toastify";
 import { ComunasPorRegion, Region } from "@/comunas";
 import { addPedidoCarrito } from "@/state/slices/carritoSlice";
+import { updateNombres } from "@/state/slices/usuarioSlice";
 
 interface IPedidosDatos {
   rut: string;
@@ -22,15 +23,18 @@ interface IPedidosDatos {
   telefono_comprador: string;
   correo_comprador: string;
 }
+interface IErrores {
+  name: string;
+  message: string;
+}
 export const PagoPage = () => {
   // REDUX
-
   const carrito = useSelector((state: RootType) => state.carrito);
-  // ESTADOS DE LA COMPONENTE
+  const { rut } = useSelector((state: RootType) => state.usuario);
 
-  const [errores, setErrores] = useState<{ name: string; message: string }[]>(
-    []
-  );
+  // ESTADOS DE LA COMPONENTE
+  const [errores, setErrores] = useState<IErrores[]>([]);
+  const [direccionEnvio, setDireccionEnvio] = useState("opcion1");
   const dispatch = useDispatch();
   const [infoPedido, setInfoPedido] = useState<IPedidosDatos>({
     rut: "",
@@ -60,6 +64,7 @@ export const PagoPage = () => {
       placeholder: "Ingresa tu nombre",
       handleChange,
       errorMessage: "El nombre es obligatorio",
+      value: infoPedido.nombre,
     },
     {
       label: "Apellidos",
@@ -68,6 +73,7 @@ export const PagoPage = () => {
       placeholder: "Ingresa tus apellidos",
       handleChange,
       errorMessage: "Los apellidos son obligatorios.",
+      value: infoPedido.apellido,
     },
     {
       label: "RUT",
@@ -76,6 +82,7 @@ export const PagoPage = () => {
       placeholder: "Ingresa tu RUT",
       handleChange,
       errorMessage: "El RUT es obligatorio",
+      value: infoPedido.rut,
     },
     {
       label: "Región",
@@ -84,6 +91,7 @@ export const PagoPage = () => {
       placeholder: "Ingresa tu región",
       handleChange,
       errorMessage: "La región es obligatorio",
+      value: infoPedido.region,
     },
     {
       label: "Comuna",
@@ -92,6 +100,7 @@ export const PagoPage = () => {
       placeholder: "Ingresa tu comuna",
       handleChange,
       errorMessage: "La comuna es obligatorio",
+      value: infoPedido.comuna,
     },
     {
       label: "Código postal (Opcional)",
@@ -127,6 +136,7 @@ export const PagoPage = () => {
       type: "text",
       placeholder: "Ingresa tu teléfono",
       handleChange,
+      value: infoPedido.telefono_comprador,
     },
   ];
   const { cervezas } = useSelector((state: RootType) => state.carrito);
@@ -136,6 +146,31 @@ export const PagoPage = () => {
       navigate("/");
     }
   }, []);
+
+  const fetchUser = async (rut: string) => {
+    if (rut === "") return;
+    const response = await fetch(`${API_URL}/usuarios/${rut}`);
+    if (response.ok) {
+      const data = await response.json();
+      setInfoPedido({
+        ...infoPedido,
+        nombre: data.nombre,
+        apellido: data.apellido,
+        correo_comprador: data.correo_comprador,
+        telefono_comprador: data.telefono_comprador,
+        rut: data.rut,
+      });
+    }
+  };
+  useEffect(() => {
+    fetchUser(rut);
+  }, []);
+  const handleChangeDireccion = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    setDireccionEnvio(e.target.value);
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const {
@@ -225,7 +260,6 @@ export const PagoPage = () => {
       body: JSON.stringify(body),
     });
     console.log(response);
-
     const response_pedido = await fetch(`${API_URL}/pedidos`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -243,6 +277,7 @@ export const PagoPage = () => {
       dispatch(addPedidoCarrito({ id_pedido: id }));
       navigate("/pasarela-pago");
       toast.success("Pedido creado correctamente");
+      dispatch(updateNombres({ nombres: nombre, apellidos: apellido }));
     } else {
       toast.error("Error al crear el pedido");
     }
@@ -268,6 +303,7 @@ export const PagoPage = () => {
                 type={"email"}
                 placeholder={"mail@correo.cl"}
                 onChange={handleChange}
+                value={infoPedido.correo_comprador}
               />
               <p className="text-red-500 text-sm mt-1">
                 {errores
@@ -283,7 +319,14 @@ export const PagoPage = () => {
               <h2 className="text-headline-lato-2xl">Entrega</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {inputListPago.map((e, i) => {
-                  const { label, name, type, placeholder, handleChange } = e;
+                  const {
+                    label,
+                    name,
+                    type,
+                    placeholder,
+                    handleChange,
+                    value,
+                  } = e;
                   return (
                     <div key={i} className={`${i >= 8 ? "sm:col-span-2" : ""}`}>
                       <label
@@ -330,6 +373,7 @@ export const PagoPage = () => {
                             type={type}
                             placeholder={placeholder}
                             onChange={handleChange}
+                            value={value}
                           />
 
                           <p className="text-red-500 text-sm mt-1">
@@ -342,7 +386,8 @@ export const PagoPage = () => {
                     </div>
                   );
                 })}
-                <label className="flex items-center">
+
+                <label className="flex items-center  md:w-[480px]">
                   <input type="checkbox" className="mr-2" />
                   Guardar información y consultar más rapidamente la próxima vez
                 </label>
@@ -350,47 +395,95 @@ export const PagoPage = () => {
             </div>
             <div>
               <h2 className="text-headline-lato-2xl">Métodos de envio</h2>
-              <div>Envio normal</div>
+              <div className="flex justify-between items-center border-2 rounded-[8px] p-[12px]">
+                <div>
+                  <span className="text-lato-s">Envio normal</span>
+                  <div>2 a 5 días hábiles</div>
+                </div>
+                <div>Introducir la dirección de envio</div>
+              </div>
             </div>
             <div>
-              <h2 className="text-headline-lato-2xl">Pago</h2>
-              <p>Todas las transacciones son seguras y están encriptadas</p>
+              <h2 className="text-headline-lato-2xl ">Pago</h2>
+              <p className="mb-4">
+                Todas las transacciones son seguras y están encriptadas
+              </p>
+              <div className="border-2 rounded-[8px]">
+                <div className="flex justify-between items-center p-[12px] border-b-2">
+                  <span>Mercado Pago</span>
+                  <img
+                    src="/assets/tarjetas-visa.png"
+                    alt="tarjeta-grande-mercado-pago"
+                  />
+                </div>
+                <div className="flex justify-center min-h-[220px]">
+                  <img
+                    src="/assets/mercado-pago-tarjeta-grande.svg"
+                    alt="tarjeta-grande-mercado-pago"
+                  />
+                </div>
+              </div>
             </div>
             <div>
               <h2 className="text-headline-lato-2xl">
                 Dirección de facturación
               </h2>
               <div className="flex flex-col border-2 rounded-[8px]">
-                <label className="flex items-center border-b-2 p-2">
+                <label className="flex items-center border-b-2 p-4">
                   <input
                     type="radio"
                     name="opciones"
                     value="opcion1"
                     className="form-radio text-blue-500"
+                    onChange={handleChangeDireccion}
+                    checked={direccionEnvio === "opcion1"}
                   />
-                  <span className="ml-2">La misma dirección de envío</span>
+                  <span
+                    className={`ml-2 ${
+                      direccionEnvio === "opcion1"
+                        ? "font-bold "
+                        : "font-normal"
+                    }`}
+                  >
+                    La misma dirección de envío
+                  </span>
                 </label>
 
-                <label className="flex items-center  p-2 ">
+                <label className="flex items-center  p-4 ">
                   <input
                     type="radio"
                     name="opciones"
-                    value="opcion2"
+                    value={"opcion2"}
                     className="form-radio text-blue-500"
+                    onChange={handleChangeDireccion}
+                    checked={direccionEnvio === "opcion2"}
                   />
-                  <span className="ml-2">Ingresar dirección diferente</span>
+                  <span
+                    className={`ml-2 ${
+                      direccionEnvio === "opcion2" ? "font-bold" : "font-normal"
+                    }`}
+                  >
+                    Ingresar dirección diferente
+                  </span>
+                  <span className="ml-2"></span>
                 </label>
               </div>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col m-auto items-center max-w-[280px] ">
               <button
                 type="submit"
-                className="flex justify-center gap-[10px] btn-primary min-w-[280px] my-[24px] "
+                className="flex justify-center gap-[10px] btn-primary min-w-[280px] my-[24px] mb-3"
               >
                 <img src="/assets/credit-card-black.svg" alt="credit-card" />
                 Pagar ahora
               </button>
-              <button type="button">Volver al carro</button>
+              <button
+                type="button"
+                className="flex items-center gap-[10px] justify-center btn-tertiary min-w-[280px] w-full"
+              >
+                <img src="/assets/carrito-yellow.svg" alt="carrito-yellow" />
+                Volver al carro
+              </button>
             </div>
           </form>
         </div>

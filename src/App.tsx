@@ -38,6 +38,11 @@ import { setUser } from "./state/slices/usuarioSlice";
 import { PagoPage } from "./pages/PagoPage";
 import { PasarelaPagoPage } from "./pages/PasarelaPagoPage";
 import { CompraExitosaPage } from "./pages/CompraExitosaPage";
+import { ClubPage } from "./pages/ClubPage";
+import { PacksPage } from "./pages/PacksPage";
+import { ContenidoEducativoPage } from "./pages/ContenidoEducativoPage";
+import { ComunidadPage } from "./pages/ComunidadPage";
+import { OfertasPage } from "./pages/OfertasPage";
 
 declare global {
   interface Window {
@@ -88,6 +93,11 @@ function App() {
         <Route path="/contacto" element={<ContactoPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/resumen-carrito" element={<CarritoPage />} />
+        <Route path="/club" element={<ClubPage />} />
+        <Route path="/packs" element={<PacksPage />} />
+        <Route path="/contenido" element={<ContenidoEducativoPage />} />
+        <Route path="/comunidad" element={<ComunidadPage />} />
+        <Route path="/ofertas" element={<OfertasPage />} />
         <Route path="*" element={<PageNoFound />} />
         <Route path="/admin" element={<AdminLoginPage />} />
         <Route
@@ -125,7 +135,10 @@ function App() {
         />
         <Route path="/proceso-pago" element={<PagoPage />} />
         <Route path="/pasarela-pago" element={<PasarelaPagoPage />} />
-        <Route path="/compra-exitosa" element={<CompraExitosaPage />} />
+        <Route
+          path="/compra-exitosa/:id_pedido"
+          element={<CompraExitosaPage />}
+        />
       </Routes>
       <ToastContainer
         position="bottom-right"

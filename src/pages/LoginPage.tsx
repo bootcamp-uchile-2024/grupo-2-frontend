@@ -62,7 +62,13 @@ export const LoginPage = () => {
         localStorage.setItem("token_jwt", valor);
         toast.success("Inicio de sesión exitoso");
       } else {
-        toast.error(`Error al iniciar sesión. ${valor}`);
+        if (response.status === 401) {
+          toast.error(
+            `Error al iniciar sesión. Usuario o contraseña incorrectos`
+          );
+        } else {
+          toast.error(`Error al iniciar sesión. ${valor}`);
+        }
       }
     } catch (e) {
       toast.error(`Error al iniciar sesión. ${e}`);
