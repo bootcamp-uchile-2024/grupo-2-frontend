@@ -136,6 +136,11 @@ export const PagoPage = () => {
       navigate("/");
     }
   }, []);
+  const handleChangeDireccion = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    setDireccionEnvio(e.target.value);
+  };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const {
@@ -224,7 +229,6 @@ export const PagoPage = () => {
       },
       body: JSON.stringify(body),
     });
-    console.log(response);
 
     const response_pedido = await fetch(`${API_URL}/pedidos`, {
       method: "POST",
@@ -247,7 +251,7 @@ export const PagoPage = () => {
       toast.error("Error al crear el pedido");
     }
   };
-
+  const [direccionEnvio, setDireccionEnvio] = useState("");
   return (
     <MainLayout>
       <div className="flex flex-wrap m-auto p-5 ">
@@ -342,7 +346,8 @@ export const PagoPage = () => {
                     </div>
                   );
                 })}
-                <label className="flex items-center">
+
+                <label className="flex items-center  md:w-[480px]">
                   <input type="checkbox" className="mr-2" />
                   Guardar información y consultar más rapidamente la próxima vez
                 </label>
@@ -361,24 +366,43 @@ export const PagoPage = () => {
                 Dirección de facturación
               </h2>
               <div className="flex flex-col border-2 rounded-[8px]">
-                <label className="flex items-center border-b-2 p-2">
+                <label className="flex items-center border-b-2 p-4">
                   <input
                     type="radio"
                     name="opciones"
                     value="opcion1"
                     className="form-radio text-blue-500"
+                    onChange={handleChangeDireccion}
+                    checked={direccionEnvio === "opcion1"}
                   />
-                  <span className="ml-2">La misma dirección de envío</span>
+                  <span
+                    className={`ml-2 ${
+                      direccionEnvio === "opcion1"
+                        ? "font-bold "
+                        : "font-normal"
+                    }`}
+                  >
+                    La misma dirección de envío
+                  </span>
                 </label>
 
-                <label className="flex items-center  p-2 ">
+                <label className="flex items-center  p-4 ">
                   <input
                     type="radio"
                     name="opciones"
-                    value="opcion2"
+                    value={"opcion2"}
                     className="form-radio text-blue-500"
+                    onChange={handleChangeDireccion}
+                    checked={direccionEnvio === "opcion2"}
                   />
-                  <span className="ml-2">Ingresar dirección diferente</span>
+                  <span
+                    className={`ml-2 ${
+                      direccionEnvio === "opcion2" ? "font-bold" : "font-normal"
+                    }`}
+                  >
+                    Ingresar dirección diferente
+                  </span>
+                  <span className="ml-2"></span>
                 </label>
               </div>
             </div>
@@ -390,7 +414,12 @@ export const PagoPage = () => {
                 <img src="/assets/credit-card-black.svg" alt="credit-card" />
                 Pagar ahora
               </button>
-              <button type="button">Volver al carro</button>
+              <button
+                type="button"
+                className="flex justify-center btn-tertiary min-w-[280px]"
+              >
+                Volver al carro
+              </button>
             </div>
           </form>
         </div>

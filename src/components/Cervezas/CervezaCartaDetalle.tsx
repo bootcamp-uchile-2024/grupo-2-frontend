@@ -33,7 +33,7 @@ export const CervezaCartaDetalle = (cerveza: CervezaInterface) => {
       <button
         onClick={() => navigate("/cervezas/" + id)}
         type="button"
-        className="border-2 min-h-[280px]  border-transparent hover:border-purple relative "
+        className="border-2 min-h-[300px]  border-transparent hover:border-purple relative "
       >
         <img src={path_imagen} alt={path_imagen} width={300} height={300} />
         <div className="absolute top-0 left-0 right-0 bottom-6 flex justify-center items-end opacity-0 hover:opacity-100 transition-opacity  ">

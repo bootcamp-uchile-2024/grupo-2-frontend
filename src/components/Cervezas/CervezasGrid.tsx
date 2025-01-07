@@ -19,6 +19,7 @@ export const CervezasGrid = () => {
   const [categoria, setCategoria] = useState<string[]>([]);
   const [estilo, setEstilos] = useState<string[]>([]);
   const [amargor, setAmargor] = useState<string[]>([]);
+  const [isOpen, setIsOpen] = useState(false);
   const { registros } = useSelector((state: RootType) => state.cerveza); //Se obtiene el estado de la cantidad de cervezas para poder paginar bien
   const queryParams = new URLSearchParams({
     pagina: pagina.toString(),
@@ -254,58 +255,74 @@ export const CervezasGrid = () => {
 
   return (
     <div>
-      <div className="flex align-center justify-end font-lato text-custom-s text-gray-dark">
-        <div className="flex w-full max-w-[980px] flex-wrap gap-[10px] pr-4">
-          {filtros_aplicados.map((filtro, index) => (
-            <button
-              key={index}
-              onClick={() => handleRemoveFilter(filtro.clave)}
-              className="flex  bg-purple-100 px-[16px] py-[8px] rounded-[12px] text-lato-s-white "
-            >
-              {filtro.texto}
-              <img className="ml-4" src="/assets/close.svg" width={18} />
-            </button>
-          ))}
-          {grados != "" && (
-            <button
-              onClick={() => setGrados("")}
-              className="flex  bg-purple-100 px-[16px] py-[8px] rounded-[12px] text-lato-s-white "
-            >
-              Grados: {getLabelFromValue("Grados de Alcohol", grados)}
-              <img className="ml-4" src="/assets/close.svg" width={18} />
-            </button>
-          )}
+      <div className="flex flex-col align-center justify-end font-lato text-custom-s text-gray-dark ">
+        <div className="flex justify-center w-full ">
+          <button
+            className="lg:hidden btn-secondary w-[280px] flex justify-center items-center gap-6"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <img className="ml-4" src="/assets/icon-cervezas.svg" width={18} />
+            {isOpen ? "Cerrar Filtros" : "Abrir Filtros"}
+          </button>
         </div>
-        <div className="flex justify-center items-center">
-          <span className="mr-2">Mostrar</span>
-          {[6, 12, 18, 24].map((cant) => (
-            <button
-              key={cant}
-              onClick={() => setCantidadProductos(cant)}
-              className={`h-[35px] w-[38px] text-purple ${
-                cantproductos == cant
-                  ? "bg-purple-100 text-white font-bold rounded-md"
-                  : ""
-              }`}
-            >
-              {cant}
-            </button>
-          ))}
-          <span className="mx-2">productos</span>
+        <div className="flex md:flex-row flex-col min-h-[80px] ">
+          <div className="flex justify-center  md:justify-start md:w-2/3 max-w-[980px] flex-wrap gap-[10px] p-4 ">
+            {filtros_aplicados.map((filtro, index) => (
+              <button
+                key={index}
+                onClick={() => handleRemoveFilter(filtro.clave)}
+                className="flex items-center bg-purple-100 px-[16px] py-[8px] rounded-[12px] text-lato-s-white "
+              >
+                {filtro.texto}
+                <img className="ml-4" src="/assets/close.svg" width={18} />
+              </button>
+            ))}
+            {grados != "" && (
+              <button
+                onClick={() => setGrados("")}
+                className="flex items-center  bg-purple-100 px-[16px] py-[8px] rounded-[12px] text-lato-s-white "
+              >
+                Grados: {getLabelFromValue("Grados de Alcohol", grados)}
+                <img className="ml-4" src="/assets/close.svg" width={18} />
+              </button>
+            )}
+          </div>
+          <div className="flex md:w-1/3 justify-center md:justify-end  items-center my-3 ">
+            <span className="mr-2">Mostrar</span>
+            {[6, 12, 18, 24].map((cant) => (
+              <button
+                key={cant}
+                onClick={() => setCantidadProductos(cant)}
+                className={`h-[35px] w-[38px] text-purple ${
+                  cantproductos == cant
+                    ? "bg-purple-100 text-white font-bold rounded-md"
+                    : ""
+                }`}
+              >
+                {cant}
+              </button>
+            ))}
+            <span className="mx-2">productos</span>
+          </div>
         </div>
       </div>
 
-      <div className="flex">
-        <div className="flex flex-col mt-8 mr-2">
+      <div className={`flex flex-col items-center md:flex-row md:items-start`}>
+        <div
+          className={`${
+            isOpen ? "block" : "hidden"
+          } lg:block flex flex-col mt-8 mr-2 `}
+        >
           <input
-            className="form-input mt-1 block w-full border rounded-md shadow-sm focus:border-purple focus:ring focus:ring-purple focus:ring-opacity-50 p-3"
+            className="mt-1 block w-90% border rounded-md shadow-sm focus:border-purple focus:ring focus:ring-purple focus:ring-opacity-50 p-3 mx-3"
             name="cerveza"
             type="text"
             placeholder="Buscar cerveza"
             onChange={handleChangeCerveza}
             value={cervezaBuscada}
           />
-          <div>
+
+          <div className="">
             {opcionesFiltros.map((filtro, index) => {
               const { titulo, opciones, name, handleChange, valores } = filtro;
               return (

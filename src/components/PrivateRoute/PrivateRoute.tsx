@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { isAuth } from "@/utils/auth";
+import { MainLayout } from "@/layout/MainLayout";
 
 interface PrivateRouteProps {
   children: ReactNode;
@@ -8,10 +9,15 @@ interface PrivateRouteProps {
 
 export const PrivateRoute = (props: PrivateRouteProps) => {
   const auth = isAuth();
-  console.log("Auth:", auth); // Depuración
-  return (
-    <>
-      {auth ? props.children : <p className="error">Acceso denegado</p>}
-    </>
-  );
-}
+  if (auth) {
+    return <MainLayout>{props.children}</MainLayout>;
+  } else {
+    return (
+      <MainLayout>
+        <div className="flex justify-center">
+          <h1 className="error">Acceso denegado</h1>
+        </div>
+      </MainLayout>
+    );
+  }
+};
