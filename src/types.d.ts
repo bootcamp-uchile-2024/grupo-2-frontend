@@ -32,6 +32,7 @@ export interface CervezaInterface {
   amargor: AmargorInterface;
   graduacion: number;
   formato: FormatoType;
+  id_formato?: string;
   imagen: string;
   is_active: boolean;
 }

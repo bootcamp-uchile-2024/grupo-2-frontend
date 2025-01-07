@@ -135,7 +135,10 @@ function App() {
         />
         <Route path="/proceso-pago" element={<PagoPage />} />
         <Route path="/pasarela-pago" element={<PasarelaPagoPage />} />
-        <Route path="/compra-exitosa" element={<CompraExitosaPage />} />
+        <Route
+          path="/compra-exitosa/:id_pedido"
+          element={<CompraExitosaPage />}
+        />
       </Routes>
       <ToastContainer
         position="bottom-right"

@@ -1,16 +1,19 @@
 import { ReactNode } from "react";
 import { isAuth } from "@/utils/auth";
 import { MainLayout } from "@/layout/MainLayout";
+import { useSelector } from "react-redux";
+import { RootType } from "@/state/store";
 
 interface PrivateRouteProps {
   children: ReactNode;
-  // rol: string[];
 }
 
 export const PrivateRoute = (props: PrivateRouteProps) => {
   const auth = isAuth();
-  if (auth) {
-    return <MainLayout>{props.children}</MainLayout>;
+  const { role } = useSelector((state: RootType) => state.usuario);
+
+  if (auth && role == "admin") {
+    return <>{props.children}</>;
   } else {
     return (
       <MainLayout>

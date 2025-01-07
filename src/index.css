@@ -30,7 +30,7 @@ h6 {
   @apply font-light text-riffic-2xl mb-2 p-2;
 }
 .pagar {
-  @apply bg-yellow text-gray-dark text-lato-m rounded-[8px] py-[8px] px-[16px] m-5;
+  @apply text-gray-dark text-lato-m rounded-[8px] py-[8px] px-[16px] m-5;
 }
 .btn-primary {
   @apply bg-yellow text-gray-dark text-lato-m rounded-[8px] py-[8px] px-[16px];
@@ -80,6 +80,9 @@ h6 {
 }
 .text-lato-m {
   @apply text-gray-dark font-bold text-custom-m;
+}
+.text-lato-s {
+  @apply font-bold text-custom-s;
 }
 .text-lato-s-white {
   @apply text-white font-bold text-custom-s;
